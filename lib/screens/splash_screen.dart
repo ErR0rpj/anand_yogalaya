@@ -2,7 +2,6 @@ import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -11,12 +10,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     // set time to load the new page
-    Future.delayed(Duration(seconds: 1), (){
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+    Future.delayed(const Duration(seconds: 1), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
     super.initState();
   }
@@ -25,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        alignment:  Alignment.center,
+        alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,16 +34,16 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 500,
               child: Lottie.asset("assets/animations/girl_yoga.json"),
             ),
-            SizedBox(height: 20,),
-            Text(
-              "ANAND YOGALYA",
-              style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold
+            const SizedBox(
+              height: 20,
             ),
+            const Text(
+              "ANAND YOGALYA",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

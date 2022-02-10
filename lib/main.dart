@@ -1,7 +1,13 @@
+import 'package:anand_yogalaya/controllers/auth_controller.dart';
 import 'package:anand_yogalaya/screens/splash_screen.dart';
+import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  await firebaseInitialization.then((value) {
+    Get.put(AuthController());
+  });
   runApp(const MyApp());
 }
 
@@ -11,14 +17,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'ANAND YOGALAYA',
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

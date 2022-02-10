@@ -12,60 +12,58 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: loginbackground,
-      resizeToAvoidBottomInset: false,
+        backgroundColor: loginbackground,
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.fromLTRB(00.0, 120.0, 0.0, 0.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Workout',
-                              style: GoogleFonts.merriweather(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 42,
-                              ),
+                Stack(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(00.0, 120.0, 0.0, 0.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Workout',
+                            style: GoogleFonts.merriweather(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 42,
                             ),
-                            SizedBox(height: 10.0),
-                            Text(
-                              'Dont miss the fitness!!',
-                              style: GoogleFonts.merriweather(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
+                          ),
+                          const SizedBox(height: 10.0),
+                          Text(
+                            'Dont miss the fitness!!',
+                            style: GoogleFonts.merriweather(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 18,
                             ),
-                            SizedBox(height: 10.0),
-                            SizedBox(
-                              height: 300,
-                              width: 300,
-                              child: Lottie.asset("assets/animations/girl_yoga.json"),
-                            )
-                          ],
-                        ),
+                          ),
+                          const SizedBox(height: 10.0),
+                          SizedBox(
+                            height: 300,
+                            width: 300,
+                            child: Lottie.asset(
+                                "assets/animations/girl_yoga.json"),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 Container(
                   padding:
-                  EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
+                      const EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 100.0),
+                      const SizedBox(height: 100.0),
                       loginButton(context),
                     ],
                   ),
@@ -73,15 +71,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ],
-        )
-    );
+        ));
   }
+
   Widget loginButton(BuildContext context) {
     return Container(
       height: 65,
       child: FlatButton(
         color: loginbutton,
-        //padding: EdgeInsets.all(35),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -91,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Image.asset("assets/images/Glogo.png"),
               ),
             ),
-            SizedBox(width: 3.0),
+            const SizedBox(width: 3.0),
             Center(
               child: Text('Login with Google',
                   style: GoogleFonts.montserrat(
@@ -100,8 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
             )
           ],
         ),
-        onPressed: () => { Navigator.push( context,MaterialPageRoute(builder: (context) => DashBoardScreen()),),
-    },
+        onPressed: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DashBoardScreen()),
+          ),
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),
         ),

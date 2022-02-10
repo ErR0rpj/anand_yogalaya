@@ -1,9 +1,5 @@
-
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class AppConstants {
   double height = 0;
@@ -13,10 +9,12 @@ class AppConstants {
     height = MediaQuery.of(context).size.height;
     return (MediaQuery.of(context).size.height);
   }
+
   double _widthCalculator(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return (MediaQuery.of(context).size.width);
   }
+
   _calculateAspectRatio(double width, double height) => height / width;
   static final AppConstants _instance = AppConstants._internal();
   factory AppConstants() {
@@ -29,9 +27,7 @@ class AppConstants {
   }
 }
 
-
 //////////////////////// COLORS //////////////////////////////
-
 
 const kGreyShade1 = Color(0xFF8E8E93);
 const kGreyShade2 = Color(0xFFAEAEB2);
@@ -75,7 +71,6 @@ const kAccentYellow = Color(0xFFFFF6E4);
 const kAccentPurple = Color(0xFFF1EDFC);
 const kAccentTosca = Color(0xFFDDF5F4);
 
-
 //////////////////////// RUPEE SIGN ///////////////////////////
 
 const String RUPEE_SYMBOL = '₹';
@@ -95,7 +90,6 @@ const double FORM_FIELD_RADIUS = 32;
 const double DEFAULT_FONT_SIZE = 32;
 const double REGULAR_FONT_SIZE = 20;
 
-
 ///////////////////////// HEIGHT ////////////////////////
 
 const double VS_HEIGHT = 4;
@@ -104,14 +98,13 @@ const double DEFAULT_ICON_SIZE = 25; //
 const double L_ICON_SIZE = 32;
 const double MAX_HEIGHT = 300; //
 const double DEFAULT_HEIGHT = 50; //
-const double  MEDIUM_HEIGHT = 40; //
+const double MEDIUM_HEIGHT = 40; //
 const double SMALL_HEIGHT = 30; //
 const double TEXT_FIELD_ELEVATION = 8;
 const double CARD_ELEVATION = 10; //
 const double L_HEIGHT_SIZE = 24; //
 const double DRAWER_WIDTH = 85;
 const double TEXT_FIELD_BORDER_RADIUS = 5;
-
 
 ////////////////////  FONT SIZE ///////////////////
 
@@ -124,7 +117,6 @@ const double L_LARGE_FONT_SIZE = 10; //
 const double LL_LARGE_FONT_SIZE = 20; //
 
 ///////////////////// CONTAINER,SIZEDBOX AND DIVIDER SIZE //////////////////
-
 
 const double M_CONTAINER_SIZE = 40;
 const double L_CONTAINER_SIZE = 50;
@@ -157,7 +149,7 @@ const double appPadding = 20.0;
 
 //////////////////FONT WEIGHT /////////////////////
 
-const FontWeight BOLD_WEIGHT = FontWeight.w700;  //
+const FontWeight BOLD_WEIGHT = FontWeight.w700; //
 const FontWeight E_BOLD_WEIGHT = FontWeight.bold; //
 const FontWeight E_NORMAL_WEIGHT = FontWeight.w600; //
 const FontWeight NORMAL_WEIGHT = FontWeight.w500; //
@@ -193,6 +185,8 @@ const String CATEGORY_ALL_FOURTH_IMAGE_URL = 'assets/images/meat_home.png';
 //////////////////// EXTRA STRINGS /////////////////////
 
 const String EMPTY_WISHLIST = 'Oops your wishlist is empty';
-const String NOTHING_HERE = 'It seems nothing in here. Explore more and shortlist some items';
-const String POPULAR_DEALS_CART =  'Dragon Fruits, Oranges, Apples, Mango , Pomengrate';
-const String STREET_ADDRESS = 'Planet Namex, 989 Warhammer Street' ;
+const String NOTHING_HERE =
+    'It seems nothing in here. Explore more and shortlist some items';
+const String POPULAR_DEALS_CART =
+    'Dragon Fruits, Oranges, Apples, Mango , Pomengrate';
+const String STREET_ADDRESS = 'Planet Namex, 989 Warhammer Street';
