@@ -32,7 +32,7 @@ class AuthController extends GetxController {
       //Get off removes all other screens and just opens the screen which is passed.
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.off(() => const DashBoardScreen());
+      Get.off(() =>  DashBoardScreen());
     }
   }
 
@@ -41,7 +41,7 @@ class AuthController extends GetxController {
     if (googleSignInAccount == null) {
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.offAll(() => const DashBoardScreen());
+      Get.offAll(() =>  DashBoardScreen());
     }
   }
 

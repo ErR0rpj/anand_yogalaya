@@ -2,6 +2,8 @@ import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../utils/const.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -30,16 +32,16 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 500,
-              width: 500,
+              height: LOGO_SIZE,
+              width: LOGO_SIZE,
               child: Lottie.asset("assets/animations/girl_yoga.json"),
             ),
             const SizedBox(
-              height: 20,
+              height: M_SIZEDBOX_SIZE,
             ),
             const Text(
               "ANAND YOGALYA",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: ANAND_YOGALAYA_SIZE, fontWeight: ANAND_YOGALAYA_TEXT_COLOR),
             ),
           ],
         ),

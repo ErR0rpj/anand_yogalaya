@@ -7,7 +7,6 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, left: 20.0, right: 10.0),
       child: Row(
@@ -21,16 +20,16 @@ class CustomAppBar extends StatelessWidget {
                 alignment: Alignment.center,
                 child: const Icon(
                   Icons.sort_rounded,
-                  size: 40.0,
+                  size: HAMBURGER_ICON_SIZE,
                 ),
               ),
               SizedBox(
-                width: size.width * 0.18,
+                width: AppConstants().width * 0.18,
               ),
               const Text(
                 'Dashboard',
                 style: const TextStyle(
-                    color: kblack, fontWeight: FontWeight.w600, fontSize: 28),
+                    color: DASHBOARD_TEXT_COLOR, fontWeight: DASHBOARD_WEIGHT, fontSize: DASHBOARD_SIZE),
               ),
             ],
           ),
@@ -40,17 +39,17 @@ class CustomAppBar extends StatelessWidget {
                 children: [
                   const Icon(
                     Icons.notifications_none_rounded,
-                    size: 30.0,
+                    size: NOTIFICATION_ICON_SIZE,
                   ),
                   Container(
                     decoration: BoxDecoration(
                         color: primary,
-                        borderRadius: BorderRadius.circular(30.0)),
+                        borderRadius: BorderRadius.circular(NOTIFICATION_COUNT_RADIUS)),
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text(
                         '0',
-                        style: TextStyle(color: kwhite, fontSize: 8),
+                        style: TextStyle(color: NOTIFICATION_COUNT_NUMBERS_COLOR, fontSize: NOTIFICATION_COUNT_NUMBERS),
                       ),
                     ),
                   )

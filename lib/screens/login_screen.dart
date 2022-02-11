@@ -14,7 +14,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: loginbackground,
         resizeToAvoidBottomInset: false,
@@ -32,12 +31,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           Text(
                             'Workout',
                             style: GoogleFonts.merriweather(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: LOGIN_WORKOUT_TEXT_COLOR,
                               color: Colors.black,
-                              fontSize: 42,
+                              fontSize: LOGIN_WORKOUT_TEXT,
                             ),
                           ),
-                          const SizedBox(height: 10.0),
+                          const SizedBox(height: S_SIZEDBOX_SIZE),
                           Text(
                             'Dont miss the fitness!!',
                             style: GoogleFonts.merriweather(
@@ -46,10 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontSize: 18,
                             ),
                           ),
-                          const SizedBox(height: 10.0),
+                          const SizedBox(height: S_SIZEDBOX_SIZE),
                           SizedBox(
-                            height: 300,
-                            width: 300,
+                            height: LOGO_SIZE,
+                            width: LOGO_SIZE,
                             child: Lottie.asset(
                                 "assets/animations/girl_yoga.json"),
                           ),
@@ -60,10 +59,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Container(
                   padding:
-                      const EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
+                      const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
-                      const SizedBox(height: 100.0),
+                      const SizedBox(height: LARGE_SIZEDBOX_SIZE),
                       loginButton(context),
                     ],
                   ),
@@ -98,10 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DashBoardScreen()),
-          ),
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  DashBoardScreen()),),
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),

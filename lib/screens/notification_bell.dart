@@ -15,7 +15,7 @@ class NotificationBell extends StatelessWidget {
           children: [
             const Icon(
               Icons.notifications_none_rounded,
-              size: 30.0,
+              size: NOTIFICATION_ICON_SIZE,
             ),
             Container(
               width: 8.0,
