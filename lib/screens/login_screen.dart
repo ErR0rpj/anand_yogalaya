@@ -1,3 +1,4 @@
+import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  DashBoardScreen()),),
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomepageScreen()),),
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),
