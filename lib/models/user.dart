@@ -1,56 +1,69 @@
 class User {
-  String? name;
-  String? id;
-  String? email;
-  String? photoUrl;
-  bool? isPremium;
-  String? premiumStartDate; // To be TimeStamp
-  String? premiumEndDate; // To be TimeStamp
+  String id = ''; //ID can be mobile number or email to find users easily
+  String name = '';
+  String email = '';
   String? phoneNo;
-  String? dob;
+  DateTime? dob;
   String? gender;
-  List<String>? contentLikedByUser;
+  String? photoUrl; //Profile phtot url to be stored in firebase storage
+  bool isPremium = false; //Default value is false
+  DateTime? premiumStartDate;
+  DateTime? premiumEndDate;
+  List<String>?
+      contentLikedByUser; //This is list of UID of liked contents by user.
 
-  User(
-      {this.name,
-        this.id,
-        this.email,
-        this.photoUrl,
-        this.isPremium,
-        this.premiumStartDate,
-        this.premiumEndDate,
-        this.phoneNo,
-        this.dob,
-        this.gender,
-        this.contentLikedByUser});
+  User({
+    required this.name,
+    required this.id,
+    required this.email,
+    this.photoUrl,
+    this.isPremium = false,
+    this.premiumStartDate,
+    this.premiumEndDate,
+    this.phoneNo,
+    this.dob,
+    this.gender,
+    this.contentLikedByUser,
+  });
 
-  User.fromJson(Map<String, dynamic> json) {
+  User.fromMap(Map<String, dynamic> json) {
     name = json['name'];
     id = json['id'];
     email = json['email'];
     photoUrl = json['photoUrl'];
     isPremium = json['isPremium'];
-    premiumStartDate = json['premiumStartDate'];
-    premiumEndDate = json['premiumEndDate'];
+    premiumStartDate = json['premiumStartDate'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            json['premiumStartDate'].millisecondsSinceEpoch)
+        : null;
+    premiumEndDate = json['premiumEndDate'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            json['premiumEndDate'].millisecondsSinceEpoch)
+        : null;
     phoneNo = json['phoneNo'];
-    dob = json['dob'];
+    dob = json['dob'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            json['dob'].millisecondsSinceEpoch)
+        : null;
     gender = json['gender'];
-    contentLikedByUser = json['contentLikedByUser'].cast<String>();
+    contentLikedByUser = json['contentLikedByUser'] != null
+        ? List<String>.from(json['contentLikedByUser'])
+        : [];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['photoUrl'] = this.photoUrl;
-    data['isPremium'] = this.isPremium;
-    data['premiumStartDate'] = this.premiumStartDate;
-    data['premiumEndDate'] = this.premiumEndDate;
-    data['phoneNo'] = this.phoneNo;
-    data['dob'] = this.dob;
-    data['gender'] = this.gender;
-    data['contentLikedByUser'] = this.contentLikedByUser;
+  Map<String, dynamic> toMap() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['id'] = id;
+    data['email'] = email;
+    data['photoUrl'] = photoUrl;
+    data['isPremium'] = isPremium;
+    data['premiumStartDate'] = premiumStartDate;
+    data['premiumEndDate'] = premiumEndDate;
+    data['phoneNo'] = phoneNo;
+    data['dob'] = dob;
+    data['gender'] = gender;
+    data['contentLikedByUser'] = contentLikedByUser;
     return data;
   }
 }
