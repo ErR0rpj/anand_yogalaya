@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 class Categories {
   String id = '';
   String name = '';
@@ -8,6 +11,10 @@ class Categories {
   String searchKeyWords = '';
   List<String>? contents;
 
+  //Color varible is not stored in firebase, it is defined for in app UI purpose.
+  Color color = Colors.indigo;
+  String imageUrl = 'assets/images/yoga_1.png';
+
   Categories({
     required this.id,
     required this.name,
@@ -15,6 +22,8 @@ class Categories {
     this.isPlayList = true,
     this.searchKeyWords = '',
     this.contents,
+    this.color = Colors.indigo,
+    this.imageUrl = 'assets/images/yoga_1.png',
   }) {
     if (searchKeyWords.isEmpty) {
       createSearchKeywords();

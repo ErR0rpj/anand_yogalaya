@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
-import 'package:anand_yogalaya/screens/TopWorkoutScreens/workout.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,53 +7,62 @@ import 'package:google_fonts/google_fonts.dart';
 import '../TopWorkoutScreens/topWorkout.dart';
 import '../subcategoryScreen/subcategorylist.dart';
 
-
-class WorkoutDetails extends StatefulWidget{
-  const WorkoutDetails({Key? key}): super(key: key);
+class WorkoutDetails extends StatefulWidget {
+  const WorkoutDetails({Key? key}) : super(key: key);
 
   @override
   _WorkoutDetailsState createState() => _WorkoutDetailsState();
-
 }
 
-class  _WorkoutDetailsState extends State<WorkoutDetails> {
+class _WorkoutDetailsState extends State<WorkoutDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            color: Donebutton,
+          color: Donebutton,
         ),
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.only(top: ARROW_BACK_TOP_PAD,left: ARROW_BACK_LEFT_PAD,right: ARROW_BACK_RIGHT_PAD),
+              padding: const EdgeInsets.only(
+                  top: ARROW_BACK_TOP_PAD,
+                  left: ARROW_BACK_LEFT_PAD,
+                  right: ARROW_BACK_RIGHT_PAD),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.5,
+              height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios,size:BACK_BUTTON_ICON_SIZE,color: Colors.white,)
+                      Icon(
+                        Icons.arrow_back_ios,
+                        size: BACK_BUTTON_ICON_SIZE,
+                        color: Colors.white,
+                      )
                     ],
                   ),
                 ],
               ),
             ),
-            Expanded(child: Container(
+            Expanded(
+                child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(40),
                     topLeft: Radius.circular(40),
-                  )
-              ),
+                  )),
               child: Column(
                 children: [
-                  SizedBox(height: L_SIZEDBOX_SIZE,),
+                  SizedBox(
+                    height: L_SIZEDBOX_SIZE,
+                  ),
                   Row(
                     children: [
-                      SizedBox(width: L_SIZEDBOX_SIZE,),
+                      SizedBox(
+                        width: L_SIZEDBOX_SIZE,
+                      ),
                       Text(
                         "Meditation",
                         style: TextStyle(
@@ -63,14 +71,24 @@ class  _WorkoutDetailsState extends State<WorkoutDetails> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 150,),
+                      SizedBox(
+                        width: 150,
+                      ),
                     ],
                   ),
                   Row(
                     children: [
-                      SizedBox(width: L_SIZEDBOX_SIZE,),
-                      Icon(Icons.folder,size: FOLDER_ICON_SIZE,color: Colors.grey,),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: L_SIZEDBOX_SIZE,
+                      ),
+                      Icon(
+                        Icons.folder,
+                        size: FOLDER_ICON_SIZE,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         "3 Exercise",
                         style: TextStyle(
@@ -81,24 +99,33 @@ class  _WorkoutDetailsState extends State<WorkoutDetails> {
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      SizedBox(width: L_SIZEDBOX_SIZE,),
-                      Icon(Icons.timer,size: TIME_ICON_SIZE,color: Colors.grey,),
-                      SizedBox(width: 5,),
-                      Text(
-                        "60 Hours",
-                        style: TextStyle(
-                          fontSize: TOTALNO_EXERCISE_SIZE,
-                          color: Donebutton.withOpacity(0.6),
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Row(children: [
+                    SizedBox(
+                      width: L_SIZEDBOX_SIZE,
+                    ),
+                    Icon(
+                      Icons.timer,
+                      size: TIME_ICON_SIZE,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "60 Hours",
+                      style: TextStyle(
+                        fontSize: TOTALNO_EXERCISE_SIZE,
+                        color: Donebutton.withOpacity(0.6),
+                        fontWeight: FontWeight.bold,
                       ),
-                    ]
-                  ),
+                    ),
+                  ]),
                   Container(
-                    padding:
-                    const EdgeInsets.only(top: DETAIL_TEXT_TOP_PAD, left: DETAIL_TEXT_LEFT_PAD, right: DETAIL_TEXT_RIGHT_PAD,bottom: DETAIL_TEXT_BOTTOM_PAD),
+                    padding: const EdgeInsets.only(
+                        top: DETAIL_TEXT_TOP_PAD,
+                        left: DETAIL_TEXT_LEFT_PAD,
+                        right: DETAIL_TEXT_RIGHT_PAD,
+                        bottom: DETAIL_TEXT_BOTTOM_PAD),
                     child: Column(
                       children: [
                         Text(
@@ -116,21 +143,24 @@ class  _WorkoutDetailsState extends State<WorkoutDetails> {
                     ),
                   ),
                   Container(
-                    padding:
-                    const EdgeInsets.only(top: DONE_BUTTON_TOP_PAD, left: DONE_BUTTON_LEFT_PAD, right: DONE_BUTTON_RIGHT_PAD),
+                    padding: const EdgeInsets.only(
+                        top: DONE_BUTTON_TOP_PAD,
+                        left: DONE_BUTTON_LEFT_PAD,
+                        right: DONE_BUTTON_RIGHT_PAD),
                     child: Column(
                       children: <Widget>[
-                       // const SizedBox(height: LARGE_SIZEDBOX_SIZE),
+                        // const SizedBox(height: LARGE_SIZEDBOX_SIZE),
                         DoneButton(context),
                       ],
                     ),
                   ),
-                 SizedBox(height: M_SIZEDBOX_SIZE,)
-                 // SubcategoryWorkouts(),
+                  SizedBox(
+                    height: M_SIZEDBOX_SIZE,
+                  )
+                  // SubcategoryWorkouts(),
                 ],
               ),
-            )
-            )
+            ))
           ],
         ),
       ),
@@ -157,7 +187,10 @@ Widget DoneButton(BuildContext context) {
         ],
       ),
       onPressed: () => {
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomepageScreen()),),
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomepageScreen()),
+        ),
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14.0),
@@ -165,4 +198,3 @@ Widget DoneButton(BuildContext context) {
     ),
   );
 }
-

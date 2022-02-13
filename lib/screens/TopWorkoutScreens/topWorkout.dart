@@ -1,13 +1,14 @@
-
+import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
-import 'package:anand_yogalaya/screens/TopWorkoutScreens/workout.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class Workouts extends StatelessWidget {
+  const Workouts({Key? key}) : super(key: key);
+
   Widget _buildCourses(BuildContext context, int index) {
     Size size = MediaQuery.of(context).size;
-    Workout workout = workouts[index];
+    Categories playlist = playlistsList[index];
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -15,19 +16,19 @@ class Workouts extends StatelessWidget {
       child: Container(
         height: size.height * 0.25,
         decoration: BoxDecoration(
-            color: workout.color,
+            color: playlist.color,
             borderRadius: BorderRadius.circular(TOP_WORKOUT_RAIDUS),
             boxShadow: [
               BoxShadow(
                   color: kblack.withOpacity(0.1),
                   blurRadius: TOP_WORKOUT_BLUR_RADIUS,
-                  offset: Offset(10, 15))
+                  offset: const Offset(10, 15))
             ]),
         child: Padding(
           padding: const EdgeInsets.all(appPadding),
           child: Row(
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.4,
                 child: Padding(
                   padding: const EdgeInsets.only(
@@ -36,8 +37,8 @@ class Workouts extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        workout.name,
-                        style: TextStyle(
+                        playlist.name,
+                        style: const TextStyle(
                           fontWeight: WORKOUTS_WEIGHT,
                           color: Colors.white,
                           fontSize: WORKOUTS_SIZE,
@@ -49,11 +50,19 @@ class Workouts extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.folder_open_rounded,color: Colors.white.withOpacity(0.7),),
+                          Icon(
+                            Icons.folder_open_rounded,
+                            color: Colors.white.withOpacity(0.7),
+                          ),
                           SizedBox(
                             width: size.width * 0.01,
                           ),
-                          Text(workout.exercises,style: TextStyle(color: Colors.white.withOpacity(0.7),),)
+                          Text(
+                            '${playlist.contents != null ? playlist.contents?.length.toString() : '0'}',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -61,24 +70,32 @@ class Workouts extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(Icons.access_time_outlined,color: Colors.white.withOpacity(0.7),),
+                          Icon(
+                            Icons.access_time_outlined,
+                            color: Colors.white.withOpacity(0.7),
+                          ),
                           SizedBox(
                             width: size.width * 0.01,
                           ),
-                          Text(workout.time.toString() + ' min',style: TextStyle(color: Colors.white.withOpacity(0.7),),)
+                          Text(
+                            playlist.totalDuration.toString() + ' min',
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                            ),
+                          )
                         ],
                       ),
                     ],
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: size.width * 0.3,
                 height: size.height * 0.2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
                   child: Image(
-                    image: AssetImage(workout.imageUrl),
+                    image: AssetImage(playlist.imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -102,7 +119,7 @@ class Workouts extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
                   'Top Yoga Workout',
                   style: TextStyle(
@@ -123,12 +140,12 @@ class Workouts extends StatelessWidget {
           ),
           Expanded(
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: workouts.length,
-                itemBuilder: (context, index) {
-                  return _buildCourses(context, index);
-                },
-              ))
+            physics: const BouncingScrollPhysics(),
+            itemCount: playlistsList.length,
+            itemBuilder: (context, index) {
+              return _buildCourses(context, index);
+            },
+          ))
         ],
       ),
     );
