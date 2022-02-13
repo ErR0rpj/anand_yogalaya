@@ -1,6 +1,4 @@
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkout.dart';
-import 'package:anand_yogalaya/screens/bottomNavigationScreens/searchScreen.dart';
-import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/category_screen.dart';
 import 'package:anand_yogalaya/screens/custom_app_bar.dart';
 import 'package:anand_yogalaya/utils/const.dart';

@@ -1,5 +1,5 @@
 import 'package:anand_yogalaya/controllers/user_controller.dart';
-import 'package:anand_yogalaya/screens/dashboard_screen.dart';
+import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +31,7 @@ class AuthController extends GetxController {
       //Get off removes all other screens and just opens the screen which is passed.
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.off(() => DashBoardScreen());
+      Get.off(() => const HomepageScreen());
     }
   }
 
@@ -40,7 +40,7 @@ class AuthController extends GetxController {
     if (googleSignInAccount == null) {
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.offAll(() => DashBoardScreen());
+      Get.offAll(() => const HomepageScreen());
     }
   }
 
