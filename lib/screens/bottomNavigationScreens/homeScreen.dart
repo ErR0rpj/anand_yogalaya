@@ -2,8 +2,10 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/searchScreen.dart
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/const.dart';
+import '../subcategoryScreen/subcategories.dart';
+import '../workoutdetailScreen/detailScreen.dart';
+
 
 class HomepageScreen extends StatefulWidget{
   const HomepageScreen({Key? key}) : super(key: key);
@@ -16,8 +18,8 @@ class HomepageScreen extends StatefulWidget{
 class HomepageScreenState extends State<HomepageScreen> {
   List pages=[
     DashBoardScreen(),
-    TrendingPage(),
-    SearchPage(),
+    WorkoutDetails(),
+    Subcategory(),
   ];
   int currentIndex=0;
   void onTap(int index){
@@ -30,7 +32,7 @@ class HomepageScreenState extends State<HomepageScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-       body: pages[0],
+       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
         selectedItemColor: kPrimaryPurple,

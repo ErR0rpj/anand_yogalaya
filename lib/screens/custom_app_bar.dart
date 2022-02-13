@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: AppConstants().width * 0.18,
+                width: 90,
               ),
               const Text(
                 'Dashboard',

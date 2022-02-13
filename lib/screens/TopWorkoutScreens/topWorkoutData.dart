@@ -26,5 +26,28 @@ final _workout3 = Workout(
     exercises: '20 Exercises',
     color: kPrimaryPurple
 );
+final _workout4 = Workout(
+    imageUrl: 'assets/images/yoga_1.png',
+    name: 'Aasaans',
+    time: 45,
+    exercises: '45 Exercises',
+    color: primary
+);
 
-final List<Workout> workouts = [_workout1,_workout3,_workout2];
+final _workout5 = Workout(
+    imageUrl: 'assets/images/yoga_2.png',
+    name: 'Daily Yoga',
+    time: 30,
+    exercises: '30 Exercises',
+    color: kPrimaryRed
+);
+
+final _workout6 = Workout(
+    imageUrl: 'assets/images/yoga_3.png',
+    name: 'Meditation',
+    time: 20,
+    exercises: '20 Exercises',
+    color: kPrimaryPurple
+);
+
+final List<Workout> workouts = [_workout1,_workout3,_workout2,_workout4,_workout5,_workout6];
