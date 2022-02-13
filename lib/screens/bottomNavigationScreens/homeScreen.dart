@@ -1,38 +1,35 @@
-import 'package:anand_yogalaya/screens/bottomNavigationScreens/searchScreen.dart';
-import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
 import '../workoutdetailScreen/detailScreen.dart';
 
-
-class HomepageScreen extends StatefulWidget{
+class HomepageScreen extends StatefulWidget {
   const HomepageScreen({Key? key}) : super(key: key);
 
   @override
   HomepageScreenState createState() => HomepageScreenState();
-
 }
 
 class HomepageScreenState extends State<HomepageScreen> {
-  List pages=[
+  List pages = [
     DashBoardScreen(),
-    WorkoutDetails(),
-    Subcategory(),
+    const WorkoutDetails(),
+    const Subcategory(),
   ];
-  int currentIndex=0;
-  void onTap(int index){
-    setState((){
-       currentIndex = index;
+  int currentIndex = 0;
+  void onTap(int index) {
+    setState(() {
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-       body: pages[currentIndex],
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
         selectedItemColor: kPrimaryPurple,
@@ -42,9 +39,11 @@ class HomepageScreenState extends State<HomepageScreen> {
         showSelectedLabels: false,
         elevation: 0,
         items: [
-          BottomNavigationBarItem(label: "Home" ,icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "trend" ,icon: Icon(Icons.trending_up_outlined)),
-          BottomNavigationBarItem(label: "Search" ,icon: Icon(Icons.search)),
+          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          const BottomNavigationBarItem(
+              label: "trend", icon: Icon(Icons.trending_up_outlined)),
+          const BottomNavigationBarItem(
+              label: "Search", icon: Icon(Icons.search)),
         ],
       ),
       backgroundColor: Colors.white,
