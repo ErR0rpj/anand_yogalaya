@@ -49,7 +49,7 @@ class Categories {
         json['contents'] != null ? List<String>.from(json['contents']) : [];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
