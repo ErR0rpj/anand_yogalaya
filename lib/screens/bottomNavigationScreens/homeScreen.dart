@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
+import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
@@ -15,15 +16,19 @@ class HomepageScreen extends StatefulWidget {
 
 class HomepageScreenState extends State<HomepageScreen> {
   List pages = [
-    DashBoardScreen(),
+    const DashBoardScreen(),
     const WorkoutDetails(),
     const Subcategory(),
   ];
   int currentIndex = 0;
   void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+    if (index < 2) {
+      setState(() {
+        currentIndex = index;
+      });
+    } else {
+      showSearch(context: context, delegate: SearchScreen());
+    }
   }
 
   @override
@@ -41,7 +46,7 @@ class HomepageScreenState extends State<HomepageScreen> {
         items: [
           const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
           const BottomNavigationBarItem(
-              label: "trend", icon: Icon(Icons.trending_up_outlined)),
+              label: "Trend", icon: Icon(Icons.trending_up_outlined)),
           const BottomNavigationBarItem(
               label: "Search", icon: Icon(Icons.search)),
         ],

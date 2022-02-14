@@ -2,6 +2,8 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:google_fonts/google_fonts.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
 
@@ -26,10 +28,13 @@ class CustomAppBar extends StatelessWidget {
               SizedBox(
                 width: 90,
               ),
-              const Text(
+              Text(
                 'Dashboard',
-                style: const TextStyle(
-                    color: DASHBOARD_TEXT_COLOR, fontWeight: DASHBOARD_WEIGHT, fontSize: DASHBOARD_SIZE),
+                style: GoogleFonts.lato(
+                  color: DASHBOARD_TEXT_COLOR,
+                  fontWeight: DASHBOARD_WEIGHT,
+                  fontSize: DASHBOARD_SIZE,
+                ),
               ),
             ],
           ),
@@ -44,12 +49,15 @@ class CustomAppBar extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                         color: primary,
-                        borderRadius: BorderRadius.circular(NOTIFICATION_COUNT_RADIUS)),
+                        borderRadius:
+                            BorderRadius.circular(NOTIFICATION_COUNT_RADIUS)),
                     child: const Padding(
                       padding: EdgeInsets.all(4.0),
                       child: Text(
                         '0',
-                        style: TextStyle(color: NOTIFICATION_COUNT_NUMBERS_COLOR, fontSize: NOTIFICATION_COUNT_NUMBERS),
+                        style: TextStyle(
+                            color: NOTIFICATION_COUNT_NUMBERS_COLOR,
+                            fontSize: NOTIFICATION_COUNT_NUMBERS),
                       ),
                     ),
                   )
