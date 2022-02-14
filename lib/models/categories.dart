@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -45,6 +48,18 @@ class Categories {
     }
 
     searchKeyWords = keywords.trim().toLowerCase();
+  }
+
+  Categories.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
+    id = documentSnapshot.id;
+    name = documentSnapshot['name'];
+    totalDuration = documentSnapshot['totalDuration'];
+    isPlayList = documentSnapshot['isPlayList'];
+    searchKeyWords = documentSnapshot['searchKeyWords'];
+    isPremium = documentSnapshot['isPremium'];
+    contents = documentSnapshot['contents'] != null
+        ? List<String>.from(documentSnapshot['contents'])
+        : [];
   }
 
   Categories.fromMap(Map<String, dynamic> json) {
