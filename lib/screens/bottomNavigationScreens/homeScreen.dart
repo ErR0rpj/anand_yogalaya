@@ -18,7 +18,7 @@ class HomepageScreen extends StatefulWidget{
 class HomepageScreenState extends State<HomepageScreen> {
   List pages=[
     DashBoardScreen(),
-    TrendingPageScreen(),
+    WorkoutDetails(),
     Subcategory(),
   ];
   int currentIndex=0;

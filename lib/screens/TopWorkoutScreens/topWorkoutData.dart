@@ -1,53 +1,55 @@
-
-import 'package:anand_yogalaya/screens/TopWorkoutScreens/workout.dart';
+import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 
-
-final _workout1 = Workout(
-    imageUrl: 'assets/images/yoga_1.png',
-    name: 'Aasaans',
-    time: 45,
-    exercises: '45 Exercises',
-    color: primary
+final _category1 = Categories(
+  id: 'ragrcgraYRerdgf',
+  name: 'Meditation',
+  totalDuration: 10,
+  color: primary,
+  imageUrl: 'assets/images/yoga_1.png',
 );
 
-final _workout2 = Workout(
-    imageUrl: 'assets/images/yoga_2.png',
-    name: 'Daily Yoga',
-    time: 30,
-    exercises: '30 Exercises',
-    color: kPrimaryRed
+final _category2 = Categories(
+  id: 'ragrcgraYRer21323',
+  name: 'Body Pain Yogas',
+  totalDuration: 15,
+  color: kPrimaryRed,
+  imageUrl: 'assets/images/yoga_2.png',
+);
+final _category3 = Categories(
+  id: 'ragrcgra1241241',
+  name: 'Yogas At Home',
+  totalDuration: 30,
+  color: kPrimaryPurple,
+  imageUrl: 'assets/images/yoga_3.png',
+);
+final _category4 = Categories(
+  id: 'ragrcgraYRe554545rdgf',
+  name: 'Relaxing Yogas',
+  totalDuration: 15,
+  color: primary,
+  imageUrl: 'assets/images/yoga_1.png',
+);
+final _category5 = Categories(
+  id: 'rag11212erdgf',
+  name: 'Morning Yoga',
+  totalDuration: 60,
+  color: kPrimaryRed,
+  imageUrl: 'assets/images/yoga_2.png',
+);
+final _category6 = Categories(
+  id: 'ragrcgra0000YRerdgf',
+  name: 'Suryanamaskar',
+  totalDuration: 100,
+  color: kPrimaryPurple,
+  imageUrl: 'assets/images/yoga_3.png',
 );
 
-final _workout3 = Workout(
-    imageUrl: 'assets/images/yoga_3.png',
-    name: 'Meditation',
-    time: 20,
-    exercises: '20 Exercises',
-    color: kPrimaryPurple
-);
-final _workout4 = Workout(
-    imageUrl: 'assets/images/yoga_1.png',
-    name: 'Aasaans',
-    time: 45,
-    exercises: '45 Exercises',
-    color: primary
-);
-
-final _workout5 = Workout(
-    imageUrl: 'assets/images/yoga_2.png',
-    name: 'Daily Yoga',
-    time: 30,
-    exercises: '30 Exercises',
-    color: kPrimaryRed
-);
-
-final _workout6 = Workout(
-    imageUrl: 'assets/images/yoga_3.png',
-    name: 'Meditation',
-    time: 20,
-    exercises: '20 Exercises',
-    color: kPrimaryPurple
-);
-
-final List<Workout> workouts = [_workout1,_workout3,_workout2,_workout4,_workout5,_workout6];
+final List<Categories> playlistsList = [
+  _category1,
+  _category3,
+  _category2,
+  _category4,
+  _category5,
+  _category6
+];
