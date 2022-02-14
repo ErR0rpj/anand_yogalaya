@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  TrendingPageScreen()),),
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomepageScreen()),),
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),

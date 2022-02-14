@@ -49,6 +49,12 @@ class HomepageScreenState extends State<HomepageScreen> {
       ),
       backgroundColor: Colors.white,
       extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.upload_outlined),
+        onPressed: () {},
+      ),
     );
+
   }
 }

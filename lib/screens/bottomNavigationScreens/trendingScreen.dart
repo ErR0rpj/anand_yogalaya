@@ -118,11 +118,11 @@ class TrendingPageScreenState extends State<TrendingPageScreen> with TickerProvi
           ),
         ]
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+     /* floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.upload_outlined),
         onPressed: () {},
-      ),
+      ), */
     );
   }
 }
