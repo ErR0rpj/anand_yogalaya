@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
                   size: HAMBURGER_ICON_SIZE,
                 ),
               ),
-              SizedBox(width: 100,),
+              SizedBox(width: 80,),
               const Text(
                 'Dashboard',
                 style: const TextStyle(

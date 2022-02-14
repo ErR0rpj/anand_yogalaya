@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import 'bottomNavigationScreens/trendingScreen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -98,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomepageScreen()),),
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  TrendingPageScreen()),),
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),

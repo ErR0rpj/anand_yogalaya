@@ -11,8 +11,7 @@ class Workouts extends StatelessWidget {
     Categories playlist = playlistsList[index];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: appPadding, vertical: appPadding / 2),
+      padding: const EdgeInsets.symmetric(horizontal: appPadding, vertical: appPadding / 2),
       child: Container(
         height: size.height * 0.25,
         decoration: BoxDecoration(
@@ -29,10 +28,9 @@ class Workouts extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: size.width * 0.4,
+                width: size.width * 0.48,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: appPadding / 2, top: appPadding / 1.5),
+                  padding: const EdgeInsets.only(left: appPadding / 2, top: appPadding / 1.5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

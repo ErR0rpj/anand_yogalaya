@@ -44,7 +44,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen> with TickerProvi
                   style: const TextStyle(
                       color: DASHBOARD_TEXT_COLOR, fontWeight: DASHBOARD_WEIGHT, fontSize: DASHBOARD_SIZE),
                 ),
-               SizedBox(width: 01,),
+               SizedBox(width: 40,),
               ],
             ),
           ),

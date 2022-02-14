@@ -1,6 +1,5 @@
 
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
-import 'package:anand_yogalaya/screens/TopWorkoutScreens/workout.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryWorkout.dart';
 import 'package:anand_yogalaya/utils/const.dart';
@@ -110,7 +109,7 @@ class SubcategoryWorkouts extends StatelessWidget {
           Expanded(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: workouts.length,
+                itemCount: exercises.length,
                 itemBuilder: (context, index) {
                   return _buildCourses(context, index);
                 },
