@@ -42,7 +42,7 @@ class Workouts extends StatelessWidget {
                           color: Colors.white,
                           fontSize: WORKOUTS_SIZE,
                         ),
-                        maxLines: 1,
+                      //  maxLines: 1,
                       ),
                       SizedBox(
                         height: size.height * 0.01,

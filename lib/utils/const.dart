@@ -150,6 +150,7 @@ const double SUBCATEGORY_EXERCISE_NAME = 20;  //
 const double S_TOTALNO_EXERCISE_SIZE = 20; //
 const double DETAIL_TEXT_SIZE = 16; //
 const double DONE_BUTTON_SIZE = 20; //
+const double BROWSE_BY_SIZE = 28; //
 
 
 

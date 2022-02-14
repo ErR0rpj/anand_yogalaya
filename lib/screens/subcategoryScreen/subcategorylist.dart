@@ -28,7 +28,6 @@ class SubcategoryWorkouts extends StatelessWidget {
                   offset: Offset(10, 15))
             ]),
         child: Padding(
-        //  padding: const EdgeInsets.all(appPadding/2),
           padding: const EdgeInsets.only(left: appPadding/2,top: appPadding/3,bottom: appPadding/3),
           child: Row(
             children: [

@@ -2,6 +2,9 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'bottomNavigationScreens/homeScreen.dart';
+import 'notification_bell.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
 
@@ -10,7 +13,7 @@ class CustomAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, left: 20.0, right: 10.0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+       crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Row(
@@ -23,9 +26,7 @@ class CustomAppBar extends StatelessWidget {
                   size: HAMBURGER_ICON_SIZE,
                 ),
               ),
-              SizedBox(
-                width: 90,
-              ),
+              SizedBox(width: 100,),
               const Text(
                 'Dashboard',
                 style: const TextStyle(
