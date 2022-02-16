@@ -11,7 +11,8 @@ class Workouts extends StatelessWidget {
     Categories playlist = playlistsList[index];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: appPadding, vertical: appPadding / 2),
+      padding: const EdgeInsets.symmetric(
+          horizontal: appPadding, vertical: appPadding / 2),
       child: Container(
         height: size.height * 0.25,
         decoration: BoxDecoration(
@@ -30,7 +31,8 @@ class Workouts extends StatelessWidget {
               SizedBox(
                 width: size.width * 0.48,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: appPadding / 2, top: appPadding / 1.5),
+                  padding: const EdgeInsets.only(
+                      left: appPadding / 2, top: appPadding / 1.5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -41,7 +43,6 @@ class Workouts extends StatelessWidget {
                           color: Colors.white,
                           fontSize: WORKOUTS_SIZE,
                         ),
-                      //  maxLines: 1,
                       ),
                       SizedBox(
                         height: size.height * 0.01,
@@ -93,7 +94,7 @@ class Workouts extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
                   child: Image(
-                    image: AssetImage(playlist.imageUrl),
+                    image: AssetImage(playlist.icon),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -107,45 +108,44 @@ class Workouts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: appPadding,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Top Yoga Workout',
-                  style: TextStyle(
-                    fontSize: TOP_WORKOUT_SIZE,
-                    fontWeight: TOPWORKOUT_TITLE__WEIGHT,
-                    letterSpacing: 1.0,
-                  ),
-                ),
-                Text(
-                  'See All',
-                  style: TextStyle(
-                      fontSize: SEE_ALL_SIZE,
-                      fontWeight: SEEALL_WEIGHT,
-                      color: SEE_ALL_COLOR),
-                ),
-              ],
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: appPadding,
           ),
-          Expanded(
-              child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemCount: playlistsList.length,
-            itemBuilder: (context, index) {
-              return _buildCourses(context, index);
-            },
-          ))
-        ],
-      ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                'Top Yoga Workout',
+                style: TextStyle(
+                  fontSize: TOP_WORKOUT_SIZE,
+                  fontWeight: TOPWORKOUT_TITLE__WEIGHT,
+                  letterSpacing: 1.0,
+                ),
+              ),
+              Text(
+                'See All',
+                style: TextStyle(
+                    fontSize: SEE_ALL_SIZE,
+                    fontWeight: SEEALL_WEIGHT,
+                    color: SEE_ALL_COLOR),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: playlistsList.length,
+          itemBuilder: (context, index) {
+            return _buildCourses(context, index);
+          },
+        )
+      ],
     );
   }
 }

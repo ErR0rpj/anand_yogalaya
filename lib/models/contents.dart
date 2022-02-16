@@ -37,6 +37,11 @@ class Contents {
     if (isPremium) {
       keywords += ' premium vip';
     }
+    if (categories != null) {
+      for (int i = 0; i < categories!.length; i++) {
+        keywords += ' ' + categories![i];
+      }
+    }
 
     searchKeyWords = keywords.trim().toLowerCase();
   }

@@ -6,7 +6,7 @@ final _category1 = Categories(
   name: 'Meditation',
   totalDuration: 10,
   color: primary,
-  imageUrl: 'assets/images/yoga_1.png',
+  icon: 'assets/images/yoga_1.png',
 );
 
 final _category2 = Categories(
@@ -14,35 +14,35 @@ final _category2 = Categories(
   name: 'Body Pain Yogas',
   totalDuration: 15,
   color: kPrimaryRed,
-  imageUrl: 'assets/images/yoga_2.png',
+  icon: 'assets/images/yoga_2.png',
 );
 final _category3 = Categories(
   id: 'ragrcgra1241241',
   name: 'Yogas At Home',
   totalDuration: 30,
   color: kPrimaryPurple,
-  imageUrl: 'assets/images/yoga_3.png',
+  icon: 'assets/images/yoga_3.png',
 );
 final _category4 = Categories(
   id: 'ragrcgraYRe554545rdgf',
   name: 'Relaxing Yogas',
   totalDuration: 15,
   color: primary,
-  imageUrl: 'assets/images/yoga_1.png',
+  icon: 'assets/images/yoga_1.png',
 );
 final _category5 = Categories(
   id: 'rag11212erdgf',
   name: 'Morning Yoga',
   totalDuration: 60,
   color: kPrimaryRed,
-  imageUrl: 'assets/images/yoga_2.png',
+  icon: 'assets/images/yoga_2.png',
 );
 final _category6 = Categories(
   id: 'ragrcgra0000YRerdgf',
   name: 'Suryanamaskar',
   totalDuration: 100,
   color: kPrimaryPurple,
-  imageUrl: 'assets/images/yoga_3.png',
+  icon: 'assets/images/yoga_3.png',
 );
 
 final List<Categories> playlistsList = [

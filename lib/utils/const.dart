@@ -29,18 +29,17 @@ class AppConstants {
 
 //////////////////////// COLORS //////////////////////////////
 
-const SEE_ALL_COLOR = Color(0xFF4FC3F7);  //
+const SEE_ALL_COLOR = Color(0xFF4FC3F7); //
 const DASHBOARD_TEXT_COLOR = Colors.black; //
-const Color primary = Color(0xFF4FC3F7);    //
-const Color kwhite = Colors.white;     //
-const Color kblack = Colors.black;   //
-const Color NOTIFICATION_COUNT_NUMBERS_COLOR = Colors.white;     //
+const Color primary = Color(0xFF4FC3F7); //
+const Color kwhite = Colors.white; //
+const Color kblack = Colors.black; //
+const Color NOTIFICATION_COUNT_NUMBERS_COLOR = Colors.white; //
 const loginbackground = Color(0xFF80DEE8);
 const loginbutton = Color(0xFF303F9F);
 const Donebutton = Color(0xFF303F9F);
-const SubcategoryColor  = Color(0xFFE1F5FE);
-const PlayButtonColor  = Color(0xFFD1C4E9);
-
+const SubcategoryColor = Color(0xFFE1F5FE);
+const PlayButtonColor = Color(0xFFD1C4E9);
 
 const kGreyShade1 = Color(0xFF8E8E93);
 const kGreyShade2 = Color(0xFFAEAEB2);
@@ -91,13 +90,12 @@ const Color bgColor = Color(0xFFFBFBFD);
 const double defaultPadding = 16.0;
 const double defaultBorderRadius = 12.0;
 
-
 ///////////////////////// RADIUS //////////////////////////
 
-const double TOP_WORKOUT_RAIDUS = 30.0;   //
-const double TOP_WORKOUT_BLUR_RADIUS = 10.0;  //
-const double TOP_WORKOUT_IMAGE_RADIUS = 10.0;  //
-const double NOTIFICATION_COUNT_RADIUS = 30.0;  //
+const double TOP_WORKOUT_RAIDUS = 30.0; //
+const double TOP_WORKOUT_BLUR_RADIUS = 10.0; //
+const double TOP_WORKOUT_IMAGE_RADIUS = 10.0; //
+const double NOTIFICATION_COUNT_RADIUS = 30.0; //
 const double S_RADIUS = 4;
 const double RADIUS = 8;
 const double CATEGORY_RADIUS = 30;
@@ -109,8 +107,6 @@ const double DEFAULT_FONT_SIZE = 32;
 const double REGULAR_FONT_SIZE = 20;
 
 const double PLAY_BUTTON_RADIUS = 10;
-
-
 
 //////////////////////  NUMBERS //////////////////////
 
@@ -135,24 +131,22 @@ const double TEXT_FIELD_BORDER_RADIUS = 5;
 
 ////////////////////  FONT SIZE ///////////////////
 
-const double CATEGORY_SIZE = 24;   //
-const double TOP_WORKOUT_SIZE = 24;  //
-const double SEE_ALL_SIZE = 18;     //
-const double WORKOUTS_SIZE = 22;   //
-const double DASHBOARD_SIZE = 28;  //
-const double NOTIFICATION_COUNT_NUMBERS = 8;  //
-const double LOGIN_WORKOUT_TEXT = 42;  //
+const double CATEGORY_SIZE = 18; //
+const double TOP_WORKOUT_SIZE = 18; //
+const double SEE_ALL_SIZE = 14; //
+const double WORKOUTS_SIZE = 22; //
+const double DASHBOARD_SIZE = 24; //
+const double NOTIFICATION_COUNT_NUMBERS = 8; //
+const double LOGIN_WORKOUT_TEXT = 42; //
 const double ANAND_YOGALAYA_SIZE = 25; //
-const double LOGO_SIZE = 400;   //
+const double LOGO_SIZE = 400; //
 const double EXERCISE_NAME_SIZE = 30; //
 const double TOTALNO_EXERCISE_SIZE = 14; //
-const double SUBCATEGORY_EXERCISE_NAME = 20;  //
+const double SUBCATEGORY_EXERCISE_NAME = 20; //
 const double S_TOTALNO_EXERCISE_SIZE = 16; //
 const double DETAIL_TEXT_SIZE = 16; //
 const double DONE_BUTTON_SIZE = 20; //
 const double BROWSE_BY_SIZE = 28; //
-
-
 
 const double L_FONT_SIZE = 8; //
 const double LL_FONT_SIZE = 16; //
@@ -164,14 +158,13 @@ const double LL_LARGE_FONT_SIZE = 20; //
 
 ///////////////////// CONTAINER,SIZEDBOX AND DIVIDER SIZE //////////////////
 
-const double HAMBURGER_ICON_SIZE = 40;  //
-const double BACK_BUTTON_ICON_SIZE =30; //
-const double TIME_ICON_SIZE = 14;      //
-const double FOLDER_ICON_SIZE = 14;  //
-const double FLITER_ICON_SIZE = 40;   //
-const double VIDEO_ICON_SIZE = 40;   //
-const double NOTIFICATIONS_ICON_SIZE = 30;  //
-
+const double HAMBURGER_ICON_SIZE = 30; //
+const double BACK_BUTTON_ICON_SIZE = 30; //
+const double TIME_ICON_SIZE = 12; //
+const double FOLDER_ICON_SIZE = 14; //
+const double FLITER_ICON_SIZE = 40; //
+const double VIDEO_ICON_SIZE = 40; //
+const double NOTIFICATIONS_ICON_SIZE = 25; //
 const double M_CONTAINER_SIZE = 40;
 const double L_CONTAINER_SIZE = 50;
 const double LL_CONTAINER_SIZE = 80;
@@ -214,7 +207,6 @@ const double V_SMALL_PAD = 4;
 const double VV_SMALL_PAD = 2;
 const double VVV_SMALL_PAD = 1.5;
 
-
 //////////////////FONT WEIGHT /////////////////////
 
 const FontWeight CATEGORIES_TITLE__WEIGHT = FontWeight.w800; //
@@ -222,14 +214,13 @@ const FontWeight TOPWORKOUT_TITLE__WEIGHT = FontWeight.w800; //
 const FontWeight SEEALL_WEIGHT = FontWeight.w800; //
 const FontWeight WORKOUTS_WEIGHT = FontWeight.bold; //
 const FontWeight DASHBOARD_WEIGHT = FontWeight.w600; //
-const FontWeight LOGIN_WORKOUT_TEXT_COLOR = FontWeight.bold;  //
-const FontWeight ANAND_YOGALAYA_TEXT_COLOR = FontWeight.bold;  //
+const FontWeight LOGIN_WORKOUT_TEXT_COLOR = FontWeight.bold; //
+const FontWeight ANAND_YOGALAYA_TEXT_COLOR = FontWeight.bold; //
 
 const FontWeight BOLD_WEIGHT = FontWeight.w700;
 const FontWeight E_BOLD_WEIGHT = FontWeight.bold;
 const FontWeight E_NORMAL_WEIGHT = FontWeight.w600;
 const FontWeight NORMAL_WEIGHT = FontWeight.w500;
-
 
 //////////////////// CATEGORIES ////////////////////
 
@@ -268,7 +259,6 @@ const String POPULAR_DEALS_CART =
     'Dragon Fruits, Oranges, Apples, Mango , Pomengrate';
 const String STREET_ADDRESS = 'Planet Namex, 989 Warhammer Street';
 
-
 ///////////////////extra /////////////
 
 // Colors
@@ -279,7 +269,7 @@ const kGreenColor = Color(0xFF49CC96);
 
 // My Text Styles
 const kHeadingextStyle = TextStyle(
-  fontSize: 28,
+  fontSize: 24,
   color: kTextColor,
   fontWeight: FontWeight.bold,
 );
@@ -349,8 +339,6 @@ const kSmallDivider = Divider(
   thickness: 5.0,
 );
 
-
-
 /////////////// drawer //////////////
 
 class AppTheme {
@@ -382,7 +370,8 @@ class AppTheme {
     caption: caption,
   );
 
-  static const TextStyle display1 = TextStyle( // h4 -> display1
+  static const TextStyle display1 = TextStyle(
+    // h4 -> display1
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
     fontSize: 36,
@@ -391,7 +380,8 @@ class AppTheme {
     color: darkerText,
   );
 
-  static const TextStyle headline = TextStyle( // h5 -> headline
+  static const TextStyle headline = TextStyle(
+    // h5 -> headline
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
     fontSize: 24,
@@ -399,7 +389,8 @@ class AppTheme {
     color: darkerText,
   );
 
-  static const TextStyle title = TextStyle( // h6 -> title
+  static const TextStyle title = TextStyle(
+    // h6 -> title
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
     fontSize: 16,
@@ -407,7 +398,8 @@ class AppTheme {
     color: darkerText,
   );
 
-  static const TextStyle subtitle = TextStyle( // subtitle2 -> subtitle
+  static const TextStyle subtitle = TextStyle(
+    // subtitle2 -> subtitle
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
     fontSize: 14,
@@ -415,7 +407,8 @@ class AppTheme {
     color: darkText,
   );
 
-  static const TextStyle body2 = TextStyle( // body1 -> body2
+  static const TextStyle body2 = TextStyle(
+    // body1 -> body2
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
     fontSize: 14,
@@ -423,7 +416,8 @@ class AppTheme {
     color: darkText,
   );
 
-  static const TextStyle body1 = TextStyle( // body2 -> body1
+  static const TextStyle body1 = TextStyle(
+    // body2 -> body1
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
     fontSize: 16,
@@ -431,12 +425,12 @@ class AppTheme {
     color: darkText,
   );
 
-  static const TextStyle caption = TextStyle( // Caption -> caption
+  static const TextStyle caption = TextStyle(
+    // Caption -> caption
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
     fontSize: 12,
     letterSpacing: 0.2,
     color: lightText, // was lightText
   );
-
 }
