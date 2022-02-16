@@ -131,8 +131,8 @@ const double TEXT_FIELD_BORDER_RADIUS = 5;
 
 ////////////////////  FONT SIZE ///////////////////
 
-const double CATEGORY_SIZE = 20; //
-const double TOP_WORKOUT_SIZE = 20; //
+const double CATEGORY_SIZE = 18; //
+const double TOP_WORKOUT_SIZE = 18; //
 const double SEE_ALL_SIZE = 14; //
 const double WORKOUTS_SIZE = 22; //
 const double DASHBOARD_SIZE = 24; //

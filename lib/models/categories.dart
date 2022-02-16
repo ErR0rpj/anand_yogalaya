@@ -1,3 +1,4 @@
+import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class Categories {
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo;
-  String imageUrl = 'assets/images/yoga_1.png';
+  String icon = CATEGORY_FIRST_IMAGE_URL;
 
   Categories({
     required this.id,
@@ -23,8 +24,9 @@ class Categories {
     this.searchKeyWords = '',
     this.contents,
     this.color = Colors.indigo,
-    this.imageUrl = 'assets/images/yoga_1.png',
+    this.icon = '',
   }) {
+    contents ??= [];
     if (searchKeyWords.isEmpty) {
       createSearchKeywords();
     }

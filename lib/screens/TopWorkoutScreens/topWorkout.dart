@@ -95,7 +95,7 @@ class Workouts extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
                   child: Image(
-                    image: AssetImage(playlist.imageUrl),
+                    image: AssetImage(playlist.icon),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:anand_yogalaya/controllers/list_controllers.dart';
+import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
 import '../workoutdetailScreen/detailScreen.dart';
@@ -21,15 +24,19 @@ class HomepageScreenState extends State<HomepageScreen> {
     const Subcategory(),
   ];
   int currentIndex = 0;
-  void onTap(int index) {
+  void onTap(int index) async {
     if (index < 2) {
       setState(() {
         currentIndex = index;
       });
     } else {
-      showSearch(context: context, delegate: SearchScreen());
+      Categories? category =
+          await showSearch(context: context, delegate: SearchScreen());
+      print(category);
     }
   }
+
+  ListController listController = Get.put(ListController());
 
   @override
   Widget build(BuildContext context) {
