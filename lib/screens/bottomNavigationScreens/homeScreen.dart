@@ -2,13 +2,14 @@
 
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/models/categories.dart';
+import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
-import '../workoutdetailScreen/detailScreen.dart';
+import '../uploadPostScreens/uploadpostForm.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class HomepageScreen extends StatefulWidget {
 class HomepageScreenState extends State<HomepageScreen> {
   List pages = [
     const DashBoardScreen(),
-    const WorkoutDetails(),
+    const TrendingPageScreen(),
     const Subcategory(),
   ];
   int currentIndex = 0;
@@ -60,6 +61,16 @@ class HomepageScreenState extends State<HomepageScreen> {
       ),
       backgroundColor: Colors.white,
       extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.upload_outlined),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Uploadpostform()),
+          );
+        },
+      ),
     );
   }
 }

@@ -79,7 +79,7 @@ class _SubcategoryState extends State<Subcategory> {
                         width: 150,
                       ),
                       Icon(
-                        Icons.filter_list_alt,
+                        Icons.tune,
                         size: FLITER_ICON_SIZE,
                         color: Colors.grey,
                       ),

@@ -1,3 +1,4 @@
+
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryWorkout.dart';
@@ -26,11 +27,8 @@ class SubcategoryWorkouts extends StatelessWidget {
                   offset: Offset(10, 15))
             ]),
         child: Padding(
-          //  padding: const EdgeInsets.all(appPadding/2),
-          padding: const EdgeInsets.only(
-              left: appPadding / 2,
-              top: appPadding / 3,
-              bottom: appPadding / 3),
+        //  padding: const EdgeInsets.all(appPadding/2),
+          padding: const EdgeInsets.only(left: appPadding/2,top: appPadding/3,bottom: appPadding/3),
           child: Row(
             children: [
               SizedBox(
@@ -41,15 +39,11 @@ class SubcategoryWorkouts extends StatelessWidget {
                 height: size.height * 0.085,
                 decoration: BoxDecoration(
                   color: PlayButtonColor,
-                  borderRadius: BorderRadius.circular(PLAY_BUTTON_RADIUS),
-                ),
+                    borderRadius: BorderRadius.circular(PLAY_BUTTON_RADIUS),
+                    ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                  child: Icon(
-                    Icons.play_arrow_outlined,
-                    size: VIDEO_ICON_SIZE,
-                    color: Donebutton,
-                  ),
+                 child:  Icon(Icons.play_arrow_outlined,size: VIDEO_ICON_SIZE,color: Donebutton,),
                 ),
               ),
               SizedBox(
@@ -58,8 +52,7 @@ class SubcategoryWorkouts extends StatelessWidget {
               Container(
                 width: size.width * 0.4,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: appPadding / 2, top: appPadding / 4),
+                  padding: const EdgeInsets.only(left: appPadding/2,top: appPadding / 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -77,12 +70,7 @@ class SubcategoryWorkouts extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            exercise.totalexercises,
-                            style: TextStyle(
-                                color: Colors.grey.withOpacity(0.9),
-                                fontSize: S_TOTALNO_EXERCISE_SIZE),
-                          )
+                          Text(exercise.totalexercises,style: TextStyle(color: Colors.grey.withOpacity(0.9),fontSize: S_TOTALNO_EXERCISE_SIZE),)
                         ],
                       ),
                       SizedBox(
@@ -90,29 +78,15 @@ class SubcategoryWorkouts extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            exercise.level,
-                            style: TextStyle(
-                                color: Donebutton.withOpacity(0.7),
-                                fontSize: 10),
-                          ),
+                          Text(exercise.level,style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),),
                           SizedBox(
                             width: size.width * 0.03,
                           ),
-                          Icon(
-                            Icons.access_time_outlined,
-                            size: 10,
-                            color: Donebutton.withOpacity(0.7),
-                          ),
+                          Icon(Icons.access_time_outlined,size: 10,color: Donebutton.withOpacity(0.7),),
                           SizedBox(
                             width: size.width * 0.01,
                           ),
-                          Text(
-                            exercise.time.toString() + ' min',
-                            style: TextStyle(
-                                color: Donebutton.withOpacity(0.7),
-                                fontSize: 10),
-                          )
+                          Text(exercise.time.toString() + ' min',style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),)
                         ],
                       ),
                     ],
@@ -134,12 +108,12 @@ class SubcategoryWorkouts extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: playlistsList.length,
-            itemBuilder: (context, index) {
-              return _buildCourses(context, index);
-            },
-          ))
+                physics: BouncingScrollPhysics(),
+                itemCount: exercises.length,
+                itemBuilder: (context, index) {
+                  return _buildCourses(context, index);
+                },
+              ))
         ],
       ),
     );
