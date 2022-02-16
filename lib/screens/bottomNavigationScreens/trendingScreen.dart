@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import '../../utils/const.dart';
+import '../sidebarMenu/sidebar_widget.dart';
 import '../subcategoryScreen/subcategories.dart';
 import '../trendingScreens/likedtrendingSection.dart';
 import '../trendingScreens/newtrendingSection.dart';
@@ -24,30 +25,45 @@ class TrendingPageScreenState extends State<TrendingPageScreen> with TickerProvi
     Size size = MediaQuery.of(context).size;
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 50,left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      drawer:NavsideBar() ,
+      appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.sort_rounded,
+                color: kblack,
+                size: 44, // Changing Drawer Icon Size
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: RichText(
+          text: TextSpan(
+              style: Theme.of(context).textTheme.headline6?.copyWith(fontWeight: DASHBOARD_WEIGHT),
               children: [
-                Transform(
-                  transform: Matrix4.rotationY(math.pi),
-                  alignment: Alignment.center,
-                  child: const Icon(
-                    Icons.sort_rounded,
-                    size: HAMBURGER_ICON_SIZE,
+                TextSpan(
+                  text: "Trending",
+                  style: TextStyle(
+                    color: kblack,
+                    fontWeight: DASHBOARD_WEIGHT,
+                    fontSize: 25,
                   ),
                 ),
-                const Text(
-                  'Trending',
-                  style: const TextStyle(
-                      color: DASHBOARD_TEXT_COLOR, fontWeight: DASHBOARD_WEIGHT, fontSize: DASHBOARD_SIZE),
-                ),
-               SizedBox(width: 40,),
-              ],
-            ),
+              ]
           ),
+        ),
+        //  title: Text('Dashboard'),
+      ),
+     // appBar: trendingAppBar(context),
+      body: Column(
+        children: [
           SizedBox(height: L_SIZEDBOX_SIZE,),
           Container(
             padding: const EdgeInsets.only(left: 10),

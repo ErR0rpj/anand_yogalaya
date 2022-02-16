@@ -4,6 +4,7 @@ import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
+import '../uploadPostScreens/uploadpostForm.dart';
 import '../workoutdetailScreen/detailScreen.dart';
 
 
@@ -17,7 +18,8 @@ class HomepageScreen extends StatefulWidget{
 
 class HomepageScreenState extends State<HomepageScreen> {
   List pages=[
-    DashBoardScreen(),
+   DashBoardScreen(),
+   // HomeScreen(),
     TrendingPageScreen(),
     Subcategory(),
   ];
@@ -30,7 +32,6 @@ class HomepageScreenState extends State<HomepageScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
        body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -52,7 +53,9 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.upload_outlined),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>  Uploadpostform()),);
+        },
       ),
     );
 

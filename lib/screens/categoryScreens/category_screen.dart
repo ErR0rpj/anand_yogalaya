@@ -1,7 +1,6 @@
 
 import 'package:anand_yogalaya/screens/categoryScreens/category.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/category_card.dart';
-import 'package:anand_yogalaya/screens/custom_app_bar.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 

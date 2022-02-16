@@ -56,7 +56,7 @@ class Workouts extends StatelessWidget {
                             width: size.width * 0.01,
                           ),
                           Text(
-                            '${playlist.contents != null ? playlist.contents?.length.toString() : '0'}',
+                            '${playlist.contents != null ? playlist.contents?.length.toString() : '10 Exercises'}',
                             style: TextStyle(
                               color: Colors.white.withOpacity(0.7),
                             ),
