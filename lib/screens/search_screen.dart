@@ -163,108 +163,115 @@ class SearchScreen extends SearchDelegate<Categories> {
     final suggestionsForContents = listController.contentList.where((element) =>
         element.searchKeyWords.toLowerCase().contains(query.toLowerCase()));
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
+    return Container(
+      padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
+      height: MediaQuery.of(context).size.height,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Visibility(
+              visible: suggestionsForCategories.isNotEmpty,
+              child: Text(
                 'Categories',
                 style: GoogleFonts.lato(
                   fontSize: CATEGORY_SIZE,
                   fontWeight: CATEGORIES_TITLE__WEIGHT,
                 ),
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      suggestionsForCategories.elementAt(index).name,
-                      style: GoogleFonts.lato(
-                        fontSize: SEE_ALL_SIZE,
-                        fontWeight: WORKOUTS_WEIGHT,
+            ),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                    suggestionsForCategories.elementAt(index).name,
+                    style: GoogleFonts.lato(
+                      fontSize: SEE_ALL_SIZE,
+                      fontWeight: WORKOUTS_WEIGHT,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration} mins',
+                    style: GoogleFonts.lato(
+                      fontSize: 12,
+                    ),
+                  ),
+                  trailing: CircleAvatar(
+                    radius: CATEGORY_RADIUS,
+                    backgroundColor:
+                        suggestionsForCategories.elementAt(index).color,
+                    child: SizedBox(
+                      width: L_SIZEDBOX_SIZE,
+                      child: Image.asset(
+                        suggestionsForCategories.elementAt(index).icon,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    subtitle: Text(
-                      '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration} mins',
-                      style: GoogleFonts.lato(
-                        fontSize: 12,
-                      ),
-                    ),
-                    trailing: CircleAvatar(
-                      radius: CATEGORY_RADIUS,
-                      backgroundColor:
-                          suggestionsForCategories.elementAt(index).color,
-                      child: SizedBox(
-                        width: L_SIZEDBOX_SIZE,
-                        child: Image.asset(
-                          suggestionsForCategories.elementAt(index).icon,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider(
-                    height: 01,
-                  );
-                },
-                itemCount: min(suggestionsForCategories.length, 3),
-              ),
-              const SizedBox(height: 20),
-              Text(
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  height: 01,
+                );
+              },
+              itemCount: min(suggestionsForCategories.length, 3),
+            ),
+            Visibility(
+              visible: suggestionsForCategories.isNotEmpty,
+              child: const SizedBox(height: 20),
+            ),
+            Visibility(
+              visible: suggestionsForContents.isNotEmpty,
+              child: Text(
                 'Videos/Posts',
                 style: GoogleFonts.lato(
                   fontSize: CATEGORY_SIZE,
                   fontWeight: CATEGORIES_TITLE__WEIGHT,
                 ),
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      suggestionsForContents.elementAt(index).name,
-                      style: GoogleFonts.lato(
-                        fontSize: SEE_ALL_SIZE,
-                        fontWeight: WORKOUTS_WEIGHT,
+            ),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(
+                    suggestionsForContents.elementAt(index).name,
+                    style: GoogleFonts.lato(
+                      fontSize: SEE_ALL_SIZE,
+                      fontWeight: WORKOUTS_WEIGHT,
+                    ),
+                  ),
+                  subtitle: Text(
+                    '🧘 ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration} mins',
+                    style: GoogleFonts.lato(
+                      fontSize: 12,
+                    ),
+                  ),
+                  trailing: CircleAvatar(
+                    radius: CATEGORY_RADIUS,
+                    backgroundColor: Colors.indigo[200],
+                    child: SizedBox(
+                      width: L_SIZEDBOX_SIZE,
+                      child: Image.asset(
+                        CATEGORY_FIRST_IMAGE_URL,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    subtitle: Text(
-                      '🧘 ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration} mins',
-                      style: GoogleFonts.lato(
-                        fontSize: 12,
-                      ),
-                    ),
-                    trailing: CircleAvatar(
-                      radius: CATEGORY_RADIUS,
-                      backgroundColor: Colors.indigo[200],
-                      child: SizedBox(
-                        width: L_SIZEDBOX_SIZE,
-                        child: Image.asset(
-                          CATEGORY_FIRST_IMAGE_URL,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider(
-                    height: 01,
-                  );
-                },
-                itemCount: suggestionsForContents.length,
-              ),
-            ],
-          ),
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  height: 01,
+                );
+              },
+              itemCount: suggestionsForContents.length,
+            ),
+          ],
         ),
       ),
     );

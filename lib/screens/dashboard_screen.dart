@@ -7,6 +7,7 @@ import 'package:anand_yogalaya/screens/sidebarMenu/sidebar_widget.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'Notifications/notificationlist.dart';
 import 'categoryScreens/category_card.dart';
 
@@ -19,13 +20,14 @@ class DashBoardScreen extends StatelessWidget {
     return Scaffold(
       drawer: NavsideBar(),
       appBar: AppBar(
+        centerTitle: true,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(
                 Icons.sort_rounded,
                 color: kblack,
-                size: 44, // Changing Drawer Icon Size
+                size: 30,
               ),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
@@ -36,22 +38,13 @@ class DashBoardScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        title: RichText(
-          text: TextSpan(
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  ?.copyWith(fontWeight: DASHBOARD_WEIGHT),
-              children: const [
-                TextSpan(
-                  text: "Dashboard",
-                  style: TextStyle(
-                    color: kblack,
-                    fontWeight: DASHBOARD_WEIGHT,
-                    fontSize: 25,
-                  ),
-                ),
-              ]),
+        title: Text(
+          "Dashboard",
+          style: GoogleFonts.raleway(
+            color: kblack,
+            fontWeight: DASHBOARD_WEIGHT,
+            fontSize: 22,
+          ),
         ),
         actions: <Widget>[
           IconButton(
@@ -61,27 +54,32 @@ class DashBoardScreen extends StatelessWidget {
               color: kblack,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NotificationList()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotificationList(),
+                ),
+              );
             },
-          )
+          ),
+          const SizedBox(width: 8),
         ],
         //  title: Text('Dashboard'),
       ),
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.only(top: appPadding / 100),
-        child: Column(
-          children: [
-            SearchBox(
-              onChanged: (value) {},
-            ),
-            CategoryTab(categories: listController.categoryList),
-            const SizedBox(
-              height: L_SIZEDBOX_SIZE,
-            ),
-            const Workouts(),
-          ],
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SearchBox(
+                onChanged: (value) {},
+              ),
+              CategoryTab(categories: listController.categoryList),
+              const SizedBox(height: L_SIZEDBOX_SIZE),
+              const Workouts(),
+            ],
+          ),
         ),
       ),
     );
