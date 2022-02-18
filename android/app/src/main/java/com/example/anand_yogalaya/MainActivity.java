@@ -1,4 +1,4 @@
-package com.example.anand_yogalaya;
+package com.StavanCo.anand_yogalaya;
 
 import io.flutter.embedding.android.FlutterActivity;
 
