@@ -22,7 +22,7 @@ class HomepageScreenState extends State<HomepageScreen> {
   List pages = [
     const DashBoardScreen(),
     const TrendingPageScreen(),
-    const Subcategory(),
+    const TrendingPageScreen(),
   ];
   int currentIndex = 0;
   void onTap(int index) async {

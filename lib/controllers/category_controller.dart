@@ -14,7 +14,8 @@ class CategoryController extends GetxController {
   void onInit() {
     try{
       categoryList
-          .bindStream(Database().todoStream());
+          .bindStream(Database().categoryStream());
+
     }catch(e){
       print(e);
     }

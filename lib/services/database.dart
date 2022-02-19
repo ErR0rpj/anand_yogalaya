@@ -1,4 +1,5 @@
 
+import 'package:anand_yogalaya/models/contents.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/categories.dart';
@@ -7,6 +8,7 @@ import '../models/user.dart';
 class Database {
   FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
+  // Creating User in DB
   Future<bool?> createNewUser(UserModel user) async {
     try {
       await _firebaseFirestore
@@ -20,6 +22,7 @@ class Database {
     }
   }
 
+  // Getting User from DB
   Future<UserModel> getUser(String uid) async {
     try {
       DocumentSnapshot _doc =
@@ -32,22 +35,8 @@ class Database {
     }
   }
 
-
-  Future<void> addTodo(String content, String uid) async {
-    try {
-      await _firebaseFirestore.collection("users").doc(uid).collection("todos").add({
-        'dateCreated': Timestamp.now(),
-        'content': content,
-        'done': false,
-        // 'title' : title,
-      });
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
-
-  Stream<List<CategoryModel>> todoStream() {
+  // Getting all Category DocumentSnapshots in List of CategoryModel
+  Stream<List<CategoryModel>> categoryStream() {
     return _firebaseFirestore
         .collection("categories")
         .snapshots()
@@ -60,45 +49,23 @@ class Database {
     });
   }
 
-
-  Future<void> updateTodo(bool newValue, String uid, String todoId) async {
-    try {
-      _firebaseFirestore
-          .collection("users")
-          .doc(uid)
-          .collection("todos")
-          .doc(todoId)
-          .update({"done": newValue});
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
+  // Getting selective Content's Document SnapShots
+  Future<List<ContentModel>> generateContentList(String categoryId) async {
+    var querySnapshot = await _firebaseFirestore.collection('contents').where('categories', arrayContains: categoryId).get();
+    List<ContentModel> listCards = [];
+    querySnapshot.docs.forEach((doc) {
+      listCards.add(
+        ContentModel(
+            id: doc.data()['id'],
+            name: doc.data()['name'],
+            duration: doc.data()['duration'],
+            videoUrl: doc.data()['videoUrl']
+        )
+      );
+    });
+    return listCards;
   }
 
-  Future<void> updateOne(
-      String newcontentValue, String uid, String todoId) async {
-    try {
-      _firebaseFirestore
-          .collection("users")
-          .doc(uid)
-          .collection("todos")
-          .doc(todoId)
-          .update({"content": newcontentValue});
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
-
-  deleteOne(String uid, String todoId) async {
-    try{
-      _firebaseFirestore.collection("users").doc(uid).collection("todos").doc(todoId).delete();
-    }
-    catch(e){print(e);
-    rethrow;
-    }
-
-  }
 
 
 }

@@ -1,17 +1,27 @@
 
+import 'package:anand_yogalaya/controllers/category_controller.dart';
+import 'package:anand_yogalaya/models/contents.dart';
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryWorkout.dart';
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:anand_yogalaya/services/database.dart';
 import '../../utils/const.dart';
 import '../../utils/const.dart';
+import '../../utils/firebase_const.dart';
 
 class SubcategoryWorkouts extends StatelessWidget {
   Widget _buildCourses(BuildContext context, int index) {
     Size size = MediaQuery.of(context).size;
-    Exercises exercise = exercises[index];
+    Exercises exercise = Exercises(
+        videoUrl: 'assets/images/yoga_3.png',
+        name: 'Meditation',
+        time: 20,
+        level: 'Beginner');
     return Padding(
       padding: const EdgeInsets.symmetric(
           horizontal: appPadding, vertical: appPadding / 2),
@@ -56,29 +66,12 @@ class SubcategoryWorkouts extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        exercise.name,
-                        style: TextStyle(
-                          fontWeight: WORKOUTS_WEIGHT,
-                          color: Colors.black,
-                          fontSize: SUBCATEGORY_EXERCISE_NAME,
-                        ),
-                        maxLines: 1,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          Text(exercise.totalexercises,style: TextStyle(color: Colors.grey.withOpacity(0.9),fontSize: S_TOTALNO_EXERCISE_SIZE),)
-                        ],
-                      ),
                       SizedBox(
                         height: 10,
                       ),
                       Row(
                         children: [
-                          Text(exercise.level,style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),),
+                          Text(exercise.level!,style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),),
                           SizedBox(
                             width: size.width * 0.03,
                           ),
@@ -100,8 +93,11 @@ class SubcategoryWorkouts extends StatelessWidget {
     );
   }
 
+  CategoryController _categoryController = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,10 +105,10 @@ class SubcategoryWorkouts extends StatelessWidget {
           Expanded(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: exercises.length,
+                itemCount: _categoryController.categories.length,
                 itemBuilder: (context, index) {
                   return _buildCourses(context, index);
-                },
+                },//
               ))
         ],
       ),

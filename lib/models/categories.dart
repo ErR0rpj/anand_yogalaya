@@ -56,12 +56,12 @@ class CategoryModel {
     name = documentSnapshot['name'];
     totalDuration = documentSnapshot['totalDuration'];
     imageUrl = documentSnapshot['imageUrl'];
-    /*isPlayList = documentSnapshot['isPlayList'];
+  /*  isPlayList = documentSnapshot['isPlayList'];
     searchKeyWords = documentSnapshot['searchKeyWords'];
-    isPremium = documentSnapshot['isPremium'];
+    isPremium = documentSnapshot['isPremium'];*/
     contents = documentSnapshot['contents'] != null
         ? List<String>.from(documentSnapshot['contents'])
-        : [];*/
+        : [];
   }
 
   CategoryModel.fromMap(Map<String, dynamic> json) {
