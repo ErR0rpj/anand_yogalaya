@@ -2,10 +2,14 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/searchScreen.dart
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../controllers/list_controllers.dart';
+import '../../models/categories.dart';
 import '../../utils/const.dart';
+import '../search_screen.dart';
 import '../subcategoryScreen/subcategories.dart';
-import '../uploadPostScreens/uploadpostForm.dart';
 import '../workoutdetailScreen/detailScreen.dart';
 
 
@@ -25,11 +29,19 @@ class HomepageScreenState extends State<HomepageScreen> {
   ];
   int currentIndex = 0;
 
-  void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+  void onTap(int index) async {
+    if (index < 2) {
+      setState(() {
+        currentIndex = index;
+      });
+    } else {
+      Categories? category =
+      await showSearch(context: context, delegate: SearchScreen());
+      print(category);
+    }
   }
+
+  ListController listController = Get.put(ListController());
 
   @override
   Widget build(BuildContext context) {
