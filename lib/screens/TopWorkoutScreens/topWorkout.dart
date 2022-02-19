@@ -8,7 +8,7 @@ class Workouts extends StatelessWidget {
 
   Widget _buildCourses(BuildContext context, int index) {
     Size size = MediaQuery.of(context).size;
-    Categories playlist = playlistsList[index];
+    CategoryModel playlist = playlistsList[index];
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -93,10 +93,10 @@ class Workouts extends StatelessWidget {
                 height: size.height * 0.2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                  child: Image(
+                  /*child: Image(
                     image: AssetImage(playlist.icon),
                     fit: BoxFit.cover,
-                  ),
+                  ),*/
                 ),
               ),
             ],

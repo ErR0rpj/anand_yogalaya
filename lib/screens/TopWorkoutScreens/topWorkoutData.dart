@@ -1,51 +1,51 @@
 import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 
-final _category1 = Categories(
+final _category1 = CategoryModel(
   id: 'ragrcgraYRerdgf',
   name: 'Meditation',
   totalDuration: 10,
   color: primary,
-  icon: 'assets/images/yoga_1.png',
+  imageUrl: '',
 );
 
-final _category2 = Categories(
+final _category2 = CategoryModel(
   id: 'ragrcgraYRer21323',
   name: 'Body Pain Yogas',
   totalDuration: 15,
   color: kPrimaryRed,
-  icon: 'assets/images/yoga_2.png',
+  imageUrl: '',
 );
-final _category3 = Categories(
+final _category3 = CategoryModel(
   id: 'ragrcgra1241241',
   name: 'Yogas At Home',
   totalDuration: 30,
   color: kPrimaryPurple,
-  icon: 'assets/images/yoga_3.png',
+  imageUrl: '',
 );
-final _category4 = Categories(
+final _category4 = CategoryModel(
   id: 'ragrcgraYRe554545rdgf',
   name: 'Relaxing Yogas',
   totalDuration: 15,
   color: primary,
-  icon: 'assets/images/yoga_1.png',
+  imageUrl: '',
 );
-final _category5 = Categories(
+final _category5 = CategoryModel(
   id: 'rag11212erdgf',
   name: 'Morning Yoga',
   totalDuration: 60,
   color: kPrimaryRed,
-  icon: 'assets/images/yoga_2.png',
+  imageUrl: '',
 );
-final _category6 = Categories(
+final _category6 = CategoryModel(
   id: 'ragrcgra0000YRerdgf',
   name: 'Suryanamaskar',
   totalDuration: 100,
   color: kPrimaryPurple,
-  icon: 'assets/images/yoga_3.png',
+  imageUrl: '',
 );
 
-final List<Categories> playlistsList = [
+final List<CategoryModel> playlistsList = [
   _category1,
   _category3,
   _category2,

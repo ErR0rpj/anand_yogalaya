@@ -8,6 +8,7 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../controllers/category_controller.dart';
 import 'Notifications/notificationlist.dart';
 import 'categoryScreens/category_card.dart';
 
@@ -75,7 +76,35 @@ class DashBoardScreen extends StatelessWidget {
               SearchBox(
                 onChanged: (value) {},
               ),
-              CategoryTab(categories: listController.categoryList),
+              CategoryTab(),
+              Container(
+                height: VL_CONTAINER_SIZE,
+                child: GetX<CategoryController>(
+                  init: Get.put<CategoryController>(CategoryController()),
+                  builder: (CategoryController categoryController) {
+                    if (categoryController != null && categoryController.categories != null) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: ListView.separated(
+                          separatorBuilder: (_,i){
+                            return const SizedBox(
+                              width: S_SIZEDBOX_SIZE,
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
+                          itemCount: categoryController.categories.length,
+                          itemBuilder: (_, index) {
+                            return CategoryCard(categoryController.categories[index]);
+                          },
+                        ),
+                      );
+                    } else {
+                      return Text("loading...");
+                    }
+                  },
+                ),
+              ),
+              //CategoryTab(categories: listController.categoryList),
               const SizedBox(height: L_SIZEDBOX_SIZE),
               const Workouts(),
             ],
@@ -87,11 +116,6 @@ class DashBoardScreen extends StatelessWidget {
 }
 
 class CategoryTab extends StatelessWidget {
-  const CategoryTab({
-    Key? key,
-    required this.categories,
-  }) : super(key: key);
-  final List<Categories> categories;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -116,7 +140,9 @@ class CategoryTab extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CategoryScreen()),
+                    MaterialPageRoute(builder: (context) => CategoryScreen(
+
+                    )),
                   );
                 },
                 child: const Text(
@@ -129,13 +155,6 @@ class CategoryTab extends StatelessWidget {
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              categories.length,
-              (index) => CategoryCard(categories[index]),
-            ),
-          )
         ],
       ),
     );

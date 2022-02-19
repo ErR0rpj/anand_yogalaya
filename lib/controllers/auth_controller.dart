@@ -11,6 +11,7 @@ class AuthController extends GetxController {
 
   late Rx<User?> firebaseUser;
   late Rx<GoogleSignInAccount?> googleSignInAccount;
+  User? get user => firebaseUser.value;
 
   @override
   void onReady() {
@@ -22,8 +23,8 @@ class AuthController extends GetxController {
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
 
-    googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
-    ever(googleSignInAccount, _setInitialScreenGoogle);
+    //googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
+    //ever(googleSignInAccount, _setInitialScreenGoogle);
   }
 
   _setInitialScreen(User? user) {
@@ -60,6 +61,8 @@ class AuthController extends GetxController {
         await auth.signInWithCredential(credential).catchError((onError) {
           print('Error sign in with credential: $onError');
         });
+
+
       }
     } catch (e) {
       Get.snackbar('Error', 'Error Logging In: $e',

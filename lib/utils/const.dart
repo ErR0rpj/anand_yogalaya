@@ -168,6 +168,7 @@ const double NOTIFICATIONS_ICON_SIZE = 25; //
 const double M_CONTAINER_SIZE = 40;
 const double L_CONTAINER_SIZE = 50;
 const double LL_CONTAINER_SIZE = 80;
+const double VL_CONTAINER_SIZE = 100;
 const double IMAGE_CONTAINER = 112;
 const double VS_SIZEDBOX_SIZE = 5;
 const double S_SIZEDBOX_SIZE = 10;

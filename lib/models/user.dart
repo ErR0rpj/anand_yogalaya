@@ -1,7 +1,9 @@
-class User {
-  String id = ''; //ID can be mobile number or email to find users easily
-  String name = '';
-  String email = '';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class UserModel {
+  String? id; //ID can be mobile number or email to find users easily
+  String? name;
+  String? email;
   String? phoneNo;
   DateTime? dob;
   String? gender;
@@ -12,10 +14,10 @@ class User {
   List<String>?
       contentLikedByUser; //This is list of UID of liked contents by user.
 
-  User({
-    required this.name,
-    required this.id,
-    required this.email,
+  UserModel({
+    this.name,
+    this.id,
+    this.email,
     this.photoUrl,
     this.isPremium = false,
     this.premiumStartDate,
@@ -26,7 +28,7 @@ class User {
     this.contentLikedByUser,
   });
 
-  User.fromMap(Map<String, dynamic> json) {
+  UserModel.fromMap(Map<String, dynamic> json) {
     name = json['name'];
     id = json['id'];
     email = json['email'];
@@ -66,4 +68,11 @@ class User {
     data['contentLikedByUser'] = contentLikedByUser;
     return data;
   }
+
+  UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+    email = snapshot['email'];
+    name = snapshot['name'];
+    id = snapshot['uid'];
+  }
+
 }

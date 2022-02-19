@@ -31,7 +31,7 @@ class HomepageScreenState extends State<HomepageScreen> {
         currentIndex = index;
       });
     } else {
-      Categories? category =
+      CategoryModel? category =
           await showSearch(context: context, delegate: SearchScreen());
       print(category);
     }

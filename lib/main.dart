@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/controllers/auth_controller.dart';
+import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/screens/splash_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebaseInitialization.then((value) {
     Get.put(AuthController());
+    Get.put(CategoryController());
   });
   runApp(const MyApp());
 }

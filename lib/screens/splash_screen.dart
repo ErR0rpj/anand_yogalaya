@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
+ /* @override
   void initState() {
     // set time to load the new page
     Future.delayed(const Duration(seconds: 1), () {
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
           MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
     super.initState();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

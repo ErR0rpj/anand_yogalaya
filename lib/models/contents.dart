@@ -1,4 +1,4 @@
-class Contents {
+class ContentModel {
   String id = '';
   String name = '';
   String? description;
@@ -11,7 +11,7 @@ class Contents {
   DateTime? addedDate;
   List<String>? categories;
 
-  Contents({
+  ContentModel({
     required this.id,
     required this.name,
     this.description,
@@ -46,7 +46,7 @@ class Contents {
     searchKeyWords = keywords.trim().toLowerCase();
   }
 
-  Contents.fromMap(Map<String, dynamic> json) {
+  ContentModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
