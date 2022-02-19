@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import 'bottomNavigationScreens/homeScreen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -88,12 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         onPressed: () {
           authController.signInWithGoogle();
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => HomepageScreen(),
-          //   ),
-          // ),
+          /*Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomepageScreen(),
+            ),
+          );*/
         },
       ),
     );
