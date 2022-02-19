@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:anand_yogalaya/utils/const.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Categories {
@@ -13,7 +14,7 @@ class Categories {
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo;
-  String imageUrl = 'assets/images/yoga_1.png';
+  String icon = CATEGORY_FIRST_IMAGE_URL;
 
   Categories({
     required this.id,
@@ -23,8 +24,9 @@ class Categories {
     this.searchKeyWords = '',
     this.contents,
     this.color = Colors.indigo,
-    this.imageUrl = 'assets/images/yoga_1.png',
+    this.icon = '',
   }) {
+    contents ??= [];
     if (searchKeyWords.isEmpty) {
       createSearchKeywords();
     }
@@ -45,6 +47,18 @@ class Categories {
     }
 
     searchKeyWords = keywords.trim().toLowerCase();
+  }
+
+  Categories.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
+    id = documentSnapshot.id;
+    name = documentSnapshot['name'];
+    totalDuration = documentSnapshot['totalDuration'];
+    isPlayList = documentSnapshot['isPlayList'];
+    searchKeyWords = documentSnapshot['searchKeyWords'];
+    isPremium = documentSnapshot['isPremium'];
+    contents = documentSnapshot['contents'] != null
+        ? List<String>.from(documentSnapshot['contents'])
+        : [];
   }
 
   Categories.fromMap(Map<String, dynamic> json) {

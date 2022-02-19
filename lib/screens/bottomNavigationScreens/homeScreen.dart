@@ -18,7 +18,8 @@ class HomepageScreen extends StatefulWidget{
 
 class HomepageScreenState extends State<HomepageScreen> {
   List pages=[
-    DashBoardScreen(),
+   DashBoardScreen(),
+   // HomeScreen(),
     TrendingPageScreen(),
     Subcategory(),
   ];

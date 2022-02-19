@@ -20,8 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: loginbackground,
         resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
-          child: Column(
+        body: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,9 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ],
-        )
-        )
-    );
+        ));
   }
 
   Widget loginButton(BuildContext context) {

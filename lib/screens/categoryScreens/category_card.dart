@@ -1,14 +1,11 @@
+import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
-import 'category.dart';
-
 
 class CategoryCard extends StatelessWidget {
-  final Category category;
+  final Categories category;
 
-  const CategoryCard(
-    this.category,
-  );
+  const CategoryCard(this.category, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +17,12 @@ class CategoryCard extends StatelessWidget {
           child: SizedBox(
             width: L_SIZEDBOX_SIZE,
             child: Image.asset(
-              category.catIcon,
+              category.icon,
               fit: BoxFit.cover,
             ),
           ),
         ),
-        Text(category.catName)
+        Text(category.name)
       ],
     );
   }
