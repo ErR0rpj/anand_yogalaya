@@ -2,6 +2,7 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/searchScreen.dart
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
 import '../uploadPostScreens/uploadpostForm.dart';
@@ -17,23 +18,23 @@ class HomepageScreen extends StatefulWidget{
 }
 
 class HomepageScreenState extends State<HomepageScreen> {
-  List pages=[
-   DashBoardScreen(),
-   // HomeScreen(),
+  List pages = [
+    DashBoardScreen(),
     TrendingPageScreen(),
     Subcategory(),
   ];
-  int currentIndex=0;
-  void onTap(int index){
-    setState((){
-       currentIndex = index;
+  int currentIndex = 0;
+
+  void onTap(int index) {
+    setState(() {
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: pages[currentIndex],
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
         selectedItemColor: kPrimaryPurple,
@@ -43,21 +44,159 @@ class HomepageScreenState extends State<HomepageScreen> {
         showSelectedLabels: false,
         elevation: 0,
         items: [
-          BottomNavigationBarItem(label: "Home" ,icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "trend" ,icon: Icon(Icons.trending_up_outlined)),
-          BottomNavigationBarItem(label: "Search" ,icon: Icon(Icons.search)),
+          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(
+              label: "trend", icon: Icon(Icons.trending_up_outlined)),
+          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         ],
       ),
       backgroundColor: Colors.white,
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.upload_outlined),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  Uploadpostform()),);
-        },
+          child: Icon(Icons.upload_outlined),
+          onPressed: () =>
+              showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => buildSheet(),
+              )
       ),
     );
-
   }
+
+  Widget buildSheet() =>
+      DraggableScrollableSheet(
+        initialChildSize: 0.7,
+        minChildSize: 0.4,
+        maxChildSize: 0.7,
+        builder: (_,controller) =>Container(
+          decoration: BoxDecoration(
+            color: SubcategoryColor,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(40),
+            )
+          ),
+          padding: EdgeInsets.all(10),
+            child: ListView(
+              children: [
+                buildText('Title'),
+                TextField(
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide(color: Colors.grey,width: 2),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide(color: Colors.green,width: 2),
+                        )
+                      ),
+                    ),
+                buildText('Description'),
+                TextField(
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.grey,width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.green,width: 2),
+                      )
+                  ),
+                ),
+                buildText('Video URL'),
+                TextField(
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.grey,width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.green,width: 2),
+                      )
+                  ),
+                ),
+                buildText('Image URL'),
+                TextField(
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.grey,width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.green,width: 2),
+                      )
+                  ),
+                ),
+                buildText('Category'),
+                TextField(
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.grey,width: 2),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                        borderSide: BorderSide(color: Colors.green,width: 2),
+                      )
+                  ),
+                ),
+                SizedBox(height: 60,),
+                DoneButton(context),
+                    ],
+                  ),
+          ),
+      );
+
+  buildText(String text) => Container(
+     margin: EdgeInsets.fromLTRB(0, 24, 0, 8),
+    child: Text(
+      text,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+        color: kblack
+      ),
+    ),
+  );
 }
+
+Widget DoneButton(BuildContext context) {
+  return Container(
+    height: 55,
+    width:  300,
+    child: FlatButton(
+      color: Donebutton,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(width: 3.0),
+          Center(
+            child: Text('Upload',
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontSize: DONE_BUTTON_SIZE,
+                )),
+          )
+        ],
+      ),
+      onPressed: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomepageScreen()),
+        ),
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14.0),
+      ),
+    ),
+  );
+}
+
+
+
