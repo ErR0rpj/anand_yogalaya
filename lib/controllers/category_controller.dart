@@ -6,17 +6,22 @@ import '../services/database.dart';
 import '../utils/firebase_const.dart';
 
 class CategoryController extends GetxController {
+  // CategoryList Controller
   Rx<List<CategoryModel>> categoryList = Rx<List<CategoryModel>>([]);
-
+  // Getter for category list
   List<CategoryModel> get categories => categoryList.value;
+
+  // Playlists
+  Rx<List<CategoryModel>> playList = Rx<List<CategoryModel>>([]);
+  // Getter for playlists
+  List<CategoryModel> get playlists => playList.value;
 
   @override
   void onInit() {
-    try{
-      categoryList
-          .bindStream(Database().categoryStream());
-
-    }catch(e){
+    try {
+      categoryList.bindStream(Database().categoryStream());
+      playList.bindStream(Database().playlistStream());
+    } catch (e) {
       print(e);
     }
   }

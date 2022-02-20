@@ -33,6 +33,7 @@ class ListController extends GetxController {
         totalDuration: 10,
         color: kAccentGreen,
         imageUrl: '',
+        isPlayList: true,
         contents: ['efggggytEwrqgfgt', 'ef12ggytEwrqgfgt']),
     CategoryModel(
       id: 'ragrcgraYRer21323',
@@ -40,6 +41,7 @@ class ListController extends GetxController {
       totalDuration: 15,
       color: kAccentRed,
       imageUrl: '',
+      isPlayList: true,
       contents: ['ef12ggytEwrqfdfgfgt'],
     ),
     CategoryModel(
@@ -48,6 +50,7 @@ class ListController extends GetxController {
       totalDuration: 30,
       color: kAccentYellow,
       imageUrl: '',
+      isPlayList: true,
     ),
     CategoryModel(
       id: 'ragrcgraYRe554545rdgf',
@@ -55,6 +58,7 @@ class ListController extends GetxController {
       totalDuration: 15,
       color: kAccentPurple,
       imageUrl: '',
+      isPlayList: true,
     ),
     CategoryModel(
       id: 'rag11212erdgf',
@@ -62,6 +66,7 @@ class ListController extends GetxController {
       totalDuration: 60,
       color: kAccentTosca,
       imageUrl: '',
+      isPlayList: true,
     ),
     CategoryModel(
       id: 'ragrcgra0000YRerdgf',
@@ -69,6 +74,7 @@ class ListController extends GetxController {
       totalDuration: 100,
       color: kAccentGreen,
       imageUrl: '',
+      isPlayList: true,
     ),
   ].obs;
 

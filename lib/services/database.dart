@@ -49,7 +49,38 @@ class Database {
     });
   }
 
-  // Getting selective Content's Document SnapShots
+  // Getting all Playlist(Category which have isPlaylist = true) DocumentSnapshots in List of CategoryModel
+  Stream<List<CategoryModel>> playlistStream() {
+    return _firebaseFirestore
+        .collection("categories")
+        .where('isPlayList', isEqualTo: true)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<CategoryModel> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(CategoryModel.fromDocumentSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
+
+  // Getting all Content DocumentSnapshots in List of ContentModel
+  Stream<List<ContentModel>> contentStream() {
+    return _firebaseFirestore
+        .collection("contents")
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<ContentModel> retVal = [];
+      query.docs.forEach((element) {
+        retVal.add(ContentModel.fromDocumentSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
+
+  // Getting selective Content's Document SnapShots according to categoryId
   Future<List<ContentModel>> generateContentList(String categoryId) async {
     var querySnapshot = await _firebaseFirestore.collection('contents').where('categories', arrayContains: categoryId).get();
     List<ContentModel> listCards = [];

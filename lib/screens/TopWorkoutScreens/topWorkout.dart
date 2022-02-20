@@ -159,7 +159,7 @@ class Workouts extends StatelessWidget {
         GetX<CategoryController>(
           init: Get.put<CategoryController>(CategoryController()),
           builder: (CategoryController categoryController) {
-            if (categoryController != null && categoryController.categories != null) {
+            if (categoryController != null && categoryController.playlists != null) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: ListView.separated(
@@ -170,9 +170,9 @@ class Workouts extends StatelessWidget {
                       width: S_SIZEDBOX_SIZE,
                     );
                   },
-                  itemCount: categoryController.categories.length,
+                  itemCount: categoryController.playlists.length,
                   itemBuilder: (context, index) {
-                    return _buildCourses(context, categoryController.categories[index]);
+                    return _buildCourses(context, categoryController.playlists[index]);
                   },
                 ),
               );

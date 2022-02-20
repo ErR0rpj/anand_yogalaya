@@ -22,7 +22,7 @@ class CategoryModel {
     required this.name,
     required this.imageUrl,
     this.totalDuration,
-    this.isPlayList = true,
+    required this.isPlayList,
     this.searchKeyWords = '',
     this.contents,
     this.color = Colors.indigo,
@@ -56,8 +56,8 @@ class CategoryModel {
     name = documentSnapshot['name'];
     totalDuration = documentSnapshot['totalDuration'];
     imageUrl = documentSnapshot['imageUrl'];
-  /*  isPlayList = documentSnapshot['isPlayList'];
-    searchKeyWords = documentSnapshot['searchKeyWords'];
+    isPlayList = documentSnapshot['isPlayList'];
+  /*searchKeyWords = documentSnapshot['searchKeyWords'];
     isPremium = documentSnapshot['isPremium'];*/
     contents = documentSnapshot['contents'] != null
         ? List<String>.from(documentSnapshot['contents'])

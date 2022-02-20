@@ -7,6 +7,7 @@ final _category1 = CategoryModel(
   totalDuration: 10,
   color: primary,
   imageUrl: '',
+  isPlayList: true,
 );
 
 final _category2 = CategoryModel(
@@ -15,6 +16,7 @@ final _category2 = CategoryModel(
   totalDuration: 15,
   color: kPrimaryRed,
   imageUrl: '',
+  isPlayList: true,
 );
 final _category3 = CategoryModel(
   id: 'ragrcgra1241241',
@@ -22,6 +24,7 @@ final _category3 = CategoryModel(
   totalDuration: 30,
   color: kPrimaryPurple,
   imageUrl: '',
+  isPlayList: true,
 );
 final _category4 = CategoryModel(
   id: 'ragrcgraYRe554545rdgf',
@@ -29,6 +32,7 @@ final _category4 = CategoryModel(
   totalDuration: 15,
   color: primary,
   imageUrl: '',
+  isPlayList: true,
 );
 final _category5 = CategoryModel(
   id: 'rag11212erdgf',
@@ -36,6 +40,7 @@ final _category5 = CategoryModel(
   totalDuration: 60,
   color: kPrimaryRed,
   imageUrl: '',
+  isPlayList: true,
 );
 final _category6 = CategoryModel(
   id: 'ragrcgra0000YRerdgf',
@@ -43,6 +48,7 @@ final _category6 = CategoryModel(
   totalDuration: 100,
   color: kPrimaryPurple,
   imageUrl: '',
+  isPlayList: true,
 );
 
 final List<CategoryModel> playlistsList = [
