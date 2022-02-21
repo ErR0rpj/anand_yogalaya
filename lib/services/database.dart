@@ -86,12 +86,7 @@ class Database {
     List<ContentModel> listCards = [];
     querySnapshot.docs.forEach((doc) {
       listCards.add(
-        ContentModel(
-            id: doc.data()['id'],
-            name: doc.data()['name'],
-            duration: doc.data()['duration'],
-            videoUrl: doc.data()['videoUrl']
-        )
+        ContentModel.fromDocumentSnapshot(doc)
       );
     });
     return listCards;

@@ -5,36 +5,42 @@ final _exercise1 = Exercises(
     videoUrl: 'assets/images/yoga_1.png',
     name: 'Aasaans',
     time: 45,
-    level: 'Beginner');
+    level: 'Beginner',
+    description: '');
 
 final _exercise2 = Exercises(
     videoUrl: 'assets/images/yoga_2.png',
     name: 'Daily Yoga',
     time: 30,
-    level: 'Intermediate');
+    level: 'Intermediate',
+    description: '');
 
 final _exercise3 = Exercises(
     videoUrl: 'assets/images/yoga_3.png',
     name: 'Meditation',
     time: 20,
-    level: 'Hard');
+    level: 'Hard',
+    description: '');
 final _exercise4 = Exercises(
     videoUrl: 'assets/images/yoga_1.png',
     name: 'Aasaans',
     time: 45,
-    level: 'Hard');
+    level: 'Hard',
+    description: '');
 
 final _exercise5 = Exercises(
     videoUrl: 'assets/images/yoga_2.png',
     name: 'Daily Yoga',
     time: 30,
-    level: 'Beginner');
+    level: 'Beginner',
+    description: '');
 
 final _exercise6 = Exercises(
     videoUrl: 'assets/images/yoga_3.png',
     name: 'Meditation',
     time: 20,
-    level: 'Beginner');
+    level: 'Beginner',
+    description: '');
 
 final List<Exercises> exercises = [
   _exercise1,

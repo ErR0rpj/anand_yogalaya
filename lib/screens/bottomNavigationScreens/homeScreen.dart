@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
@@ -9,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/const.dart';
 import '../subcategoryScreen/subcategories.dart';
-import '../uploadPostScreens/uploadpostForm.dart';
+
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({Key? key}) : super(key: key);
@@ -65,10 +63,7 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.upload_outlined),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const Uploadpostform()),
-          );
+
         },
       ),
     );

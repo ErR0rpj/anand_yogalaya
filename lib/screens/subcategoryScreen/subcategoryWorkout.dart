@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Exercises{
+class Exercises {
   String? videoUrl;
   String? name;
   String? level;
   int? time;
+  String? description;
 
-  Exercises({required this.videoUrl,required this.name,required this.level,required this.time});
+  Exercises(
+      {required this.videoUrl,
+      required this.name,
+      required this.level,
+      required this.time,
+      required this.description});
 }

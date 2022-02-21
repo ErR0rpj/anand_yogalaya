@@ -21,7 +21,9 @@ class SubcategoryWorkouts extends StatelessWidget {
         videoUrl: 'assets/images/yoga_3.png',
         name: 'Meditation',
         time: 20,
-        level: 'Beginner');
+        level: 'Beginner',
+        description: ''
+    );
     return Padding(
       padding: const EdgeInsets.symmetric(
           horizontal: appPadding, vertical: appPadding / 2),

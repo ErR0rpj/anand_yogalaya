@@ -13,17 +13,14 @@ import '../subcategoryScreen/subcategories.dart';
 class Workouts extends StatelessWidget {
   const Workouts({Key? key}) : super(key: key);
 
-  Widget _buildCourses(BuildContext context, CategoryModel playlist) {
+  Widget _buildCourses(BuildContext context,int index) {
     Size size = MediaQuery.of(context).size;
+    CategoryController categoryController = Get.find();
 
     return InkWell(
       onTap: (){
         Get.to(()=> Subcategory(
-          id: playlist.id,
-          name: playlist.name,
-          imageUrl: playlist.imageUrl,
-          totalDuration: playlist.totalDuration,
-          exercises: playlist.contents?.length,
+          index: index,
         ));
       },
       child: Padding(
@@ -53,7 +50,7 @@ class Workouts extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          playlist.name,
+                          categoryController.playlists[index].name,
                           style: const TextStyle(
                             fontWeight: WORKOUTS_WEIGHT,
                             color: Colors.white,
@@ -73,7 +70,7 @@ class Workouts extends StatelessWidget {
                               width: size.width * 0.01,
                             ),
                             Text(
-                              '${playlist.contents != null ? playlist.contents?.length.toString() : '10 Exercises'}',
+                              '${categoryController.playlists[index].contents != null ? categoryController.playlists[index].contents?.length.toString() : '10 Exercises'}',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.7),
                               ),
@@ -93,7 +90,7 @@ class Workouts extends StatelessWidget {
                               width: size.width * 0.01,
                             ),
                             Text(
-                              playlist.totalDuration.toString() + ' min',
+                              categoryController.playlists[index].totalDuration.toString() + ' min',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.7),
                               ),
@@ -111,7 +108,7 @@ class Workouts extends StatelessWidget {
                     borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: playlist.imageUrl,
+                      imageUrl: categoryController.playlists[index].imageUrl,
                       placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
@@ -172,7 +169,7 @@ class Workouts extends StatelessWidget {
                   },
                   itemCount: categoryController.playlists.length,
                   itemBuilder: (context, index) {
-                    return _buildCourses(context, categoryController.playlists[index]);
+                    return _buildCourses(context, index);
                   },
                 ),
               );

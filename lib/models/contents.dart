@@ -85,9 +85,9 @@ class ContentModel {
   ContentModel.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
     id = documentSnapshot.id;
     name = documentSnapshot['name'];
-    //description = documentSnapshot['description'];
+    description = documentSnapshot['description'];
     //photoUrl = documentSnapshot['photoUrl'];
-    //videoUrl = documentSnapshot['videoUrl'];
+    videoUrl = documentSnapshot['videoUrl'];
     duration = documentSnapshot['duration'];
    /* isPremium = documentSnapshot['isPremium'];
     searchKeyWords = documentSnapshot['searchKeyWords'];
