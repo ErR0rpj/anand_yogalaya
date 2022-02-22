@@ -1,20 +1,15 @@
-
 import 'package:anand_yogalaya/controllers/category_controller.dart';
-import 'package:anand_yogalaya/models/contents.dart';
-import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkoutData.dart';
-import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryData.dart';
 import 'package:anand_yogalaya/screens/subcategoryScreen/subcategoryWorkout.dart';
 import 'package:anand_yogalaya/utils/const.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:anand_yogalaya/services/database.dart';
 import '../../utils/const.dart';
-import '../../utils/const.dart';
-import '../../utils/firebase_const.dart';
 
 class SubcategoryWorkouts extends StatelessWidget {
+  final CategoryController _categoryController = Get.find();
+
+  SubcategoryWorkouts({Key? key}) : super(key: key);
+
   Widget _buildCourses(BuildContext context, int index) {
     Size size = MediaQuery.of(context).size;
     Exercises exercise = Exercises(
@@ -22,8 +17,7 @@ class SubcategoryWorkouts extends StatelessWidget {
         name: 'Meditation',
         time: 20,
         level: 'Beginner',
-        description: ''
-    );
+        description: '');
     return Padding(
       padding: const EdgeInsets.symmetric(
           horizontal: appPadding, vertical: appPadding / 2),
@@ -35,12 +29,15 @@ class SubcategoryWorkouts extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   color: kblack.withOpacity(0.1),
-                  blurRadius: TOP_WORKOUT_BLUR_RADIUS,
-                  offset: Offset(10, 15))
+                  blurRadius: S_RADIUS,
+                  offset: const Offset(10, 15))
             ]),
         child: Padding(
-        //  padding: const EdgeInsets.all(appPadding/2),
-          padding: const EdgeInsets.only(left: appPadding/2,top: appPadding/3,bottom: appPadding/3),
+          //  padding: const EdgeInsets.all(appPadding/2),
+          padding: const EdgeInsets.only(
+              left: appPadding / 2,
+              top: appPadding / 3,
+              bottom: appPadding / 3),
           child: Row(
             children: [
               SizedBox(
@@ -51,37 +48,56 @@ class SubcategoryWorkouts extends StatelessWidget {
                 height: size.height * 0.085,
                 decoration: BoxDecoration(
                   color: PlayButtonColor,
-                    borderRadius: BorderRadius.circular(PLAY_BUTTON_RADIUS),
-                    ),
+                  borderRadius: BorderRadius.circular(PLAY_BUTTON_RADIUS),
+                ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                 child:  Icon(Icons.play_arrow_outlined,size: VIDEO_ICON_SIZE,color: Donebutton,),
+                  child: const Icon(
+                    Icons.play_arrow_outlined,
+                    size: VIDEO_ICON_SIZE,
+                    color: Donebutton,
+                  ),
                 ),
               ),
               SizedBox(
                 width: size.width * 0.02,
               ),
-              Container(
+              SizedBox(
                 width: size.width * 0.4,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: appPadding/2,top: appPadding / 4),
+                  padding: const EdgeInsets.only(
+                      left: appPadding / 2, top: appPadding / 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         children: [
-                          Text(exercise.level!,style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),),
+                          Text(
+                            exercise.level!,
+                            style: TextStyle(
+                                color: Donebutton.withOpacity(0.7),
+                                fontSize: 10),
+                          ),
                           SizedBox(
                             width: size.width * 0.03,
                           ),
-                          Icon(Icons.access_time_outlined,size: 10,color: Donebutton.withOpacity(0.7),),
+                          Icon(
+                            Icons.access_time_outlined,
+                            size: 10,
+                            color: Donebutton.withOpacity(0.7),
+                          ),
                           SizedBox(
                             width: size.width * 0.01,
                           ),
-                          Text(exercise.time.toString() + ' min',style: TextStyle(color: Donebutton.withOpacity(0.7),fontSize: 10),)
+                          Text(
+                            exercise.time.toString() + ' min',
+                            style: TextStyle(
+                                color: Donebutton.withOpacity(0.7),
+                                fontSize: 10),
+                          )
                         ],
                       ),
                     ],
@@ -95,8 +111,6 @@ class SubcategoryWorkouts extends StatelessWidget {
     );
   }
 
-  CategoryController _categoryController = Get.find();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -106,12 +120,12 @@ class SubcategoryWorkouts extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: _categoryController.categories.length,
-                itemBuilder: (context, index) {
-                  return _buildCourses(context, index);
-                },//
-              ))
+            physics: const BouncingScrollPhysics(),
+            itemCount: _categoryController.categories.length,
+            itemBuilder: (context, index) {
+              return _buildCourses(context, index);
+            }, //
+          ))
         ],
       ),
     );

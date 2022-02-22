@@ -16,18 +16,16 @@ import 'subcategorylist.dart';
 
 class Subcategory extends StatefulWidget {
   int? index;
-  Subcategory(
-      {Key? key,
-      required this.index,
-      })
-      : super(key: key);
+  Subcategory({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
   _SubcategoryState createState() => _SubcategoryState();
 }
 
 class _SubcategoryState extends State<Subcategory> {
-
   CategoryController categoryController = Get.find();
 
   @override
@@ -115,7 +113,6 @@ class _SubcategoryState extends State<Subcategory> {
                           color: Colors.grey,
                         ),
                       ),
-
                     ],
                   ),
                   Row(
@@ -164,7 +161,8 @@ class _SubcategoryState extends State<Subcategory> {
 
                   Expanded(
                     child: FutureBuilder<List<ContentModel>>(
-                      future: Database().generateContentList(categoryController.playlists[widget.index!].id),
+                      future: Database().generateContentList(
+                          categoryController.playlists[widget.index!].id),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Center(
@@ -182,7 +180,8 @@ class _SubcategoryState extends State<Subcategory> {
                                     videoUrl: snapshot.data?[index].videoUrl,
                                     name: snapshot.data?[index].name,
                                     time: snapshot.data?[index].duration,
-                                    description: snapshot.data?[index].description,
+                                    description:
+                                        snapshot.data?[index].description,
                                     level: 'Beginner');
 
                                 return Padding(
@@ -190,10 +189,10 @@ class _SubcategoryState extends State<Subcategory> {
                                       horizontal: appPadding,
                                       vertical: appPadding / 2),
                                   child: InkWell(
-                                    onTap: (){
-                                      Get.to(()=>WorkoutDetails(
-                                        exercise: exercise,
-                                      ));
+                                    onTap: () {
+                                      Get.to(() => WorkoutDetails(
+                                            exercise: exercise,
+                                          ));
                                     },
                                     child: Container(
                                       height: size.height * 0.12,
@@ -204,8 +203,7 @@ class _SubcategoryState extends State<Subcategory> {
                                           boxShadow: [
                                             BoxShadow(
                                                 color: kblack.withOpacity(0.1),
-                                                blurRadius:
-                                                    TOP_WORKOUT_BLUR_RADIUS,
+                                                blurRadius: S_RADIUS,
                                                 offset: Offset(10, 15))
                                           ]),
                                       child: Padding(
@@ -236,19 +234,25 @@ class _SubcategoryState extends State<Subcategory> {
                                                   children: [
                                                     CachedNetworkImage(
                                                       fit: BoxFit.fitHeight,
-                                                      imageUrl: exercise.videoUrl!,
-                                                      placeholder: (context, url) =>
-                                                          Center(child: CircularProgressIndicator()),
-                                                      errorWidget: (context, url, error) => Icon(Icons.error),
+                                                      imageUrl:
+                                                          exercise.videoUrl!,
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons.error),
                                                     ),
                                                     Center(
                                                       child: Icon(
-                                                        Icons.play_arrow_outlined,
+                                                        Icons
+                                                            .play_arrow_outlined,
                                                         size: VIDEO_ICON_SIZE,
                                                         color: Donebutton,
                                                       ),
                                                     ),
-
                                                   ],
                                                 ),
                                               ),

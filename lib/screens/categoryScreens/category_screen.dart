@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryScreen extends StatelessWidget {
+  final CategoryController categoryController = Get.find();
 
-  CategoryController categoryController = Get.find();
+  CategoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +18,18 @@ class CategoryScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: LL_SIZEDBOX_SIZE,
             ),
             Expanded(
                 child: GridView(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: CATEGORY_GRID_NUMBER,
               ),
               children: List.generate(
                 categoryController.categories.length,
                 (index) => CategoryCard(
-                categoryController.categories[index],
+                  categoryController.categories[index],
                 ),
               ),
             ))

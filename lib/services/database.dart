@@ -1,7 +1,5 @@
-
 import 'package:anand_yogalaya/models/contents.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../models/categories.dart';
 import '../models/user.dart';
 
@@ -26,7 +24,7 @@ class Database {
   Future<UserModel> getUser(String uid) async {
     try {
       DocumentSnapshot _doc =
-      await _firebaseFirestore.collection("users").doc(uid).get();
+          await _firebaseFirestore.collection("users").doc(uid).get();
 
       return UserModel.fromSnapshot(_doc);
     } catch (e) {
@@ -64,7 +62,6 @@ class Database {
     });
   }
 
-
   // Getting all Content DocumentSnapshots in List of ContentModel
   Stream<List<ContentModel>> contentStream() {
     return _firebaseFirestore
@@ -79,19 +76,16 @@ class Database {
     });
   }
 
-
   // Getting selective Content's Document SnapShots according to categoryId
   Future<List<ContentModel>> generateContentList(String categoryId) async {
-    var querySnapshot = await _firebaseFirestore.collection('contents').where('categories', arrayContains: categoryId).get();
+    var querySnapshot = await _firebaseFirestore
+        .collection('contents')
+        .where('categories', arrayContains: categoryId)
+        .get();
     List<ContentModel> listCards = [];
     querySnapshot.docs.forEach((doc) {
-      listCards.add(
-        ContentModel.fromDocumentSnapshot(doc)
-      );
+      listCards.add(ContentModel.fromDocumentSnapshot(doc));
     });
     return listCards;
   }
-
-
-
 }
