@@ -13,8 +13,9 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Flexible(
-          flex: 2,
+        Container(
+          width: 90,
+          height: 60,
           child: CircleAvatar(
             radius: CATEGORY_RADIUS,
             backgroundColor: category.color,
@@ -29,12 +30,16 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          height: S_SIZEDBOX_SIZE,
-        ),
-        Flexible(
+        const SizedBox(height: S_SIZEDBOX_SIZE,),
+        Container(
+            width: 90,
+            height: 30,
             child: Text(
-            category.name,textAlign: TextAlign.center,))
+            category.name,textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12),
+              maxLines: 2,
+            )
+        )
       ],
     );
   }

@@ -45,12 +45,13 @@ class Workouts extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          categoryController.playlists[index].name,
+                         categoryController.playlists[index].name,
                           style: const TextStyle(
                             fontWeight: WORKOUTS_WEIGHT,
                             color: Colors.white,
                             fontSize: WORKOUTS_SIZE,
                           ),
+                          maxLines: 3,
                         ),
                         SizedBox(
                           height: size.height * 0.01,
@@ -99,7 +100,7 @@ class Workouts extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: size.width * 0.27,
+                  width: size.width * 0.25,
                   height: size.height * 0.2,
                   child: ClipRRect(
                     borderRadius:

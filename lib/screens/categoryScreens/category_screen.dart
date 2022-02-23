@@ -24,9 +24,7 @@ class CategoryScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(
-              height: LL_SIZEDBOX_SIZE,
-            ),
+            const SizedBox(height: LL_SIZEDBOX_SIZE,),
             Expanded(
                 child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
