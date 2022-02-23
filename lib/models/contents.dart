@@ -1,4 +1,6 @@
-class Contents {
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class ContentModel {
   String id = '';
   String name = '';
   String? description;
@@ -11,7 +13,7 @@ class Contents {
   DateTime? addedDate;
   List<String>? categories;
 
-  Contents({
+  ContentModel({
     required this.id,
     required this.name,
     this.description,
@@ -46,7 +48,7 @@ class Contents {
     searchKeyWords = keywords.trim().toLowerCase();
   }
 
-  Contents.fromMap(Map<String, dynamic> json) {
+  ContentModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
@@ -78,5 +80,24 @@ class Contents {
     data['addedDate'] = addedDate;
     data['categories'] = categories;
     return data;
+  }
+
+  ContentModel.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
+    id = documentSnapshot.id;
+    name = documentSnapshot['name'];
+    description = documentSnapshot['description'];
+    photoUrl = documentSnapshot['photoUrl'];
+    videoUrl = documentSnapshot['videoUrl'];
+    duration = documentSnapshot['duration'];
+    isPremium = documentSnapshot['isPremium'];
+    searchKeyWords = documentSnapshot['searchKeyWords'];
+    views = documentSnapshot['views'];
+    addedDate = documentSnapshot['addedDate'] != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            documentSnapshot['addedDate'].millisecondsSinceEpoch)
+        : null;
+    categories = documentSnapshot['categories'] != null
+        ? List<String>.from(documentSnapshot['categories'])
+        : [];
   }
 }

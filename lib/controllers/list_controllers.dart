@@ -5,20 +5,20 @@ import 'package:get/get.dart';
 
 //This controller contains various lists which is required by the whole app.
 class ListController extends GetxController {
-  RxList<Contents> contentList = <Contents>[
-    Contents(
+  RxList<ContentModel> contentList = <ContentModel>[
+    ContentModel(
       id: 'efggggytEwrqgfgt',
       name: 'Padmasana',
       duration: 5,
       categories: ['ragrcgraYRerdgf'],
     ),
-    Contents(
+    ContentModel(
       id: 'ef12ggytEwrqgfgt',
       name: 'Buddhasana',
       duration: 6,
       categories: ['ragrcgraYRerdgf'],
     ),
-    Contents(
+    ContentModel(
       id: 'ef12ggytEwrqfdfgfgt',
       name: 'Shavasana',
       duration: 15,
@@ -26,49 +26,55 @@ class ListController extends GetxController {
     ),
   ].obs;
 
-  RxList<Categories> categoryList = <Categories>[
-    Categories(
+  RxList<CategoryModel> categoryList = <CategoryModel>[
+    CategoryModel(
         id: 'ragrcgraYRerdgf',
         name: 'Meditation',
         totalDuration: 10,
         color: kAccentGreen,
-        icon: 'assets/images/yoga_1.png',
+        imageUrl: '',
+        isPlayList: true,
         contents: ['efggggytEwrqgfgt', 'ef12ggytEwrqgfgt']),
-    Categories(
+    CategoryModel(
       id: 'ragrcgraYRer21323',
       name: 'Body Pain Yogas',
       totalDuration: 15,
       color: kAccentRed,
-      icon: 'assets/images/yoga_2.png',
+      imageUrl: '',
+      isPlayList: true,
       contents: ['ef12ggytEwrqfdfgfgt'],
     ),
-    Categories(
+    CategoryModel(
       id: 'ragrcgra1241241',
       name: 'Yogas At Home',
       totalDuration: 30,
       color: kAccentYellow,
-      icon: 'assets/images/yoga_3.png',
+      imageUrl: '',
+      isPlayList: true,
     ),
-    Categories(
+    CategoryModel(
       id: 'ragrcgraYRe554545rdgf',
       name: 'Relaxing Yogas',
       totalDuration: 15,
       color: kAccentPurple,
-      icon: 'assets/images/yoga_1.png',
+      imageUrl: '',
+      isPlayList: true,
     ),
-    Categories(
+    CategoryModel(
       id: 'rag11212erdgf',
       name: 'Morning Yoga',
       totalDuration: 60,
       color: kAccentTosca,
-      icon: 'assets/images/yoga_2.png',
+      imageUrl: '',
+      isPlayList: true,
     ),
-    Categories(
+    CategoryModel(
       id: 'ragrcgra0000YRerdgf',
       name: 'Suryanamaskar',
       totalDuration: 100,
       color: kAccentGreen,
-      icon: 'assets/images/yoga_3.png',
+      imageUrl: '',
+      isPlayList: true,
     ),
   ].obs;
 

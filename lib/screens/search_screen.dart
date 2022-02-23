@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/models/categories.dart';
-import 'package:anand_yogalaya/screens/categoryScreens/category_card.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 //This screen actually creates a delegate and it is not a screen. Delegate means
 // like if we click on search the screen converts the app bar to search.
-class SearchScreen extends SearchDelegate<Categories> {
+class SearchScreen extends SearchDelegate<CategoryModel> {
   ListController listController = Get.find();
-  Categories? result;
+  CategoryModel? result;
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -204,10 +202,10 @@ class SearchScreen extends SearchDelegate<Categories> {
                         suggestionsForCategories.elementAt(index).color,
                     child: SizedBox(
                       width: L_SIZEDBOX_SIZE,
-                      child: Image.asset(
+                      /*child: Image.asset(
                         suggestionsForCategories.elementAt(index).icon,
                         fit: BoxFit.cover,
-                      ),
+                      ),*/
                     ),
                   ),
                 );

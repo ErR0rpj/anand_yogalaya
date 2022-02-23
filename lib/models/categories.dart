@@ -2,9 +2,10 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Categories {
+class CategoryModel {
   String id = '';
   String name = '';
+  String imageUrl ='https://firebasestorage.googleapis.com/v0/b/anandyogalaya-8991a.appspot.com/o/categories%2FAsans.png?alt=media&token=336aba73-a341-416b-b27c-0f6da04e55b9';
   int? totalDuration;
   bool isPlayList =
       true; //Default value is true because all the categories will be updated at first.
@@ -13,18 +14,19 @@ class Categories {
   List<String>? contents;
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
-  Color color = Colors.indigo;
-  String icon = CATEGORY_FIRST_IMAGE_URL;
+  Color? color = Colors.indigo[400];
 
-  Categories({
+
+  CategoryModel({
     required this.id,
     required this.name,
+    required this.imageUrl,
     this.totalDuration,
-    this.isPlayList = true,
+    required this.isPlayList,
     this.searchKeyWords = '',
     this.contents,
     this.color = Colors.indigo,
-    this.icon = '',
+
   }) {
     contents ??= [];
     if (searchKeyWords.isEmpty) {
@@ -49,19 +51,20 @@ class Categories {
     searchKeyWords = keywords.trim().toLowerCase();
   }
 
-  Categories.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
+  CategoryModel.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
     id = documentSnapshot.id;
     name = documentSnapshot['name'];
     totalDuration = documentSnapshot['totalDuration'];
+    imageUrl = documentSnapshot['imageUrl'];
     isPlayList = documentSnapshot['isPlayList'];
-    searchKeyWords = documentSnapshot['searchKeyWords'];
-    isPremium = documentSnapshot['isPremium'];
+  /*searchKeyWords = documentSnapshot['searchKeyWords'];
+    isPremium = documentSnapshot['isPremium'];*/
     contents = documentSnapshot['contents'] != null
         ? List<String>.from(documentSnapshot['contents'])
         : [];
   }
 
-  Categories.fromMap(Map<String, dynamic> json) {
+  CategoryModel.fromMap(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     totalDuration = json['totalDuration'];
