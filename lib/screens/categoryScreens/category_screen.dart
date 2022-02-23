@@ -5,6 +5,9 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Notifications/notificationAppbar.dart';
+import '../Notifications/notificationbackButton.dart';
+
 class CategoryScreen extends StatelessWidget {
   final CategoryController categoryController = Get.find();
 
@@ -15,6 +18,11 @@ class CategoryScreen extends StatelessWidget {
     ListController listController = Get.find();
 
     return Scaffold(
+      backgroundColor: kwhite,
+      appBar: DefaultAppBar(
+        title: 'Categories',
+        child: DefaultBackButton(),
+      ),
       body: SafeArea(
         child: Column(
           children: [

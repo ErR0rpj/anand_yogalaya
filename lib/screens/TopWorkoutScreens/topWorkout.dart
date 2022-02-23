@@ -36,7 +36,7 @@ class Workouts extends StatelessWidget {
             padding: const EdgeInsets.all(appPadding),
             child: Row(
               children: [
-                SizedBox(
+                Container(
                   width: size.width * 0.48,
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -98,8 +98,8 @@ class Workouts extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: size.width * 0.3,
+                Container(
+                  width: size.width * 0.27,
                   height: size.height * 0.2,
                   child: ClipRRect(
                     borderRadius:

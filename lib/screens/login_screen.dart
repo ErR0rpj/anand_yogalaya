@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           const SizedBox(height: S_SIZEDBOX_SIZE),
-                          SizedBox(
+                          Container(
                             height: LOGO_SIZE,
                             width: LOGO_SIZE,
                             child: Lottie.asset(
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Container(
                   padding:
-                      const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+                  const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
                   child: Column(
                     children: <Widget>[
                       const SizedBox(height: LARGE_SIZEDBOX_SIZE),
