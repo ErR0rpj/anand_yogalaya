@@ -16,7 +16,6 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ListController listController = Get.find();
-
     return Scaffold(
       drawer: NavsideBar(),
       appBar: AppBar(
@@ -105,7 +104,6 @@ class DashBoardScreen extends StatelessWidget {
                   },
                 ),
               ),
-              //CategoryTab(categories: listController.categoryList),
               const SizedBox(height: L_SIZEDBOX_SIZE),
               const Workouts(),
             ],

@@ -17,60 +17,63 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: loginbackground,
         resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(00.0, 120.0, 0.0, 0.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Workout',
-                            style: GoogleFonts.merriweather(
-                              fontWeight: LOGIN_WORKOUT_TEXT_COLOR,
-                              color: Colors.black,
-                              fontSize: LOGIN_WORKOUT_TEXT,
-                            ),
-                          ),
-                          const SizedBox(height: S_SIZEDBOX_SIZE),
-                          Text(
-                            'Dont miss the fitness!!',
-                            style: GoogleFonts.merriweather(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                          const SizedBox(height: S_SIZEDBOX_SIZE),
-                          Container(
-                            height: LOGO_SIZE,
-                            width: LOGO_SIZE,
-                            child: Lottie.asset(
-                                "assets/animations/girl_yoga.json"),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding:
-                  const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
-                  child: Column(
+        body: // C(
+      //    children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Stack(
                     children: <Widget>[
-                      const SizedBox(height: LARGE_SIZEDBOX_SIZE),
-                      loginButton(context),
+                       Container(
+                          padding: const EdgeInsets.fromLTRB(00.0, 120.0, 0.0, 0.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Workout',
+                                  style: GoogleFonts.merriweather(
+                                    fontWeight: LOGIN_WORKOUT_TEXT_COLOR,
+                                    color: Colors.black,
+                                    fontSize: LOGIN_WORKOUT_TEXT,
+                                  ),
+                                ),
+                                const SizedBox(height: S_SIZEDBOX_SIZE),
+                                Text(
+                                  'Dont miss the fitness!!',
+                                  style: GoogleFonts.merriweather(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                const SizedBox(height: S_SIZEDBOX_SIZE),
+                                Container(
+                                  height: LOGO_SIZE,
+                                  width: LOGO_SIZE,
+                                  child: Lottie.asset(
+                                      "assets/animations/girl_yoga.json"),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
+                                  child: Column(
+                                    children: <Widget>[
+                                      loginButton(context),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ],
-        ));
+      //    ],
+     //   )
+    );
   }
 
   Widget loginButton(BuildContext context) {

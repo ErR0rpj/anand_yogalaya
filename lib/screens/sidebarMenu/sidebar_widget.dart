@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../Notifications/notificationlist.dart';
 import '../Notifications/notificationspage.dart';
+import '../login_screen.dart';
 import 'aboutUser.dart';
 
 class NavsideBar extends StatelessWidget {
@@ -92,6 +93,10 @@ class NavsideBar extends StatelessWidget {
             title: const Text('Logout'),
             leading: const Icon(Icons.exit_to_app),
             onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              ),
               //TODO: Implement logout
             },
           ),

@@ -10,13 +10,11 @@ import '../Notifications/notificationbackButton.dart';
 
 class CategoryScreen extends StatelessWidget {
   final CategoryController categoryController = Get.find();
-
   CategoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ListController listController = Get.find();
-
     return Scaffold(
       backgroundColor: kwhite,
       appBar: DefaultAppBar(

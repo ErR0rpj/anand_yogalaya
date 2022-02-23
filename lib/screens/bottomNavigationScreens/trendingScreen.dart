@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../utils/const.dart';
+import '../Notifications/notificationlist.dart';
 import '../sidebarMenu/sidebar_widget.dart';
 import '../trendingScreens/likedtrendingSection.dart';
 import '../trendingScreens/newtrendingSection.dart';
@@ -21,6 +23,35 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
     return Scaffold(
       drawer: NavsideBar(),
       appBar: AppBar(
+        centerTitle: true,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.sort_rounded,
+                color: kblack,
+                size: 30,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "Trending",
+          style: GoogleFonts.raleway(
+            color: kblack,
+            fontWeight: DASHBOARD_WEIGHT,
+            fontSize: 22,
+          ),
+        ),
+        //  title: Text('Dashboard'),
+      ),
+     /* appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -56,8 +87,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
               ]),
         ),
         //  title: Text('Dashboard'),
-      ),
-      // appBar: trendingAppBar(context),
+      ), */
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(
