@@ -124,11 +124,11 @@ class Workouts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    //  crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: appPadding,
+            horizontal: S_MEDIUM_PAD,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,16 +137,9 @@ class Workouts extends StatelessWidget {
                 'Top Yoga Workout',
                 style: TextStyle(
                   fontSize: TOP_WORKOUT_SIZE,
-                  fontWeight: TOPWORKOUT_TITLE__WEIGHT,
+                   fontWeight: TOPWORKOUT_TITLE__WEIGHT,
                   letterSpacing: 1.0,
                 ),
-              ),
-              Text(
-                'See All',
-                style: TextStyle(
-                    fontSize: SEE_ALL_SIZE,
-                    fontWeight: SEEALL_WEIGHT,
-                    color: SEE_ALL_COLOR),
               ),
             ],
           ),

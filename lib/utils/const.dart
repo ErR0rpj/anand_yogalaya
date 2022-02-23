@@ -102,7 +102,6 @@ const double LIST_RADIUS = 50;
 const double FORM_FIELD_RADIUS = 32;
 const double DEFAULT_FONT_SIZE = 32;
 const double REGULAR_FONT_SIZE = 20;
-
 const double PLAY_BUTTON_RADIUS = 10;
 
 //////////////////////  NUMBERS //////////////////////
@@ -125,6 +124,9 @@ const double CARD_ELEVATION = 10; //
 const double L_HEIGHT_SIZE = 24; //
 const double DRAWER_WIDTH = 85;
 const double TEXT_FIELD_BORDER_RADIUS = 5;
+double UPLOAD_BUTTON_WIDTH = AppConstants().width*0.8;
+double UPLOAD_BUTTON_HEIGHT = AppConstants().height*0.8;
+
 
 ////////////////////  FONT SIZE ///////////////////
 
@@ -175,6 +177,7 @@ const double M_SIZEDBOX_SIZE = 20;
 const double L_SIZEDBOX_SIZE = 30; //
 const double LL_SIZEDBOX_SIZE = 40;
 const double LARGE_SIZEDBOX_SIZE = 40;
+const double VLARGE_SIZEDBOX_SIZE = 60;
 const double S_DIVIDER_SIZE = 32;
 const double M_DIVIDER_SIZE = 40;
 const double L_DIVIDER_SIZE = 56;

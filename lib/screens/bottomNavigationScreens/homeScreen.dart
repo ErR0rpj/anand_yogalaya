@@ -5,7 +5,9 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/dashboard_screen.
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../utils/const.dart';
+import '../trendingScreens/uploadform.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({Key? key}) : super(key: key);
@@ -28,8 +30,8 @@ class HomepageScreenState extends State<HomepageScreen> {
       });
     } else {
       CategoryModel? category =
-          await showSearch(context: context, delegate: SearchScreen());
-      print(category);
+         await showSearch(context: context, delegate: SearchScreen());
+     print(category);
     }
   }
 
@@ -58,8 +60,14 @@ class HomepageScreenState extends State<HomepageScreen> {
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.upload_outlined),
-        onPressed: () {},
+          child: Icon(Icons.upload_outlined),
+          onPressed: () =>
+              showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) => buildSheet(),
+              )
       ),
     );
   }
