@@ -2,7 +2,7 @@ import 'package:anand_yogalaya/screens/Notifications/notificationbackButton.dart
 import '../../utils/const.dart';
 import 'package:flutter/material.dart';
 import 'notificationAppbar.dart';
-import 'notificationspage.dart';
+import 'notificationsdetailpage.dart';
 import 'notificationstiles.dart';
 
 class NotificationList extends StatefulWidget {
@@ -30,8 +30,7 @@ class _NotificationListState extends State<NotificationList> {
               title: 'Anand Yogalaya',
               subtitle: 'Today we are going to learn about yoga',
               enable: true,
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NotificationPage())),
+              onTap: () {}
             );
           },
           separatorBuilder: (context, index) {

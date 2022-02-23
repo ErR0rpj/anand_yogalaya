@@ -19,8 +19,7 @@ class Workouts extends StatelessWidget {
             ));
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: appPadding, vertical: appPadding / 2),
+        padding: const EdgeInsets.symmetric( horizontal: appPadding/2, vertical: appPadding / 2),
         child: Container(
           height: size.height * 0.25,
           decoration: BoxDecoration(
@@ -37,15 +36,15 @@ class Workouts extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: size.width * 0.48,
+                  width: size.width * 0.45,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: appPadding / 2, top: appPadding / 1.5),
+                        left: appPadding / 2, top: appPadding / 1.5,right: appPadding / 2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                         categoryController.playlists[index].name,
+                          categoryController.playlists[index].name,
                           style: const TextStyle(
                             fontWeight: WORKOUTS_WEIGHT,
                             color: Colors.white,
@@ -100,7 +99,7 @@ class Workouts extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: size.width * 0.25,
+                  width: size.width * 0.35,
                   height: size.height * 0.2,
                   child: ClipRRect(
                     borderRadius:

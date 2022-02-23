@@ -19,7 +19,7 @@ class _NotificationPageState extends State<NotificationPage> {
         title: 'Notification',
         child: DefaultBackButton(),
       ),
-      body: FittedBox(
+      body: SingleChildScrollView(
         child: Container(
           // height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -46,7 +46,7 @@ class _NotificationPageState extends State<NotificationPage> {
                 alignment: Alignment.centerRight,
                 child: Text('15/Feb/2022 06:45 PM',
                     style: TextStyle(color: kLightColor)),
-              )
+              ),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../Notifications/notificationlist.dart';
-import '../Notifications/notificationspage.dart';
+import '../Notifications/notificationsdetailpage.dart';
 import '../login_screen.dart';
 import 'aboutUser.dart';
 
