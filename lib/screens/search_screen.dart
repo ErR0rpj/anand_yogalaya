@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/models/categories.dart';
-import 'package:anand_yogalaya/screens/categoryScreens/category_card.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

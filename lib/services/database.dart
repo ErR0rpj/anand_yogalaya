@@ -40,9 +40,9 @@ class Database {
         .snapshots()
         .map((QuerySnapshot query) {
       List<CategoryModel> retVal = [];
-      query.docs.forEach((element) {
+      for (var element in query.docs) {
         retVal.add(CategoryModel.fromDocumentSnapshot(element));
-      });
+      }
       return retVal;
     });
   }
@@ -55,9 +55,9 @@ class Database {
         .snapshots()
         .map((QuerySnapshot query) {
       List<CategoryModel> retVal = [];
-      query.docs.forEach((element) {
+      for (var element in query.docs) {
         retVal.add(CategoryModel.fromDocumentSnapshot(element));
-      });
+      }
       return retVal;
     });
   }
@@ -69,9 +69,9 @@ class Database {
         .snapshots()
         .map((QuerySnapshot query) {
       List<ContentModel> retVal = [];
-      query.docs.forEach((element) {
+      for (var element in query.docs) {
         retVal.add(ContentModel.fromDocumentSnapshot(element));
-      });
+      }
       return retVal;
     });
   }
@@ -83,9 +83,9 @@ class Database {
         .where('categories', arrayContains: categoryId)
         .get();
     List<ContentModel> listCards = [];
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       listCards.add(ContentModel.fromDocumentSnapshot(doc));
-    });
+    }
     return listCards;
   }
 }

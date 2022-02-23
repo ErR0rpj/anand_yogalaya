@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
-import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkout.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/category_screen.dart';
 import 'package:anand_yogalaya/screens/searchbox.dart';
@@ -8,9 +7,9 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../controllers/category_controller.dart';
-import 'Notifications/notificationlist.dart';
-import 'categoryScreens/category_card.dart';
+import '../../controllers/category_controller.dart';
+import '../Notifications/notificationlist.dart';
+import '../categoryScreens/category_card.dart';
 
 class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
@@ -82,11 +81,12 @@ class DashBoardScreen extends StatelessWidget {
                 child: GetX<CategoryController>(
                   init: Get.put<CategoryController>(CategoryController()),
                   builder: (CategoryController categoryController) {
-                    if (categoryController != null && categoryController.categories != null) {
+                    if (categoryController != null &&
+                        categoryController.categories != null) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                         child: ListView.separated(
-                          separatorBuilder: (_,i){
+                          separatorBuilder: (_, i) {
                             return const SizedBox(
                               width: S_SIZEDBOX_SIZE,
                             );
@@ -94,7 +94,8 @@ class DashBoardScreen extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemCount: categoryController.categories.length,
                           itemBuilder: (_, index) {
-                            return CategoryCard(categoryController.categories[index]);
+                            return CategoryCard(
+                                categoryController.categories[index]);
                           },
                         ),
                       );
@@ -116,6 +117,8 @@ class DashBoardScreen extends StatelessWidget {
 }
 
 class CategoryTab extends StatelessWidget {
+  const CategoryTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -140,9 +143,7 @@ class CategoryTab extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CategoryScreen(
-
-                    )),
+                    MaterialPageRoute(builder: (context) => CategoryScreen()),
                   );
                 },
                 child: const Text(

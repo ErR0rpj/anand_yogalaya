@@ -86,18 +86,18 @@ class ContentModel {
     id = documentSnapshot.id;
     name = documentSnapshot['name'];
     description = documentSnapshot['description'];
-    //photoUrl = documentSnapshot['photoUrl'];
+    photoUrl = documentSnapshot['photoUrl'];
     videoUrl = documentSnapshot['videoUrl'];
     duration = documentSnapshot['duration'];
-   /* isPremium = documentSnapshot['isPremium'];
+    isPremium = documentSnapshot['isPremium'];
     searchKeyWords = documentSnapshot['searchKeyWords'];
     views = documentSnapshot['views'];
     addedDate = documentSnapshot['addedDate'] != null
         ? DateTime.fromMillisecondsSinceEpoch(
-        documentSnapshot['addedDate'].millisecondsSinceEpoch)
-        : null;*/
-    categories =
-    documentSnapshot['categories'] != null ? List<String>.from(documentSnapshot['categories']) : [];
+            documentSnapshot['addedDate'].millisecondsSinceEpoch)
+        : null;
+    categories = documentSnapshot['categories'] != null
+        ? List<String>.from(documentSnapshot['categories'])
+        : [];
   }
-
 }

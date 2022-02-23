@@ -1,13 +1,11 @@
 import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/models/categories.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
-import 'package:anand_yogalaya/screens/dashboard_screen.dart';
+import 'package:anand_yogalaya/screens/bottomNavigationScreens/dashboard_screen.dart';
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/const.dart';
-import '../subcategoryScreen/subcategories.dart';
-
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({Key? key}) : super(key: key);
@@ -49,12 +47,11 @@ class HomepageScreenState extends State<HomepageScreen> {
         showUnselectedLabels: false,
         showSelectedLabels: false,
         elevation: 0,
-        items: [
-          const BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(
               label: "Trend", icon: Icon(Icons.trending_up_outlined)),
-          const BottomNavigationBarItem(
-              label: "Search", icon: Icon(Icons.search)),
+          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
         ],
       ),
       backgroundColor: Colors.white,
@@ -62,9 +59,7 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.upload_outlined),
-        onPressed: () {
-
-        },
+        onPressed: () {},
       ),
     );
   }

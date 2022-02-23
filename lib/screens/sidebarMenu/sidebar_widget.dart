@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import '../../utils/const.dart';
 import '../Notifications/notificationlist.dart';
 import '../Notifications/notificationspage.dart';
-import '../workoutdetailScreen/detailScreen.dart';
 import 'aboutUser.dart';
 
 class NavsideBar extends StatelessWidget {
+  const NavsideBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -15,7 +16,7 @@ class NavsideBar extends StatelessWidget {
         children: <Widget>[
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             color: Donebutton,
             child: Center(
               child: Column(
@@ -23,51 +24,41 @@ class NavsideBar extends StatelessWidget {
                   Container(
                     width: size.width * 0.2,
                     height: size.width * 0.2,
-                    margin: EdgeInsets.only(top: 18),
+                    margin: const EdgeInsets.only(top: 18),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: NetworkImage(urlImage), fit: BoxFit.fill),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
                     name,
-                    style: TextStyle(fontSize: 22, color: kwhite),
+                    style: const TextStyle(fontSize: 22, color: kwhite),
                   ),
                   Text(
                     email,
-                    style: TextStyle(fontSize: 22, color: kwhite),
+                    style: const TextStyle(fontSize: 22, color: kwhite),
                   )
                 ],
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('Favorite'),
+            leading: const Icon(Icons.favorite),
+            title: const Text('Favorite'),
             onTap: () => {},
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('Detail Section'),
-            onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => WorkoutDetails()),
-              ),
-            },
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Profile'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text('Share'),
+            leading: const Icon(Icons.share),
+            title: const Text('Share'),
             onTap: () => {
               Navigator.push(
                 context,
@@ -76,8 +67,8 @@ class NavsideBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notification'),
+            leading: const Icon(Icons.notifications),
+            title: const Text('Notification'),
             onTap: () => {
               Navigator.push(
                 context,
@@ -85,21 +76,21 @@ class NavsideBar extends StatelessWidget {
               ),
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Policies'),
+            leading: const Icon(Icons.description),
+            title: const Text('Policies'),
             onTap: () => null,
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Logout'),
-            leading: Icon(Icons.exit_to_app),
+            title: const Text('Logout'),
+            leading: const Icon(Icons.exit_to_app),
             onTap: () => {
               //TODO: Implement logout
             },

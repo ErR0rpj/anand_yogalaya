@@ -1,11 +1,8 @@
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
-import 'package:anand_yogalaya/screens/dashboard_screen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-
-import 'bottomNavigationScreens/trendingScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -77,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget loginButton(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 65,
       child: FlatButton(
         color: loginbutton,
@@ -100,7 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>  HomepageScreen()),),
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const HomepageScreen()),
+          ),
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),
