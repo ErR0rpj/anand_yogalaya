@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/models/contents.dart';
+import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,35 @@ class ContentScreen extends StatefulWidget {
 }
 
 class _ContentScreenState extends State<ContentScreen> {
+  YoutubePlayerController? _youtubePlayerController;
+
+  bool isContent = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.content.videoUrl == null || widget.content.videoUrl!.isEmpty) {
+      isContent = true;
+    } else {
+      _youtubePlayerController = YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(widget.content.videoUrl!)!,
+        flags: const YoutubePlayerFlags(
+          autoPlay: true,
+          mute: false,
+          enableCaption: true,
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    if (_youtubePlayerController != null) {
+      _youtubePlayerController?.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -51,14 +81,21 @@ class _ContentScreenState extends State<ContentScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              height: size.height * 0.35,
-              child: CachedNetworkImage(
-                fit: BoxFit.contain,
-                imageUrl: widget.content.photoUrl!,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: isContent
+                  ? CachedNetworkImage(
+                      fit: BoxFit.contain,
+                      imageUrl: widget.content.photoUrl!,
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )
+                  : YoutubePlayer(
+                      width: MediaQuery.of(context).size.width / 1,
+                      controller: _youtubePlayerController!,
+                      showVideoProgressIndicator: true,
+                    ),
             ),
             Expanded(
               child: Container(

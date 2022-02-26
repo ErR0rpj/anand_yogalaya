@@ -158,7 +158,7 @@ const double LL_LARGE_FONT_SIZE = 20; //
 ///////////////////// CONTAINER,SIZEDBOX AND DIVIDER SIZE //////////////////
 
 const double HAMBURGER_ICON_SIZE = 40; //
-const double BACK_BUTTON_ICON_SIZE = 30; //
+const double BACK_BUTTON_ICON_SIZE = 25; //
 const double TIME_ICON_SIZE = 14; //
 const double FOLDER_ICON_SIZE = 14; //
 const double FLITER_ICON_SIZE = 40; //
@@ -188,7 +188,7 @@ const double LL_DIVIDER_SIZE = 64;
 const double appPadding = 20.0; //
 const double ARROW_BACK_LEFT_PAD = 30; //
 const double ARROW_BACK_RIGHT_PAD = 30; //
-const double ARROW_BACK_TOP_PAD = 70; //
+const double ARROW_BACK_TOP_PAD = 40; //
 const double ARROW_BACK_BOTTOM_PAD = 20; //
 const double DONE_BUTTON_LEFT_PAD = 20; //
 const double DONE_BUTTON_RIGHT_PAD = 20; //

@@ -84,7 +84,11 @@ class Database {
         .get();
     List<ContentModel> listCards = [];
     for (var doc in querySnapshot.docs) {
-      listCards.add(ContentModel.fromDocumentSnapshot(doc));
+      try {
+        listCards.add(ContentModel.fromDocumentSnapshot(doc));
+      } catch (e) {
+        print('Error generating list from content model: $e');
+      }
     }
     return listCards;
   }
