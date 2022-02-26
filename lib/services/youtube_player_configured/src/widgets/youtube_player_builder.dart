@@ -1,4 +1,4 @@
-import 'package:anand_yogalaya/services/youtube_player/src/player/youtube_player.dart';
+import 'package:anand_yogalaya/services/youtube_player_configured/src/player/youtube_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
