@@ -1,7 +1,6 @@
-import 'package:anand_yogalaya/models/categories.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -30,16 +29,18 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: S_SIZEDBOX_SIZE,),
+        const SizedBox(
+          height: S_SIZEDBOX_SIZE,
+        ),
         Container(
             width: 90,
             height: 30,
             child: Text(
-            category.name,textAlign: TextAlign.center,
+              category.name,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12),
               maxLines: 2,
-            )
-        )
+            ))
       ],
     );
   }

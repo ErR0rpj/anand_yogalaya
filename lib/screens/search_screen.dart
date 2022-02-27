@@ -1,6 +1,7 @@
 import 'dart:math';
-import 'package:anand_yogalaya/controllers/list_controllers.dart';
-import 'package:anand_yogalaya/models/categories.dart';
+import 'package:anand_yogalaya/controllers/category_controller.dart';
+import 'package:anand_yogalaya/controllers/content_controller.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,9 @@ import 'package:google_fonts/google_fonts.dart';
 //This screen actually creates a delegate and it is not a screen. Delegate means
 // like if we click on search the screen converts the app bar to search.
 class SearchScreen extends SearchDelegate<CategoryModel> {
-  ListController listController = Get.find();
+  ContentController contentController = Get.find();
+  CategoryController categoryController = Get.find();
+
   CategoryModel? result;
 
   @override
@@ -53,12 +56,13 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final suggestionsForCategories = listController.categoryList.where(
+    final suggestionsForCategories = categoryController.categories.where(
         (element) =>
-            element.searchKeyWords.toLowerCase().contains(query.toLowerCase()));
+            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
 
-    final suggestionsForContents = listController.contentList.where((element) =>
-        element.searchKeyWords.toLowerCase().contains(query.toLowerCase()));
+    final suggestionsForContents = contentController.getContentList.where(
+        (element) =>
+            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
 
     return SingleChildScrollView(
       child: Padding(
@@ -154,12 +158,13 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionsForCategories = listController.categoryList.where(
+    final suggestionsForCategories = categoryController.categories.where(
         (element) =>
-            element.searchKeyWords.toLowerCase().contains(query.toLowerCase()));
+            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
 
-    final suggestionsForContents = listController.contentList.where((element) =>
-        element.searchKeyWords.toLowerCase().contains(query.toLowerCase()));
+    final suggestionsForContents = contentController.getContentList.where(
+        (element) =>
+            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
 
     return Container(
       padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
@@ -200,7 +205,7 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     radius: CATEGORY_RADIUS,
                     backgroundColor:
                         suggestionsForCategories.elementAt(index).color,
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: L_SIZEDBOX_SIZE,
                       /*child: Image.asset(
                         suggestionsForCategories.elementAt(index).icon,

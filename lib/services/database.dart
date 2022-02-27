@@ -1,7 +1,7 @@
-import 'package:anand_yogalaya/models/contents.dart';
+import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/categories.dart';
-import '../models/user.dart';
+import '../models/category_model.dart';
+import '../models/user_model.dart';
 
 class Database {
   FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -37,6 +37,7 @@ class Database {
   Stream<List<CategoryModel>> categoryStream() {
     return _firebaseFirestore
         .collection("categories")
+        .where('isPlayList', isEqualTo: false)
         .snapshots()
         .map((QuerySnapshot query) {
       List<CategoryModel> retVal = [];

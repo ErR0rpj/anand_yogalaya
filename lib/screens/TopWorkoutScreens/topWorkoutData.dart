@@ -1,4 +1,4 @@
-import 'package:anand_yogalaya/models/categories.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 
 final _category1 = CategoryModel(

@@ -8,7 +8,7 @@ class ContentModel {
   String? photoUrl;
   int? duration; //Duration to complete the content in seconds
   bool isPremium = false;
-  String searchKeyWords = '';
+  String searchKeywords = '';
   int views = 0;
   DateTime? addedDate;
   List<String>? categories;
@@ -21,12 +21,12 @@ class ContentModel {
     this.videoUrl,
     this.duration,
     this.isPremium = false,
-    this.searchKeyWords = '',
+    this.searchKeywords = '',
     this.views = 0,
     this.addedDate,
     this.categories,
   }) {
-    if (searchKeyWords.isEmpty) {
+    if (searchKeywords.isEmpty) {
       createSearchKeywords();
     }
   }
@@ -45,7 +45,7 @@ class ContentModel {
       }
     }
 
-    searchKeyWords = keywords.trim().toLowerCase();
+    searchKeywords = keywords.trim().toLowerCase();
   }
 
   ContentModel.fromMap(Map<String, dynamic> json) {
@@ -56,7 +56,7 @@ class ContentModel {
     videoUrl = json['videoUrl'];
     duration = json['duration'];
     isPremium = json['isPremium'];
-    searchKeyWords = json['searchKeyWords'];
+    searchKeywords = json['searchKeywords'];
     views = json['views'];
     addedDate = json['addedDate'] != null
         ? DateTime.fromMillisecondsSinceEpoch(
@@ -75,7 +75,7 @@ class ContentModel {
     data['videoUrl'] = videoUrl;
     data['duration'] = duration;
     data['isPremium'] = isPremium;
-    data['searchKeyWords'] = searchKeyWords;
+    data['searchKeyWords'] = searchKeywords;
     data['views'] = views;
     data['addedDate'] = addedDate;
     data['categories'] = categories;
@@ -89,6 +89,7 @@ class ContentModel {
     photoUrl = documentSnapshot['photoUrl'];
     videoUrl = documentSnapshot['videoUrl'];
     duration = documentSnapshot['duration'];
+    searchKeywords = documentSnapshot['searchKeywords'];
     isPremium = documentSnapshot['isPremium'];
     views = documentSnapshot['views'];
     addedDate = documentSnapshot['addedDate'] != null

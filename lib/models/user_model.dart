@@ -74,5 +74,4 @@ class UserModel {
     name = snapshot['name'];
     id = snapshot['uid'];
   }
-
 }
