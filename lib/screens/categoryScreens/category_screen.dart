@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/controllers/category_controller.dart';
-import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/category_card.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +13,18 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ListController listController = Get.find();
     return Scaffold(
       backgroundColor: kwhite,
-      appBar: DefaultAppBar(
+      appBar: const DefaultAppBar(
         title: 'Categories',
         child: DefaultBackButton(),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: LL_SIZEDBOX_SIZE,),
+            const SizedBox(
+              height: LL_SIZEDBOX_SIZE,
+            ),
             Expanded(
                 child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

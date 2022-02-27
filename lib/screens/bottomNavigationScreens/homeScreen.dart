@@ -1,5 +1,4 @@
-import 'package:anand_yogalaya/controllers/list_controllers.dart';
-import 'package:anand_yogalaya/models/categories.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/dashboard_screen.dart';
 import 'package:anand_yogalaya/screens/search_screen.dart';
@@ -30,12 +29,10 @@ class HomepageScreenState extends State<HomepageScreen> {
       });
     } else {
       CategoryModel? category =
-         await showSearch(context: context, delegate: SearchScreen());
-     print(category);
+          await showSearch(context: context, delegate: SearchScreen());
+      print(category);
     }
   }
-
-  ListController listController = Get.put(ListController());
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +58,12 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.upload_outlined),
-          onPressed: () =>
-              showModalBottomSheet(
+          onPressed: () => showModalBottomSheet(
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
                 context: context,
                 builder: (context) => buildSheet(),
-              )
-      ),
+              )),
     );
   }
 }

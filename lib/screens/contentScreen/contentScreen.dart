@@ -1,4 +1,4 @@
-import 'package:anand_yogalaya/models/contents.dart';
+import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';

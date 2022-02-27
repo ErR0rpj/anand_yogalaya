@@ -1,4 +1,3 @@
-import 'package:anand_yogalaya/controllers/list_controllers.dart';
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkout.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/category_screen.dart';
 import 'package:anand_yogalaya/screens/searchbox.dart';
@@ -15,7 +14,6 @@ class DashBoardScreen extends StatelessWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ListController listController = Get.find();
     return Scaffold(
       drawer: NavsideBar(),
       appBar: AppBar(
@@ -66,7 +64,7 @@ class DashBoardScreen extends StatelessWidget {
         //  title: Text('Dashboard'),
       ),
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(

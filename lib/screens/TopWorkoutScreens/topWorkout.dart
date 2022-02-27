@@ -19,7 +19,8 @@ class Workouts extends StatelessWidget {
             ));
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric( horizontal: appPadding/2, vertical: appPadding / 2),
+        padding: const EdgeInsets.symmetric(
+            horizontal: appPadding / 2, vertical: appPadding / 2),
         child: Container(
           height: size.height * 0.25,
           decoration: BoxDecoration(
@@ -39,7 +40,9 @@ class Workouts extends StatelessWidget {
                   width: size.width * 0.45,
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: appPadding / 2, top: appPadding / 1.5,right: appPadding / 2),
+                        left: appPadding / 2,
+                        top: appPadding / 1.5,
+                        right: appPadding / 2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -124,7 +127,7 @@ class Workouts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-    //  crossAxisAlignment: CrossAxisAlignment.start,
+      //  crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -137,7 +140,7 @@ class Workouts extends StatelessWidget {
                 'Top Yoga Workout',
                 style: TextStyle(
                   fontSize: TOP_WORKOUT_SIZE,
-                   fontWeight: TOPWORKOUT_TITLE__WEIGHT,
+                  fontWeight: TOPWORKOUT_TITLE__WEIGHT,
                   letterSpacing: 1.0,
                 ),
               ),

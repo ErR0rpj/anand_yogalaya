@@ -1,25 +1,21 @@
 import 'package:anand_yogalaya/controllers/category_controller.dart';
+import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../models/contents.dart';
-import '../../services/database.dart';
+import '../../models/content_model.dart';
 
-class Subcategory extends StatefulWidget {
+class Subcategory extends StatelessWidget {
   final int index;
-  const Subcategory({
+  Subcategory({
     Key? key,
     required this.index,
   }) : super(key: key);
 
-  @override
-  _SubcategoryState createState() => _SubcategoryState();
-}
-
-class _SubcategoryState extends State<Subcategory> {
-  CategoryController categoryController = Get.find();
+  final CategoryController categoryController = Get.find();
+  final ContentController contentController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +59,7 @@ class _SubcategoryState extends State<Subcategory> {
               height: size.height * 0.35,
               child: CachedNetworkImage(
                 fit: BoxFit.contain,
-                imageUrl: categoryController.playlists[widget.index].imageUrl,
+                imageUrl: categoryController.playlists[index].imageUrl,
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -90,7 +86,7 @@ class _SubcategoryState extends State<Subcategory> {
                       Expanded(
                         flex: 2,
                         child: Text(
-                          categoryController.playlists[widget.index].name,
+                          categoryController.playlists[index].name,
                           style: const TextStyle(
                             fontSize: EXERCISE_NAME_SIZE,
                             color: Donebutton,
@@ -121,7 +117,7 @@ class _SubcategoryState extends State<Subcategory> {
                         width: VS_SIZEDBOX_SIZE,
                       ),
                       Text(
-                        "${categoryController.playlists[widget.index].contents?.length} Exercise",
+                        "${categoryController.playlists[index].contents?.length} Exercise",
                         style: TextStyle(
                           fontSize: TOTALNO_EXERCISE_SIZE,
                           color: Donebutton.withOpacity(0.6),
@@ -140,7 +136,7 @@ class _SubcategoryState extends State<Subcategory> {
                         width: VS_SIZEDBOX_SIZE,
                       ),
                       Text(
-                        "${Duration(seconds: categoryController.playlists[widget.index].totalDuration!).inMinutes} minutes",
+                        "${Duration(seconds: categoryController.playlists[index].totalDuration!).inMinutes} minutes",
                         style: TextStyle(
                           fontSize: TOTALNO_EXERCISE_SIZE,
                           color: Donebutton.withOpacity(0.6),
@@ -151,8 +147,8 @@ class _SubcategoryState extends State<Subcategory> {
                   ),
                   Expanded(
                     child: FutureBuilder<List<ContentModel>>(
-                      future: Database().generateContentList(
-                          categoryController.playlists[widget.index].id),
+                      future: contentController.fetchContentForCategory(
+                          categoryController.playlists[index].id),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return const Center(
