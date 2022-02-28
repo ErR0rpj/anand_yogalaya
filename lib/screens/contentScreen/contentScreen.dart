@@ -1,10 +1,13 @@
 import 'package:anand_yogalaya/models/content_model.dart';
+import 'package:anand_yogalaya/screens/contentScreen/likebutton.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:like_button/like_button.dart';
+
 
 class ContentScreen extends StatefulWidget {
   final ContentModel content;
@@ -126,6 +129,10 @@ class _ContentScreenState extends State<ContentScreen> {
                           ),
                           const SizedBox(
                             width: 150,
+                          ),
+                       //   LikeButtonWidget(),  in this like button count of like is also visible
+                          LikeButton(             // in this only like button with no count of likes
+                            size: 40,
                           ),
                         ],
                       ),
