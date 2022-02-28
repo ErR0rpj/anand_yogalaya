@@ -57,13 +57,15 @@ class HomepageScreenState extends State<HomepageScreen> {
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.upload_outlined),
-          onPressed: () => showModalBottomSheet(
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                context: context,
-                builder: (context) => buildSheet(),
-              )),
+        child: const Icon(Icons.upload_outlined),
+        elevation: 5,
+        onPressed: () => showModalBottomSheet(
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          context: context,
+          builder: (context) => buildSheet(),
+        ),
+      ),
     );
   }
 }

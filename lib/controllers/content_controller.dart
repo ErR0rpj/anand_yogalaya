@@ -1,8 +1,5 @@
-import 'package:anand_yogalaya/controllers/auth_controller.dart';
-import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:get/get.dart';
-
 import '../services/database.dart';
 
 class ContentController extends GetxController {
@@ -29,6 +26,8 @@ class ContentController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
+
     try {
       print('Fetching content from database');
       contentList.bindStream(Database().contentStream());

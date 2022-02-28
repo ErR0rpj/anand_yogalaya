@@ -124,9 +124,8 @@ const double CARD_ELEVATION = 10; //
 const double L_HEIGHT_SIZE = 24; //
 const double DRAWER_WIDTH = 85;
 const double TEXT_FIELD_BORDER_RADIUS = 5;
-double UPLOAD_BUTTON_WIDTH = AppConstants().width*0.8;
-double UPLOAD_BUTTON_HEIGHT = AppConstants().height*0.8;
-
+double UPLOAD_BUTTON_WIDTH = AppConstants().width * 0.8;
+double UPLOAD_BUTTON_HEIGHT = AppConstants().height * 0.8;
 
 ////////////////////  FONT SIZE ///////////////////
 
@@ -145,7 +144,7 @@ const double SUBCATEGORY_EXERCISE_NAME = 20; //
 const double S_TOTALNO_EXERCISE_SIZE = 16; //
 const double DETAIL_TEXT_SIZE = 16; //
 const double DONE_BUTTON_SIZE = 20; //
-const double BROWSE_BY_SIZE = 28; //
+const double BROWSE_BY_SIZE = 22; //
 
 const double L_FONT_SIZE = 8; //
 const double LL_FONT_SIZE = 16; //
