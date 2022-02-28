@@ -1,6 +1,7 @@
 import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,76 +63,64 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
               padding: const EdgeInsets.only(top: 10),
               height: size.height * 0.28,
               color: kWhiteColor,
-              child: ListView.builder(
+              child: CarouselSlider.builder(
                 itemCount: contentController.getContentList.length > 5
                     ? 5
                     : contentController.getContentList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return InkWell(
-                    onTap: () {
-                      Get.to(
-                        () => ContentScreen(
-                          content:
-                              contentController.getPopularContentList[index],
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 5),
-                      child: SizedBox(
-                        width: 300,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: contentController
-                                      .getContentList[index].videoUrl !=
-                                  null
-                              ? Image.network(
-                                  YoutubePlayer.getThumbnail(
-                                    videoId: YoutubePlayer.convertUrlToId(
-                                        contentController
-                                            .getPopularContentList[index]
-                                            .videoUrl!)!,
-                                  ),
-                                  frameBuilder:
-                                      (_, child, frame, wasSyncronouslyLoaded) {
-                                    return FittedBox(
-                                      fit: BoxFit.fill,
-                                      child: child,
-                                    );
-                                  },
-                                  loadingBuilder: (_, child, progress) =>
-                                      progress == null
-                                          ? child
-                                          : Container(
-                                              color: Colors.white,
-                                              width: 60,
-                                              height: 45,
-                                            ),
-                                  errorBuilder: (context, _, __) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                        TOP_WORKOUT_IMAGE_RADIUS),
-                                    child: const Icon(
-                                      Icons.play_arrow_outlined,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              : ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      TOP_WORKOUT_IMAGE_RADIUS),
-                                  child: const Icon(
-                                    Icons.play_arrow_outlined,
-                                    size: VIDEO_ICON_SIZE,
-                                    color: Colors.grey,
-                                  ),
+                itemBuilder: (content, index, heroIndex) {
+                  return SizedBox(
+                    width: 300,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: contentController.getContentList[index].videoUrl !=
+                              null
+                          ? Image.network(
+                              YoutubePlayer.getThumbnail(
+                                videoId: YoutubePlayer.convertUrlToId(
+                                    contentController
+                                        .getContentList[index].videoUrl!)!,
+                              ),
+                              frameBuilder:
+                                  (_, child, frame, wasSyncronouslyLoaded) {
+                                return FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: child,
+                                );
+                              },
+                              loadingBuilder: (_, child, progress) =>
+                                  progress == null
+                                      ? child
+                                      : Container(
+                                          color: Colors.white,
+                                          width: 60,
+                                          height: 45,
+                                        ),
+                              errorBuilder: (context, _, __) => ClipRRect(
+                                borderRadius: BorderRadius.circular(
+                                    TOP_WORKOUT_IMAGE_RADIUS),
+                                child: const Icon(
+                                  Icons.play_arrow_outlined,
+                                  size: 30,
+                                  color: Colors.white,
                                 ),
-                        ),
-                      ),
+                              ),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  TOP_WORKOUT_IMAGE_RADIUS),
+                              child: const Icon(
+                                Icons.play_arrow_outlined,
+                                size: VIDEO_ICON_SIZE,
+                                color: Colors.grey,
+                              ),
+                            ),
                     ),
                   );
                 },
+                options: CarouselOptions(
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                ),
               ),
             ),
             Container(
