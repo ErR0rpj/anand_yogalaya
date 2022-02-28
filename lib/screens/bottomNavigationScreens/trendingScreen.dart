@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/controllers/content_controller.dart';
+import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -67,64 +68,79 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                     : contentController.getContentList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: const EdgeInsets.only(right: 10, left: 10),
-                    width: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Donebutton,
-                    ),
-                    child: contentController.getContentList[index].videoUrl !=
-                            null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              YoutubePlayer.getThumbnail(
-                                videoId: YoutubePlayer.convertUrlToId(
-                                    contentController
-                                        .getContentList[index].videoUrl!)!,
-                              ),
-                              height: 150,
-                              width: 300,
-                              loadingBuilder: (_, child, progress) =>
-                                  progress == null
-                                      ? child
-                                      : Container(
-                                          color: Colors.white,
-                                          width: 60,
-                                          height: 45,
-                                        ),
-                              errorBuilder: (context, _, __) => ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                    TOP_WORKOUT_IMAGE_RADIUS),
-                                child: const Icon(
-                                  Icons.play_arrow_outlined,
-                                  size: VIDEO_ICON_SIZE,
-                                  color: Colors.grey,
+                  return InkWell(
+                    onTap: () {
+                      Get.to(
+                        () => ContentScreen(
+                          content:
+                              contentController.getPopularContentList[index],
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 5),
+                      child: SizedBox(
+                        width: 300,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: contentController
+                                      .getContentList[index].videoUrl !=
+                                  null
+                              ? Image.network(
+                                  YoutubePlayer.getThumbnail(
+                                    videoId: YoutubePlayer.convertUrlToId(
+                                        contentController
+                                            .getPopularContentList[index]
+                                            .videoUrl!)!,
+                                  ),
+                                  frameBuilder:
+                                      (_, child, frame, wasSyncronouslyLoaded) {
+                                    return FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: child,
+                                    );
+                                  },
+                                  loadingBuilder: (_, child, progress) =>
+                                      progress == null
+                                          ? child
+                                          : Container(
+                                              color: Colors.white,
+                                              width: 60,
+                                              height: 45,
+                                            ),
+                                  errorBuilder: (context, _, __) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        TOP_WORKOUT_IMAGE_RADIUS),
+                                    child: const Icon(
+                                      Icons.play_arrow_outlined,
+                                      size: 30,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                      TOP_WORKOUT_IMAGE_RADIUS),
+                                  child: const Icon(
+                                    Icons.play_arrow_outlined,
+                                    size: VIDEO_ICON_SIZE,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
-                            ),
-                          )
-                        : ClipRRect(
-                            borderRadius:
-                                BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                            child: const Icon(
-                              Icons.play_arrow_outlined,
-                              size: VIDEO_ICON_SIZE,
-                              color: Colors.grey,
-                            ),
-                          ),
+                        ),
+                      ),
+                    ),
                   );
                 },
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 30, left: 20),
+              padding: const EdgeInsets.only(top: 20, left: 20),
               child: Row(
-                children: const [
+                children: [
                   Text(
                     'Browse by',
-                    style: TextStyle(
+                    style: GoogleFonts.lato(
                         color: DASHBOARD_TEXT_COLOR,
                         fontWeight: DASHBOARD_WEIGHT,
                         fontSize: BROWSE_BY_SIZE),
@@ -132,31 +148,43 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TabBar(
-                labelPadding:
-                    const EdgeInsets.only(top: 5, left: 30, right: 40),
-                controller: _tabController,
-                labelColor: Colors.black,
-                labelStyle: const TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  labelPadding:
+                      const EdgeInsets.only(top: 5, left: 25, right: 25),
+                  controller: _tabController,
+                  labelColor: Colors.black,
+                  labelStyle: GoogleFonts.lato(
                     color: DASHBOARD_TEXT_COLOR,
                     fontWeight: DASHBOARD_WEIGHT,
-                    fontSize: 17),
-                unselectedLabelColor: Colors.grey,
-                isScrollable: true,
-                indicatorSize: TabBarIndicatorSize.label,
-                tabs: const [
-                  Tab(
-                    text: "Popular",
+                    fontSize: 15,
                   ),
-                  Tab(
-                    text: "New",
+                  indicator: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Donebutton, width: 3.0),
+                    ),
                   ),
-                  Tab(
-                    text: "Liked",
+                  unselectedLabelColor: Colors.grey,
+                  unselectedLabelStyle: GoogleFonts.lato(
+                    fontWeight: DASHBOARD_WEIGHT,
                   ),
-                ],
+                  isScrollable: true,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  tabs: const [
+                    Tab(
+                      text: "Popular",
+                    ),
+                    Tab(
+                      text: "New",
+                    ),
+                    Tab(
+                      text: "Liked",
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
