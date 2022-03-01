@@ -217,7 +217,8 @@ Widget doneButton(BuildContext context) {
                 style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontSize: DONE_BUTTON_SIZE,
-                )),
+                )
+            ),
           )
         ],
       ),
