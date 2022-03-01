@@ -115,10 +115,9 @@ class _ContentScreenState extends State<ContentScreen> {
                         height: L_SIZEDBOX_SIZE,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(
-                            width: L_SIZEDBOX_SIZE,
-                          ),
+                          const SizedBox(width: 1,),
                           Text(
                             widget.content.name,
                             style: const TextStyle(
@@ -127,13 +126,12 @@ class _ContentScreenState extends State<ContentScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(
-                            width: 150,
-                          ),
-                       //   LikeButtonWidget(),  in this like button count of like is also visible
-                          LikeButton(             // in this only like button with no count of likes
-                            size: 40,
-                          ),
+                          const SizedBox(width: 1,),
+                          const SizedBox(width: 1,),
+                          const SizedBox(width: 1,),
+                       //   LikeButtonWidget(),                in this like button count of like is also visible
+                          LikeButton( size: 40,),           // in this only like button with no count of likes
+                          const SizedBox(width: 1,),
                         ],
                       ),
                       Row(
