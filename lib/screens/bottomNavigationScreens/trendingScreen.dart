@@ -69,13 +69,16 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                 itemBuilder: (content, index, heroIndex) {
                   return SizedBox(
                     width: 300,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: contentController.getContentList[index].color,
-                        ),
-                        child: contentController
-                            .getContentList[index].imageWidget),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                contentController.getContentList[index].color,
+                          ),
+                          child: contentController
+                              .getContentList[index].imageWidget),
+                    ),
                   );
                 },
                 options: CarouselOptions(

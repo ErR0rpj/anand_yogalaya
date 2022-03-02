@@ -42,17 +42,19 @@ class NavsideBar extends GetWidget<AuthController> {
                     ),
                     placeholder: (context, url) => Center(
                         child: Shimmer.fromColors(
-                          baseColor: kTextLightColor,
-                          highlightColor: Colors.grey,
-                          period: Duration(seconds: 2),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: ShapeDecoration(
-                                color: Colors.grey[700], shape: CircleBorder()),
-                          ),
-                        )),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                      baseColor: kTextLightColor,
+                      highlightColor: Colors.grey,
+                      period: const Duration(seconds: 2),
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: ShapeDecoration(
+                            color: Colors.grey[700],
+                            shape: const CircleBorder()),
+                      ),
+                    )),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                   const SizedBox(
                     height: 20,
@@ -63,7 +65,7 @@ class NavsideBar extends GetWidget<AuthController> {
                   ),
                   Text(
                     controller.user?.email ?? '',
-                    style: const TextStyle(fontSize: 22, color: kwhite),
+                    style: const TextStyle(fontSize: 18, color: kwhite),
                   )
                 ],
               ),
@@ -71,27 +73,18 @@ class NavsideBar extends GetWidget<AuthController> {
           ),
           ListTile(
             leading: const Icon(Icons.favorite),
-            title: const Text('Favorite'),
+            title: const Text('Favorites'),
             onTap: () => {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.share),
             title: const Text('Share'),
-            onTap: () => {
-              Get.to(()=>NotificationPage())
-            },
+            onTap: () => {Get.to(() => NotificationPage())},
           ),
           ListTile(
             leading: const Icon(Icons.notifications),
             title: const Text('Notification'),
-            onTap: () => {
-              Get.to(()=>NotificationList())
-            },
+            onTap: () => {Get.to(() => NotificationList())},
           ),
           const Divider(),
           ListTile(
@@ -108,9 +101,7 @@ class NavsideBar extends GetWidget<AuthController> {
           ListTile(
             title: const Text('Logout'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () => {
-              controller.signOut()
-            },
+            onTap: () => {controller.signOut()},
           ),
         ],
       ),

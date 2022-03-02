@@ -6,6 +6,7 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/content_model.dart';
 
 class Subcategory extends StatelessWidget {
@@ -152,6 +153,17 @@ class Subcategory extends StatelessWidget {
                           if (!snapshot.hasData) {
                             return const Center(
                                 child: CircularProgressIndicator());
+                          } else if (snapshot.data!.isEmpty) {
+                            return Center(
+                              child: Text(
+                                'No Contents to Display!\nTry Refreshing',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                  color: kGreyShade1,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            );
                           }
                           return ListView.builder(
                             itemCount: snapshot.data!.length,
@@ -281,8 +293,9 @@ class Subcategory extends StatelessWidget {
                                                             size.width * 0.01,
                                                       ),
                                                       Text(
-                                                        snapshot.data![index]
-                                                                .duration
+                                                        (snapshot.data![index]
+                                                                        .duration! ~/
+                                                                    60)
                                                                 .toString() +
                                                             ' min',
                                                         style: TextStyle(
