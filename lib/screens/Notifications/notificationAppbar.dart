@@ -24,8 +24,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: GoogleFonts.raleway(
           color: Donebutton,
-          fontWeight: FontWeight.w600,
-          fontSize: 24,
+          fontWeight: DASHBOARD_WEIGHT,
+          fontSize: 22,
         ),
       ),
       centerTitle: true,
