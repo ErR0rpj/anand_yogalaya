@@ -1,5 +1,5 @@
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkout.dart';
-import 'package:anand_yogalaya/screens/categoryScreens/category_screen.dart';
+import 'package:anand_yogalaya/screens/categoryScreens/all_categories_screen.dart';
 import 'package:anand_yogalaya/screens/searchbox.dart';
 import 'package:anand_yogalaya/screens/sidebarMenu/sidebar_widget.dart';
 import 'package:anand_yogalaya/utils/const.dart';
@@ -79,7 +79,7 @@ class DashBoardScreen extends StatelessWidget {
                   init: Get.put<CategoryController>(CategoryController()),
                   builder: (CategoryController categoryController) {
                     if (categoryController != null &&
-                        categoryController.categories != null) {
+                        categoryController.getCategoryList != null) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                         child: ListView.separated(
@@ -89,10 +89,10 @@ class DashBoardScreen extends StatelessWidget {
                             );
                           },
                           scrollDirection: Axis.horizontal,
-                          itemCount: categoryController.categories.length,
+                          itemCount: categoryController.getCategoryList.length,
                           itemBuilder: (_, index) {
                             return CategoryCard(
-                                categoryController.categories[index]);
+                                categoryController.getCategoryList[index]);
                           },
                         ),
                       );
@@ -139,7 +139,8 @@ class CategoryTab extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CategoryScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => AllCategoriesScreen()),
                   );
                 },
                 child: const Text(

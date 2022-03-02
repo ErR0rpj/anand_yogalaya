@@ -14,9 +14,11 @@ class Workouts extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.to(() => Subcategory(
-              index: index,
-            ));
+        Get.to(
+          () => Subcategory(
+            categoryModel: categoryController.getPlaylistList[index],
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -47,7 +49,7 @@ class Workouts extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          categoryController.playlists[index].name,
+                          categoryController.getPlaylistList[index].name,
                           style: const TextStyle(
                             fontWeight: WORKOUTS_WEIGHT,
                             color: Colors.white,
@@ -68,7 +70,7 @@ class Workouts extends StatelessWidget {
                               width: size.width * 0.01,
                             ),
                             Text(
-                              '${categoryController.playlists[index].contents != null ? categoryController.playlists[index].contents?.length.toString() : '10 Exercises'}',
+                              '${categoryController.getPlaylistList[index].contents != null ? categoryController.getPlaylistList[index].contents?.length.toString() : '10 Exercises'}',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.7),
                               ),
@@ -88,7 +90,8 @@ class Workouts extends StatelessWidget {
                               width: size.width * 0.01,
                             ),
                             Text(
-                              categoryController.playlists[index].totalDuration
+                              categoryController
+                                      .getPlaylistList[index].totalDuration
                                       .toString() +
                                   ' min',
                               style: TextStyle(
@@ -109,7 +112,8 @@ class Workouts extends StatelessWidget {
                         BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: categoryController.playlists[index].imageUrl,
+                      imageUrl:
+                          categoryController.getPlaylistList[index].imageUrl,
                       placeholder: (context, url) =>
                           Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => Icon(Icons.error),
@@ -152,7 +156,7 @@ class Workouts extends StatelessWidget {
           init: Get.put<CategoryController>(CategoryController()),
           builder: (CategoryController categoryController) {
             if (categoryController != null &&
-                categoryController.playlists != null) {
+                categoryController.getPlaylistList != null) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: ListView.separated(
@@ -163,7 +167,7 @@ class Workouts extends StatelessWidget {
                       width: S_SIZEDBOX_SIZE,
                     );
                   },
-                  itemCount: categoryController.playlists.length,
+                  itemCount: categoryController.getPlaylistList.length,
                   itemBuilder: (context, index) {
                     return _buildCourses(context, index);
                   },

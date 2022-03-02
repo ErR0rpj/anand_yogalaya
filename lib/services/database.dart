@@ -35,6 +35,7 @@ class Database {
 
   // Getting all Category DocumentSnapshots in List of CategoryModel
   Stream<List<CategoryModel>> categoryStream() {
+    print('Fetching categories from database');
     return _firebaseFirestore
         .collection("categories")
         .where('isPlayList', isEqualTo: false)
@@ -44,12 +45,14 @@ class Database {
       for (var element in query.docs) {
         retVal.add(CategoryModel.fromDocumentSnapshot(element));
       }
+      print('Retval: ${retVal.length}');
       return retVal;
     });
   }
 
   // Getting all Playlist(Category which have isPlaylist = true) DocumentSnapshots in List of CategoryModel
   Stream<List<CategoryModel>> playlistStream() {
+    print('Fetching categories from database');
     return _firebaseFirestore
         .collection("categories")
         .where('isPlayList', isEqualTo: true)
@@ -59,6 +62,7 @@ class Database {
       for (var element in query.docs) {
         retVal.add(CategoryModel.fromDocumentSnapshot(element));
       }
+      print('Retval: ${retVal.length}');
       return retVal;
     });
   }

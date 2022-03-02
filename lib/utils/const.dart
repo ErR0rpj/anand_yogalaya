@@ -90,6 +90,14 @@ const Color bgColor = Color(0xFFFBFBFD);
 const double defaultPadding = 16.0;
 const double defaultBorderRadius = 12.0;
 
+const List<Color> colorList = [
+  kPrimaryPurple,
+  Color.fromARGB(255, 78, 119, 190),
+  kPrimaryTosca,
+  Donebutton,
+  SEE_ALL_COLOR
+];
+
 ///////////////////////// RADIUS //////////////////////////
 
 const double TOP_WORKOUT_RAIDUS = 30.0; //
@@ -129,9 +137,9 @@ double UPLOAD_BUTTON_HEIGHT = AppConstants().height * 0.8;
 
 ////////////////////  FONT SIZE ///////////////////
 
-const double CATEGORY_SIZE = 24; //
+const double CATEGORY_SIZE = 18; //
 const double TOP_WORKOUT_SIZE = 24; //
-const double SEE_ALL_SIZE = 18; //
+const double SEE_ALL_SIZE = 15; //
 const double WORKOUTS_SIZE = 22; //
 const double DASHBOARD_SIZE = 28; //
 const double NOTIFICATION_COUNT_NUMBERS = 8; //
