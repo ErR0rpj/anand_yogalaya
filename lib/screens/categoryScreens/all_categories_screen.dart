@@ -40,7 +40,7 @@ class AllCategoriesScreen extends StatelessWidget {
             const SizedBox(height: M_SIZEDBOX_SIZE),
             Expanded(
               child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: CATEGORY_GRID_NUMBER,
                 ),
                 children: List.generate(
@@ -53,7 +53,7 @@ class AllCategoriesScreen extends StatelessWidget {
             ),
             const SizedBox(height: L_SIZEDBOX_SIZE),
             Text(
-              'Categories (${categoryController.getCategoryList.length})',
+              'Playlists (${categoryController.getPlaylistList.length})',
               style: GoogleFonts.lato(
                 fontSize: CATEGORY_SIZE,
                 fontWeight: CATEGORIES_TITLE__WEIGHT,
@@ -63,7 +63,7 @@ class AllCategoriesScreen extends StatelessWidget {
             const SizedBox(height: M_SIZEDBOX_SIZE),
             Expanded(
               child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: CATEGORY_GRID_NUMBER,
                 ),
                 children: List.generate(

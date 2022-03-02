@@ -56,33 +56,14 @@ class NewListScreen extends StatelessWidget {
                             children: [
                               Container(
                                 width: size.width * 0.15,
-                                height: size.height * 0.080,
+                                height: size.height * 0.070,
                                 decoration: BoxDecoration(
                                   color: kPrimaryPurple,
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  contentController
-                                      .getNewContentList[index].photoUrl!,
-                                  loadingBuilder: (_, child, progress) =>
-                                      progress == null
-                                          ? child
-                                          : Container(
-                                              color: Colors.white,
-                                              width: 60,
-                                              height: 45,
-                                            ),
-                                  errorBuilder: (context, _, __) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                        TOP_WORKOUT_IMAGE_RADIUS),
-                                    child: const Icon(
-                                      Icons.play_arrow_outlined,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
+                                child: contentController
+                                    .getNewContentList[index].imageWidget,
                               ),
                               SizedBox(
                                 width: size.width * 0.6,

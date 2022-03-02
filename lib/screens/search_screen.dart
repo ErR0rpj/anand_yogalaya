@@ -3,6 +3,7 @@ import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
+import 'package:anand_yogalaya/screens/subcategoryScreen/subcategories.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,8 +16,6 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
   CategoryController categoryController = Get.find();
 
   CategoryModel? result;
-
-  final Random _random = Random();
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -70,6 +69,7 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
 
   //Build the lists of searched items
   Widget _buildSearchUI(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     //Builds the list for categories and adds categories which are searched
     final List<CategoryModel> suggestionsForCategories = categoryController
         .getCategoryList
@@ -109,6 +109,14 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Get.to(
+                      () => Subcategory(
+                        categoryModel:
+                            suggestionsForCategories.elementAt(index),
+                      ),
+                    );
+                  },
                   title: Text(
                     suggestionsForCategories.elementAt(index).name,
                     style: GoogleFonts.lato(
@@ -126,30 +134,10 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     radius: CATEGORY_RADIUS,
                     backgroundColor:
                         suggestionsForCategories.elementAt(index).color,
-                    child: Image.network(
-                      suggestionsForCategories.elementAt(index).imageUrl,
-                      frameBuilder: (_, child, frame, wasSyncronouslyLoaded) {
-                        return FittedBox(
-                          fit: BoxFit.fill,
-                          child: child,
-                        );
-                      },
-                      loadingBuilder: (_, child, progress) => progress == null
-                          ? child
-                          : Container(
-                              color: Colors.white,
-                              width: 60,
-                              height: 45,
-                            ),
-                      errorBuilder: (context, _, __) => ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                        child: const Icon(
-                          Icons.play_arrow_outlined,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                      ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(SMALL_PAD),
+                      child:
+                          suggestionsForCategories.elementAt(index).imageWidget,
                     ),
                   ),
                 );
@@ -201,19 +189,15 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                       fontSize: 12,
                     ),
                   ),
-                  trailing: CircleAvatar(
-                    radius: CATEGORY_RADIUS,
-                    backgroundColor:
-                        suggestionsForContents.elementAt(index).color,
-                    child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                      child: const Icon(
-                        Icons.play_arrow_outlined,
-                        size: 30,
-                        color: Colors.white,
-                      ),
+                  trailing: Container(
+                    width: size.width * 0.15,
+                    height: size.height * 0.070,
+                    decoration: BoxDecoration(
+                      color: suggestionsForContents.elementAt(index).color,
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: suggestionsForContents.elementAt(index).imageWidget,
                   ),
                 );
               },

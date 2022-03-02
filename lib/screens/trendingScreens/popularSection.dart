@@ -63,38 +63,8 @@ class PopularListScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  YoutubePlayer.getThumbnail(
-                                    videoId: YoutubePlayer.convertUrlToId(
-                                        contentController
-                                            .getPopularContentList[index]
-                                            .videoUrl!)!,
-                                  ),
-                                  frameBuilder:
-                                      (_, child, frame, wasSyncronouslyLoaded) {
-                                    return FittedBox(
-                                      fit: BoxFit.fill,
-                                      child: child,
-                                    );
-                                  },
-                                  loadingBuilder: (_, child, progress) =>
-                                      progress == null
-                                          ? child
-                                          : Container(
-                                              color: Colors.white,
-                                              width: 60,
-                                              height: 45,
-                                            ),
-                                  errorBuilder: (context, _, __) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                        TOP_WORKOUT_IMAGE_RADIUS),
-                                    child: const Icon(
-                                      Icons.play_arrow_outlined,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
+                                child: contentController
+                                    .getPopularContentList[index].imageWidget,
                               ),
                               SizedBox(
                                 width: size.width * 0.6,
