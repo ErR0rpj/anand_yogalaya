@@ -1,11 +1,15 @@
+import 'package:anand_yogalaya/controllers/auth_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../utils/const.dart';
 import '../Notifications/notificationlist.dart';
 import '../Notifications/notificationsdetailpage.dart';
 import '../login_screen.dart';
 import 'aboutUser.dart';
 
-class NavsideBar extends StatelessWidget {
+class NavsideBar extends GetWidget<AuthController> {
   const NavsideBar({Key? key}) : super(key: key);
 
   @override
@@ -22,25 +26,43 @@ class NavsideBar extends StatelessWidget {
             child: Center(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    width: size.width * 0.2,
-                    height: size.width * 0.2,
-                    margin: const EdgeInsets.only(top: 18),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: NetworkImage(urlImage), fit: BoxFit.fill),
+                  CachedNetworkImage(
+                    imageUrl: controller.user?.photoURL ??
+                        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+                    imageBuilder: (context, imageProvider) => Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
+                    placeholder: (context, url) => Center(
+                        child: Shimmer.fromColors(
+                          baseColor: kTextLightColor,
+                          highlightColor: Colors.grey,
+                          period: Duration(seconds: 2),
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: ShapeDecoration(
+                                color: Colors.grey[700], shape: CircleBorder()),
+                          ),
+                        )),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   Text(
-                    name,
+                    controller.user?.displayName ?? '',
                     style: const TextStyle(fontSize: 22, color: kwhite),
                   ),
                   Text(
-                    email,
+                    controller.user?.email ?? '',
                     style: const TextStyle(fontSize: 22, color: kwhite),
                   )
                 ],
@@ -61,20 +83,14 @@ class NavsideBar extends StatelessWidget {
             leading: const Icon(Icons.share),
             title: const Text('Share'),
             onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationPage()),
-              ),
+              Get.to(()=>NotificationPage())
             },
           ),
           ListTile(
             leading: const Icon(Icons.notifications),
             title: const Text('Notification'),
             onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationList()),
-              ),
+              Get.to(()=>NotificationList())
             },
           ),
           const Divider(),
@@ -93,11 +109,7 @@ class NavsideBar extends StatelessWidget {
             title: const Text('Logout'),
             leading: const Icon(Icons.exit_to_app),
             onTap: () => {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              ),
-              //TODO: Implement logout
+              controller.signOut()
             },
           ),
         ],

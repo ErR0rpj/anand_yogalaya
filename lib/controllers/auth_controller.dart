@@ -3,8 +3,13 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../models/user_model.dart';
+import '../services/database.dart';
+import '../utils/loading_widget.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -47,6 +52,7 @@ class AuthController extends GetxController {
 
   void signInWithGoogle() async {
     try {
+      Get.dialog(const Center(child: LoadingWidget()), barrierDismissible: false);
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
 
       if (googleSignInAccount != null) {
@@ -62,7 +68,19 @@ class AuthController extends GetxController {
           print('Error sign in with credential: $onError');
         });
 
+        // Created User in DB
+        UserModel _user = UserModel(
+            id: auth.currentUser?.uid,
+            name: auth.currentUser?.displayName,
+            email: auth.currentUser?.email);
 
+        bool? newUser = await Database().createNewUser(_user);
+
+        if (newUser == true) {
+          // user created successfully
+          Get.find<UserController>().user = _user;
+          //Get.back();
+        }
       }
     } catch (e) {
       Get.snackbar('Error', 'Error Logging In: $e',
@@ -91,6 +109,7 @@ class AuthController extends GetxController {
 
   void signOut() async {
     try {
+      Get.dialog(const Center(child: LoadingWidget()), barrierDismissible: false);
       await auth.signOut();
       await googleSign.disconnect();
       //This disposes the controller after signing user out.

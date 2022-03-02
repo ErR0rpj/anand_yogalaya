@@ -1,5 +1,6 @@
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,10 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         onPressed: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomepageScreen()),
-          ),
+          authController.signInWithGoogle()
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14.0),
