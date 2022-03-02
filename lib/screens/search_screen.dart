@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/models/category_model.dart';
+import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
   CategoryController categoryController = Get.find();
 
   CategoryModel? result;
+
+  final Random _random = Random();
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -54,113 +57,30 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
     );
   }
 
+  //This code is same as below buildSuggestion function. So, make apt changes in both.
   @override
   Widget buildResults(BuildContext context) {
-    final suggestionsForCategories = categoryController.categories.where(
-        (element) =>
-            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
-
-    final suggestionsForContents = contentController.getContentList.where(
-        (element) =>
-            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
-
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Categories',
-              style: GoogleFonts.lato(
-                fontSize: CATEGORY_SIZE,
-                fontWeight: CATEGORIES_TITLE__WEIGHT,
-              ),
-            ),
-            const SizedBox(),
-            // ListView.separated(
-            //   shrinkWrap: true,
-            //   physics: const NeverScrollableScrollPhysics(),
-            //   itemBuilder: (context, index) {
-            //     return ListTile(
-            //       title: Text(
-            //         suggestionsForCategories.elementAt(index).name,
-            //         style: GoogleFonts.lato(
-            //           fontSize: SEE_ALL_SIZE,
-            //           fontWeight: WORKOUTS_WEIGHT,
-            //         ),
-            //       ),
-            //       subtitle: Text(
-            //         '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercise | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration} min',
-            //         style: GoogleFonts.lato(
-            //           fontSize: 12,
-            //         ),
-            //       ),
-            //       trailing: Container(
-            //         padding: const EdgeInsets.all(20),
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //           color: suggestionsForCategories.elementAt(index).color,
-            //         ),
-            //       ),
-            //     );
-            //   },
-            //   separatorBuilder: (context, index) {
-            //     return const Divider();
-            //   },
-            //   itemCount: suggestionsForCategories.length,
-            // ),
-            const SizedBox(height: 20),
-            Text(
-              'Videos/Posts',
-              style: GoogleFonts.lato(
-                fontSize: CATEGORY_SIZE,
-                fontWeight: CATEGORIES_TITLE__WEIGHT,
-              ),
-            ),
-            const SizedBox(),
-            // ListView.separated(
-            //   shrinkWrap: true,
-            //   physics: const NeverScrollableScrollPhysics(),
-            //   itemBuilder: (context, index) {
-            //     return ListTile(
-            //       title: Text(
-            //         suggestionsForContents.elementAt(index).name,
-            //         style: GoogleFonts.lato(
-            //           fontSize: SEE_ALL_SIZE,
-            //           fontWeight: WORKOUTS_WEIGHT,
-            //         ),
-            //       ),
-            //       subtitle: Text(
-            //         '🧘 ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration} min',
-            //         style: GoogleFonts.lato(
-            //           fontSize: 12,
-            //         ),
-            //       ),
-            //       trailing: Container(
-            //         padding: const EdgeInsets.all(20),
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            //   separatorBuilder: (context, index) {
-            //     return const Divider();
-            //   },
-            //   itemCount: suggestionsForContents.length,
-            // ),
-          ],
-        ),
-      ),
-    );
+    return _buildSearchUI(context);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionsForCategories = categoryController.categories.where(
-        (element) =>
-            element.searchKeywords.toLowerCase().contains(query.toLowerCase()));
+    return _buildSearchUI(context);
+  }
+
+  //Build the lists of searched items
+  Widget _buildSearchUI(BuildContext context) {
+    //Builds the list for categories and adds categories which are searched
+    final List<CategoryModel> suggestionsForCategories = categoryController
+        .getCategoryList
+        .where((element) =>
+            element.searchKeywords.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    //Adds playlists which are searched to existing categories list.
+    suggestionsForCategories.addAll(categoryController.getPlaylistList.where(
+        (element) => element.searchKeywords
+            .toLowerCase()
+            .contains(query.toLowerCase())));
 
     final suggestionsForContents = contentController.getContentList.where(
         (element) =>
@@ -176,10 +96,11 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
             Visibility(
               visible: suggestionsForCategories.isNotEmpty,
               child: Text(
-                'Categories',
+                'Categories (${suggestionsForCategories.length})',
                 style: GoogleFonts.lato(
                   fontSize: CATEGORY_SIZE,
                   fontWeight: CATEGORIES_TITLE__WEIGHT,
+                  color: kblack,
                 ),
               ),
             ),
@@ -196,7 +117,7 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     ),
                   ),
                   subtitle: Text(
-                    '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration} mins',
+                    '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration! ~/ 60} mins',
                     style: GoogleFonts.lato(
                       fontSize: 12,
                     ),
@@ -205,12 +126,30 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     radius: CATEGORY_RADIUS,
                     backgroundColor:
                         suggestionsForCategories.elementAt(index).color,
-                    child: const SizedBox(
-                      width: L_SIZEDBOX_SIZE,
-                      /*child: Image.asset(
-                        suggestionsForCategories.elementAt(index).icon,
-                        fit: BoxFit.cover,
-                      ),*/
+                    child: Image.network(
+                      suggestionsForCategories.elementAt(index).imageUrl,
+                      frameBuilder: (_, child, frame, wasSyncronouslyLoaded) {
+                        return FittedBox(
+                          fit: BoxFit.fill,
+                          child: child,
+                        );
+                      },
+                      loadingBuilder: (_, child, progress) => progress == null
+                          ? child
+                          : Container(
+                              color: Colors.white,
+                              width: 60,
+                              height: 45,
+                            ),
+                      errorBuilder: (context, _, __) => ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
+                        child: const Icon(
+                          Icons.play_arrow_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 );
@@ -229,10 +168,11 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
             Visibility(
               visible: suggestionsForContents.isNotEmpty,
               child: Text(
-                'Videos/Posts',
+                'Videos/Posts (${suggestionsForContents.length})',
                 style: GoogleFonts.lato(
                   fontSize: CATEGORY_SIZE,
                   fontWeight: CATEGORIES_TITLE__WEIGHT,
+                  color: kblack,
                 ),
               ),
             ),
@@ -241,6 +181,13 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Get.to(
+                      () => ContentScreen(
+                        content: suggestionsForContents.elementAt(index),
+                      ),
+                    );
+                  },
                   title: Text(
                     suggestionsForContents.elementAt(index).name,
                     style: GoogleFonts.lato(
@@ -249,19 +196,22 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     ),
                   ),
                   subtitle: Text(
-                    '🧘 ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration} mins',
+                    '👁️ ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration! ~/ 60} mins',
                     style: GoogleFonts.lato(
                       fontSize: 12,
                     ),
                   ),
                   trailing: CircleAvatar(
                     radius: CATEGORY_RADIUS,
-                    backgroundColor: Colors.indigo[200],
-                    child: SizedBox(
-                      width: L_SIZEDBOX_SIZE,
-                      child: Image.asset(
-                        CATEGORY_FIRST_IMAGE_URL,
-                        fit: BoxFit.cover,
+                    backgroundColor:
+                        suggestionsForContents.elementAt(index).color,
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
+                      child: const Icon(
+                        Icons.play_arrow_outlined,
+                        size: 30,
+                        color: Colors.white,
                       ),
                     ),
                   ),

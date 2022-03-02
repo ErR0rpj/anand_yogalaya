@@ -1,7 +1,9 @@
 import 'package:anand_yogalaya/models/category_model.dart';
+import 'package:anand_yogalaya/screens/subcategoryScreen/subcategories.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel category;
@@ -10,38 +12,49 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 90,
-          height: 60,
-          child: CircleAvatar(
-            radius: CATEGORY_RADIUS,
-            backgroundColor: category.color,
-            child: Padding(
-              padding: const EdgeInsets.all(SMALL_PAD),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: category.imageUrl,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+    return InkWell(
+      onTap: () {
+        Get.to(
+          () => Subcategory(
+            categoryModel: category,
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          SizedBox(
+            width: 90,
+            height: 60,
+            child: CircleAvatar(
+              radius: CATEGORY_RADIUS,
+              backgroundColor: category.color,
+              child: Padding(
+                padding: const EdgeInsets.all(SMALL_PAD),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: category.imageUrl,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
           ),
-        ),
-        const SizedBox(
-          height: S_SIZEDBOX_SIZE,
-        ),
-        Container(
+          const SizedBox(
+            height: S_SIZEDBOX_SIZE,
+          ),
+          SizedBox(
             width: 90,
             height: 30,
             child: Text(
               category.name,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
               maxLines: 2,
-            ))
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

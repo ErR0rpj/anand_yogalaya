@@ -8,12 +8,12 @@ class CategoryController extends GetxController {
   // CategoryList Controller
   Rx<List<CategoryModel>> categoryList = Rx<List<CategoryModel>>([]);
   // Getter for category list
-  List<CategoryModel> get categories => categoryList.value;
+  List<CategoryModel> get getCategoryList => categoryList.value;
 
   // Playlists
   Rx<List<CategoryModel>> playList = Rx<List<CategoryModel>>([]);
   // Getter for playlists
-  List<CategoryModel> get playlists => playList.value;
+  List<CategoryModel> get getPlaylistList => playList.value;
 
   @override
   void onInit() {

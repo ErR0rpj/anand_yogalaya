@@ -1,5 +1,6 @@
 import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/controllers/content_controller.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,10 +9,10 @@ import 'package:get/get.dart';
 import '../../models/content_model.dart';
 
 class Subcategory extends StatelessWidget {
-  final int index;
+  final CategoryModel categoryModel;
   Subcategory({
     Key? key,
-    required this.index,
+    required this.categoryModel,
   }) : super(key: key);
 
   final CategoryController categoryController = Get.find();
@@ -59,7 +60,7 @@ class Subcategory extends StatelessWidget {
               height: size.height * 0.35,
               child: CachedNetworkImage(
                 fit: BoxFit.contain,
-                imageUrl: categoryController.playlists[index].imageUrl,
+                imageUrl: categoryModel.imageUrl,
                 placeholder: (context, url) =>
                     const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -86,7 +87,7 @@ class Subcategory extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: Text(
-                          categoryController.playlists[index].name,
+                          categoryModel.name,
                           style: const TextStyle(
                             fontSize: EXERCISE_NAME_SIZE,
                             color: Donebutton,
@@ -117,7 +118,7 @@ class Subcategory extends StatelessWidget {
                         width: VS_SIZEDBOX_SIZE,
                       ),
                       Text(
-                        "${categoryController.playlists[index].contents?.length} Exercise",
+                        "${categoryModel.contents?.length} Exercise",
                         style: TextStyle(
                           fontSize: TOTALNO_EXERCISE_SIZE,
                           color: Donebutton.withOpacity(0.6),
@@ -136,7 +137,7 @@ class Subcategory extends StatelessWidget {
                         width: VS_SIZEDBOX_SIZE,
                       ),
                       Text(
-                        "${Duration(seconds: categoryController.playlists[index].totalDuration!).inMinutes} minutes",
+                        "${Duration(seconds: categoryModel.totalDuration!).inMinutes} minutes",
                         style: TextStyle(
                           fontSize: TOTALNO_EXERCISE_SIZE,
                           color: Donebutton.withOpacity(0.6),
@@ -147,8 +148,8 @@ class Subcategory extends StatelessWidget {
                   ),
                   Expanded(
                     child: FutureBuilder<List<ContentModel>>(
-                      future: contentController.fetchContentForCategory(
-                          categoryController.playlists[index].id),
+                      future: contentController
+                          .fetchContentForCategory(categoryModel.id),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return const Center(

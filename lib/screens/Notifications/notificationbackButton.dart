@@ -14,7 +14,6 @@ class DefaultBackButton extends StatelessWidget {
         size: BACK_BUTTON_ICON_SIZE,
         color: Donebutton,
       ),
-    //  icon: Icon(Icons.arrow_back_ios, color: Donebutton),
       onPressed: () => Navigator.of(context).pop(),
     );
   }

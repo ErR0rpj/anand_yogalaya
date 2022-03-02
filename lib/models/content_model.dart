@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class ContentModel {
   String id = '';
@@ -13,6 +17,9 @@ class ContentModel {
   DateTime? addedDate;
   List<String>? categories;
 
+  //Color varible is not stored in firebase, it is defined for in app UI purpose.
+  Color color = Colors.indigo[400]!;
+
   ContentModel({
     required this.id,
     required this.name,
@@ -26,9 +33,15 @@ class ContentModel {
     this.addedDate,
     this.categories,
   }) {
-    if (searchKeywords.isEmpty) {
+    _initialize();
+  }
+
+  void _initialize() {
+    if (searchKeywords.trimLeft().trimRight().isEmpty) {
       createSearchKeywords();
     }
+
+    color = colorList[Random().nextInt(colorList.length)];
   }
 
   //Creates the srachkeywords to help in searching
@@ -64,6 +77,8 @@ class ContentModel {
         : null;
     categories =
         json['categories'] != null ? List<String>.from(json['categories']) : [];
+
+    _initialize();
   }
 
   Map<String, dynamic> toMap() {
@@ -99,5 +114,7 @@ class ContentModel {
     categories = documentSnapshot['categories'] != null
         ? List<String>.from(documentSnapshot['categories'])
         : [];
+
+    _initialize();
   }
 }

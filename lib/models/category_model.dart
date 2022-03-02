@@ -27,8 +27,18 @@ class CategoryModel {
     this.contents,
     this.color = Colors.indigo,
   }) {
+    _initialize();
+  }
+
+  void _initialize() {
     contents ??= [];
-    if (searchKeywords.isEmpty) {
+
+    if (imageUrl.isEmpty) {
+      imageUrl =
+          'https://firebasestorage.googleapis.com/v0/b/anandyogalaya-8991a.appspot.com/o/categories%2FAsans.png?alt=media&token=336aba73-a341-416b-b27c-0f6da04e55b9';
+    }
+
+    if (searchKeywords.trimLeft().trimRight().isEmpty) {
       createSearchKeywords();
     }
   }
@@ -61,6 +71,8 @@ class CategoryModel {
     contents = documentSnapshot['contents'] != null
         ? List<String>.from(documentSnapshot['contents'])
         : [];
+    print('Reading doc snapshot; $name');
+    _initialize();
   }
 
   CategoryModel.fromMap(Map<String, dynamic> json) {
@@ -72,6 +84,8 @@ class CategoryModel {
     isPremium = json['isPremium'];
     contents =
         json['contents'] != null ? List<String>.from(json['contents']) : [];
+
+    _initialize();
   }
 
   Map<String, dynamic> toMap() {

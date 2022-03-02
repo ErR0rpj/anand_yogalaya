@@ -3,17 +3,21 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/const.dart';
 
-class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget{
+class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget child;
-  final action;
+  final List<Widget>? action;
   const DefaultAppBar({
-    Key? key, required this.title, required this.child, this.action,
+    Key? key,
+    required this.title,
+    required this.child,
+    this.action,
   }) : super(key: key);
 
   @override
-  Size get preferredSize => Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(56.0);
 
+  @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
@@ -24,12 +28,11 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget{
           fontSize: 22,
         ),
       ),
-    //  title: Text(title, style: TextStyle(color: Donebutton,fontSize: 30)),
       centerTitle: true,
       backgroundColor: kwhite,
       elevation: 0,
       automaticallyImplyLeading: false,
-      iconTheme: IconThemeData(color: Donebutton,size: 30),
+      iconTheme: const IconThemeData(color: Donebutton, size: 30),
       leading: child,
       actions: action,
     );
