@@ -15,7 +15,7 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavsideBar(),
+      drawer: const NavsideBar(),
       appBar: AppBar(
         centerTitle: true,
         leading: Builder(
@@ -69,15 +69,14 @@ class DashBoardScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-            //  SearchBox( onChanged: (value) {},),
-              CategoryTab(),
-              Container(
+              //  SearchBox( onChanged: (value) {},),
+              const CategoryTab(),
+              SizedBox(
                 height: VL_CONTAINER_SIZE,
                 child: GetX<CategoryController>(
                   init: Get.put<CategoryController>(CategoryController()),
                   builder: (CategoryController categoryController) {
-                    if (categoryController != null &&
-                        categoryController.getCategoryList != null) {
+                    if (categoryController != null) {
                       return Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                         child: ListView.separated(
@@ -95,7 +94,7 @@ class DashBoardScreen extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return Text("loading...");
+                      return const Text("loading...");
                     }
                   },
                 ),

@@ -58,13 +58,7 @@ class Subcategory extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               height: size.height * 0.35,
-              child: CachedNetworkImage(
-                fit: BoxFit.contain,
-                imageUrl: categoryModel.imageUrl,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
+              child: categoryModel.imageWidget,
             ),
             Expanded(
                 child: Container(
@@ -206,36 +200,29 @@ class Subcategory extends StatelessWidget {
                                               color: PlayButtonColor,
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                      PLAY_BUTTON_RADIUS),
-                                            ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      TOP_WORKOUT_IMAGE_RADIUS),
-                                              child: Stack(
-                                                children: [
-                                                  CachedNetworkImage(
-                                                    fit: BoxFit.fitHeight,
-                                                    imageUrl: snapshot
-                                                        .data![index].videoUrl!,
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        const Center(
-                                                            child:
-                                                                CircularProgressIndicator()),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        const Icon(Icons.error),
-                                                  ),
-                                                  const Center(
-                                                    child: Icon(
-                                                      Icons.play_arrow_outlined,
-                                                      size: VIDEO_ICON_SIZE,
-                                                      color: Donebutton,
-                                                    ),
-                                                  ),
-                                                ],
+                                                PLAY_BUTTON_RADIUS,
                                               ),
+                                            ),
+                                            child: Stack(
+                                              fit: StackFit.expand,
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          TOP_WORKOUT_IMAGE_RADIUS),
+                                                  child: snapshot
+                                                      .data![index].imageWidget,
+                                                ),
+                                                const Center(
+                                                  child: Icon(
+                                                    Icons.play_arrow_outlined,
+                                                    size: VIDEO_ICON_SIZE,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                           SizedBox(

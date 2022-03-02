@@ -1,15 +1,17 @@
 import 'dart:math';
-
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import '../services/youtube_player_configured/youtube_player_flutter.dart';
 
 class ContentModel {
   String id = '';
   String name = '';
   String? description;
   String? videoUrl; //If video url is null, content will be treated as blog
-  String? photoUrl;
+  String photoUrl = '';
   int? duration; //Duration to complete the content in seconds
   bool isPremium = false;
   String searchKeywords = '';
@@ -19,12 +21,13 @@ class ContentModel {
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo[400]!;
+  late CachedNetworkImage imageWidget;
 
   ContentModel({
     required this.id,
     required this.name,
     this.description,
-    this.photoUrl,
+    this.photoUrl = '',
     this.videoUrl,
     this.duration,
     this.isPremium = false,
@@ -41,7 +44,40 @@ class ContentModel {
       createSearchKeywords();
     }
 
+    if (videoUrl != null && videoUrl!.trimLeft().trimRight().isNotEmpty) {
+      String url = YoutubePlayer.getThumbnail(
+        videoId: YoutubePlayer.convertUrlToId(videoUrl!)!,
+      );
+
+      if (url.isNotEmpty) {
+        photoUrl = url;
+      }
+    }
+
     color = colorList[Random().nextInt(colorList.length)];
+
+    imageWidget = CachedNetworkImage(
+      fit: BoxFit.contain,
+      imageUrl: photoUrl,
+      imageBuilder: (_, child) {
+        return FittedBox(
+          fit: BoxFit.fill,
+          child: Image(
+            image: child,
+          ),
+        );
+      },
+      placeholder: (context, url) =>
+          const Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => ClipRRect(
+        borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
+        child: const Icon(
+          Icons.play_arrow_outlined,
+          size: 30,
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 
   //Creates the srachkeywords to help in searching

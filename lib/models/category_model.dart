@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class CategoryModel {
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color? color = Colors.indigo[400];
+  late CachedNetworkImage imageWidget;
 
   CategoryModel({
     required this.id,
@@ -41,6 +43,13 @@ class CategoryModel {
     if (searchKeywords.trimLeft().trimRight().isEmpty) {
       createSearchKeywords();
     }
+
+    imageWidget = CachedNetworkImage(
+      fit: BoxFit.cover,
+      imageUrl: imageUrl,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    );
   }
 
   //Creates the srachkeywords to help in searching

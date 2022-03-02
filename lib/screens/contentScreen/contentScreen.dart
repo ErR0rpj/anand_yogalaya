@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
 
-
 class ContentScreen extends StatefulWidget {
   final ContentModel content;
   const ContentScreen({Key? key, required this.content}) : super(key: key);
@@ -86,14 +85,7 @@ class _ContentScreenState extends State<ContentScreen> {
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
               child: isContent
-                  ? CachedNetworkImage(
-                      fit: BoxFit.contain,
-                      imageUrl: widget.content.photoUrl!,
-                      placeholder: (context, url) =>
-                          const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    )
+                  ? widget.content.imageWidget
                   : YoutubePlayer(
                       width: MediaQuery.of(context).size.width / 1,
                       controller: _youtubePlayerController!,
@@ -117,7 +109,9 @@ class _ContentScreenState extends State<ContentScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 1,),
+                          const SizedBox(
+                            width: 1,
+                          ),
                           Text(
                             widget.content.name,
                             style: const TextStyle(
@@ -126,12 +120,22 @@ class _ContentScreenState extends State<ContentScreen> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(width: 1,),
-                          const SizedBox(width: 1,),
-                          const SizedBox(width: 1,),
-                       //   LikeButtonWidget(),                in this like button count of like is also visible
-                          LikeButton( size: 40,),           // in this only like button with no count of likes
-                          const SizedBox(width: 1,),
+                          const SizedBox(
+                            width: 1,
+                          ),
+                          const SizedBox(
+                            width: 1,
+                          ),
+                          const SizedBox(
+                            width: 1,
+                          ),
+                          //   LikeButtonWidget(),                in this like button count of like is also visible
+                          LikeButton(
+                            size: 40,
+                          ), // in this only like button with no count of likes
+                          const SizedBox(
+                            width: 1,
+                          ),
                         ],
                       ),
                       Row(
@@ -184,7 +188,7 @@ class _ContentScreenState extends State<ContentScreen> {
                             right: DONE_BUTTON_RIGHT_PAD),
                         child: Column(
                           children: <Widget>[
-                            doneButton(context),
+                            doneButton(),
                           ],
                         ),
                       ),
@@ -203,7 +207,7 @@ class _ContentScreenState extends State<ContentScreen> {
   }
 }
 
-Widget doneButton(BuildContext context) {
+Widget doneButton() {
   return SizedBox(
     height: 65,
     child: FlatButton(
@@ -217,8 +221,7 @@ Widget doneButton(BuildContext context) {
                 style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontSize: DONE_BUTTON_SIZE,
-                )
-            ),
+                )),
           )
         ],
       ),

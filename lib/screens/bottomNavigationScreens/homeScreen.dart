@@ -59,12 +59,9 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.upload_outlined),
         elevation: 5,
-        onPressed: () => showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: Colors.transparent,
-          context: context,
-          builder: (context) => buildSheet(),
-        ),
+        onPressed: () {
+          showUploadForm(context);
+        },
       ),
     );
   }

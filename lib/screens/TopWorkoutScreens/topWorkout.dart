@@ -104,20 +104,14 @@ class Workouts extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: size.width * 0.35,
                   height: size.height * 0.2,
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl:
-                          categoryController.getPlaylistList[index].imageUrl,
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
+                    child:
+                        categoryController.getPlaylistList[index].imageWidget,
                   ),
                 ),
               ],

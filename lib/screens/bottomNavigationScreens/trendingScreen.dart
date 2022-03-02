@@ -69,51 +69,13 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                 itemBuilder: (content, index, heroIndex) {
                   return SizedBox(
                     width: 300,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: contentController.getContentList[index].videoUrl !=
-                              null
-                          ? Image.network(
-                              YoutubePlayer.getThumbnail(
-                                videoId: YoutubePlayer.convertUrlToId(
-                                    contentController
-                                        .getContentList[index].videoUrl!)!,
-                              ),
-                              frameBuilder:
-                                  (_, child, frame, wasSyncronouslyLoaded) {
-                                return FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: child,
-                                );
-                              },
-                              loadingBuilder: (_, child, progress) =>
-                                  progress == null
-                                      ? child
-                                      : Container(
-                                          color: Colors.white,
-                                          width: 60,
-                                          height: 45,
-                                        ),
-                              errorBuilder: (context, _, __) => ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                    TOP_WORKOUT_IMAGE_RADIUS),
-                                child: const Icon(
-                                  Icons.play_arrow_outlined,
-                                  size: 30,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                  TOP_WORKOUT_IMAGE_RADIUS),
-                              child: const Icon(
-                                Icons.play_arrow_outlined,
-                                size: VIDEO_ICON_SIZE,
-                                color: Colors.grey,
-                              ),
-                            ),
-                    ),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: contentController.getContentList[index].color,
+                        ),
+                        child: contentController
+                            .getContentList[index].imageWidget),
                   );
                 },
                 options: CarouselOptions(

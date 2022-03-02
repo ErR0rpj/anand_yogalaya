@@ -30,13 +30,7 @@ class CategoryCard extends StatelessWidget {
               backgroundColor: category.color,
               child: Padding(
                 padding: const EdgeInsets.all(SMALL_PAD),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: category.imageUrl,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
+                child: category.imageWidget,
               ),
             ),
           ),
