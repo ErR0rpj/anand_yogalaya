@@ -107,18 +107,27 @@ class ContentController extends GetxController {
 
   // like particular content with id
   likeContent(ContentModel contentModel) async {
-    DocumentSnapshot doc = await firebaseFirestore.collection('contents').doc(contentModel.id).get();
     var uid = authController.user?.uid;
-    if ((doc.data()! as dynamic)['likes'].contains(uid)) {
+    DocumentSnapshot likedDoc = await firebaseFirestore.collection('contents').doc(contentModel.id).get();
+    //DocumentSnapshot userLikedDoc = await firebaseFirestore.collection('users').doc(uid).get();
+
+
+    if ((likedDoc.data()! as dynamic)['likes'].contains(uid)) {
 
       await firebaseFirestore.collection('contents').doc(contentModel.id).update({
         'likes': FieldValue.arrayRemove([uid]),
+      });
+      await firebaseFirestore.collection('users').doc(uid).update({
+        'contentLikedByUser': FieldValue.arrayRemove([contentModel.id]),
       });
       contentModel.likes?.remove(uid);
 
     } else {
       await firebaseFirestore.collection('contents').doc(contentModel.id).update({
         'likes': FieldValue.arrayUnion([uid]),
+      });
+      await firebaseFirestore.collection('users').doc(uid).update({
+        'contentLikedByUser': FieldValue.arrayUnion([contentModel.id]),
       });
       contentModel.likes?.add(uid);
     }

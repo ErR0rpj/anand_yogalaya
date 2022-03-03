@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:like_button/like_button.dart';
 import '../../models/content_model.dart';
 
 class Subcategory extends StatelessWidget {
@@ -23,47 +24,47 @@ class Subcategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Obx(()=>Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Donebutton,
-        ),
-        child: Column(
-          children: [
-            InkWell(
-              child: Container(
-                padding: const EdgeInsets.only(
-                  top: ARROW_BACK_TOP_PAD,
-                  left: ARROW_BACK_LEFT_PAD,
-                  right: ARROW_BACK_RIGHT_PAD,
-                ),
-                child: Column(
-                  children: [
-                    Row(
+    return Obx(() => Scaffold(
+          body: Container(
+            decoration: const BoxDecoration(
+              color: Donebutton,
+            ),
+            child: Column(
+              children: [
+                InkWell(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: ARROW_BACK_TOP_PAD,
+                      left: ARROW_BACK_LEFT_PAD,
+                      right: ARROW_BACK_RIGHT_PAD,
+                    ),
+                    child: Column(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            size: BACK_BUTTON_ICON_SIZE,
-                            color: Colors.white,
-                          ),
-                        )
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                size: BACK_BUTTON_ICON_SIZE,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              height: size.height * 0.35,
-              child: categoryModel.imageWidget,
-            ),
-            Expanded(
-                child: Container(
+                Container(
+                  alignment: Alignment.center,
+                  height: size.height * 0.35,
+                  child: categoryModel.imageWidget,
+                ),
+                Expanded(
+                    child: Container(
                   decoration: const BoxDecoration(
                       color: SubcategoryColor,
                       borderRadius: BorderRadius.only(
@@ -166,27 +167,30 @@ class Subcategory extends StatelessWidget {
                                   ),
                                 );
                               }
-                              return ListView.builder(
+                              return ListView.separated(
+                                separatorBuilder: (c, i) {
+                                  return SizedBox(
+                                    height: S_MEDIUM_PAD,
+                                  );
+                                },
                                 itemCount: snapshot.data!.length,
                                 itemBuilder: (context, index) {
                                   Size size = MediaQuery.of(context).size;
 
                                   //print("------${snapshot.data?[index].likes?.contains(authController.user?.uid)}");
                                   return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: appPadding,
-                                        vertical: appPadding / 2),
+                                    padding: const EdgeInsets.fromLTRB(SMALL_PAD,0,SMALL_PAD,0),
                                     child: InkWell(
                                       onTap: () {
                                         Get.to(
-                                              () => ContentScreen(
+                                          () => ContentScreen(
                                             content: snapshot.data![index],
                                             index: index,
                                           ),
                                         );
                                       },
                                       child: Container(
-                                        height: size.height * 0.12,
+                                        //height: size.height * 0.12,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(
@@ -199,133 +203,123 @@ class Subcategory extends StatelessWidget {
                                           ],
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: appPadding / 2,
-                                              top: appPadding / 3,
-                                              bottom: appPadding / 3),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: size.width * 0.02,
+                                          padding: const EdgeInsets.fromLTRB(SMALL_PAD,0,SMALL_PAD,0),
+                                          child: ListTile(
+                                            contentPadding: EdgeInsets.all(0),
+                                            leading: Container(
+                                              width: size.width * 0.17,
+                                              height: size.height * 0.085,
+                                              decoration: BoxDecoration(
+                                                color: PlayButtonColor,
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                  TOP_WORKOUT_RAIDUS,
+                                                ),
                                               ),
-                                              Container(
-                                                width: size.width * 0.17,
-                                                height: size.height * 0.085,
-                                                decoration: BoxDecoration(
-                                                  color: PlayButtonColor,
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                    PLAY_BUTTON_RADIUS,
+                                              child: Stack(
+                                                fit: StackFit.expand,
+                                                alignment:
+                                                AlignmentDirectional
+                                                    .center,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        TOP_WORKOUT_RAIDUS),
+                                                    child: snapshot
+                                                        .data![index]
+                                                        .imageWidget,
                                                   ),
-                                                ),
-                                                child: Stack(
-                                                  fit: StackFit.expand,
-                                                  alignment:
-                                                  AlignmentDirectional.center,
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          TOP_WORKOUT_IMAGE_RADIUS),
-                                                      child: snapshot
-                                                          .data![index].imageWidget,
+                                                  const Center(
+                                                    child: Icon(
+                                                      Icons
+                                                          .play_arrow_outlined,
+                                                      size: VIDEO_ICON_SIZE,
+                                                      color: Colors.white,
                                                     ),
-                                                    const Center(
-                                                      child: Icon(
-                                                        Icons.play_arrow_outlined,
-                                                        size: VIDEO_ICON_SIZE,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
-                                              SizedBox(
-                                                width: size.width * 0.02,
-                                              ),
-                                              SizedBox(
-                                                width: size.width * 0.4,
+                                            ),
+                                            trailing: ClipOval(
+                                              child: Material(
+                                                color: Donebutton,
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: appPadding / 2,
-                                                      top: appPadding / 4),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        snapshot.data![index].name,
-                                                        style: const TextStyle(
-                                                          fontWeight:
-                                                          WORKOUTS_WEIGHT,
-                                                          color: Colors.black,
-                                                          fontSize:
-                                                          SUBCATEGORY_EXERCISE_NAME,
-                                                        ),
-                                                        maxLines: 1,
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            snapshot.data![index]
-                                                                .views
-                                                                .toString() +
-                                                                ' views',
-                                                            style: TextStyle(
-                                                                color: Donebutton
-                                                                    .withOpacity(
-                                                                    0.7),
-                                                                fontSize: 10),
-                                                          ),
-                                                          SizedBox(
-                                                            width:
-                                                            size.width * 0.03,
-                                                          ),
-                                                          Icon(
-                                                            Icons
-                                                                .access_time_outlined,
-                                                            size: 10,
-                                                            color: Donebutton
-                                                                .withOpacity(0.7),
-                                                          ),
-                                                          SizedBox(
-                                                            width:
-                                                            size.width * 0.01,
-                                                          ),
-                                                          Text(
-                                                            (snapshot.data![index]
-                                                                .duration! ~/
-                                                                60)
-                                                                .toString() +
-                                                                ' min',
-                                                            style: TextStyle(
-                                                                color: Donebutton
-                                                                    .withOpacity(
-                                                                    0.7),
-                                                                fontSize: 10),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                  padding:
+                                                  const EdgeInsets.all(SMALL_PAD),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      contentController
+                                                          .likeContent(snapshot
+                                                          .data![index]);
+                                                    },
+                                                    child: Icon(Icons.favorite,
+                                                        size: 20,
+                                                        color: snapshot
+                                                            .data![index]
+                                                            .likes!
+                                                            .contains(
+                                                            authController
+                                                                .user
+                                                                ?.uid)
+                                                            ? Colors.red
+                                                            : Colors.white),
                                                   ),
                                                 ),
                                               ),
-                                              InkWell(
-                                                onTap: () {
-                                                  contentController.likeContent(snapshot.data![index]);
-
-                                                },
-                                                child: Icon(
-                                                    Icons.favorite,
-                                                    size: 40,
-                                                    color: snapshot.data![index].likes!.contains(authController.user?.uid) ?
-                                                    Colors.red : Colors.grey
-                                                ),
+                                            ),
+                                            title: Text(
+                                              snapshot.data![index].name,
+                                              style: const TextStyle(
+                                                fontWeight:
+                                                WORKOUTS_WEIGHT,
+                                                color: Colors.black,
+                                                fontSize:
+                                                SUBCATEGORY_EXERCISE_NAME,
                                               ),
-                                            ],
+                                            ),
+                                            subtitle: Row(
+                                              children: [
+                                                Text(
+                                                  snapshot.data![index]
+                                                      .views
+                                                      .toString() +
+                                                      ' views',
+                                                  style: TextStyle(
+                                                      color: Donebutton
+                                                          .withOpacity(
+                                                          0.7),
+                                                      fontSize: 10),
+                                                ),
+                                                SizedBox(
+                                                  width:
+                                                  size.width * 0.03,
+                                                ),
+                                                Icon(
+                                                  Icons
+                                                      .access_time_outlined,
+                                                  size: 10,
+                                                  color: Donebutton
+                                                      .withOpacity(0.7),
+                                                ),
+                                                SizedBox(
+                                                  width:
+                                                  size.width * 0.01,
+                                                ),
+                                                Text(
+                                                  (snapshot.data![index]
+                                                      .duration! ~/
+                                                      60)
+                                                      .toString() +
+                                                      ' min',
+                                                  style: TextStyle(
+                                                      color: Donebutton
+                                                          .withOpacity(
+                                                          0.7),
+                                                      fontSize: 10),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -340,9 +334,9 @@ class Subcategory extends StatelessWidget {
                     ],
                   ),
                 ))
-          ],
-        ),
-      ),
-    ));
+              ],
+            ),
+          ),
+        ));
   }
 }
