@@ -1,6 +1,8 @@
 import 'package:anand_yogalaya/models/content_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import '../services/database.dart';
+import '../utils/firebase_const.dart';
 
 class ContentController extends GetxController {
   // ContentList Controller
@@ -24,12 +26,14 @@ class ContentController extends GetxController {
   Rx<List<ContentModel>> likedContentList = Rx<List<ContentModel>>([]);
   List<ContentModel> get getLikedContentList => likedContentList.value;
 
+
   @override
   void onInit() {
     super.onInit();
 
     try {
       print('Fetching content from database');
+
       contentList.bindStream(Database().contentStream());
     } catch (e) {
       print('Error fetching content: $e');
@@ -100,4 +104,25 @@ class ContentController extends GetxController {
 
     return getLikedContentList;
   }
+
+  // like particular content with id
+  likeContent(ContentModel contentModel) async {
+    DocumentSnapshot doc = await firebaseFirestore.collection('contents').doc(contentModel.id).get();
+    var uid = authController.user?.uid;
+    if ((doc.data()! as dynamic)['likes'].contains(uid)) {
+
+      await firebaseFirestore.collection('contents').doc(contentModel.id).update({
+        'likes': FieldValue.arrayRemove([uid]),
+      });
+      contentModel.likes?.remove(uid);
+
+    } else {
+      await firebaseFirestore.collection('contents').doc(contentModel.id).update({
+        'likes': FieldValue.arrayUnion([uid]),
+      });
+      contentModel.likes?.add(uid);
+    }
+    update();
+  }
+
 }

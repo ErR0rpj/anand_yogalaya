@@ -18,6 +18,7 @@ class ContentModel {
   int views = 0;
   DateTime? addedDate;
   List<String>? categories;
+  List? likes;
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo[400]!;
@@ -35,6 +36,7 @@ class ContentModel {
     this.views = 0,
     this.addedDate,
     this.categories,
+    this.likes,
   }) {
     _initialize();
   }
@@ -113,7 +115,7 @@ class ContentModel {
         : null;
     categories =
         json['categories'] != null ? List<String>.from(json['categories']) : [];
-
+    likes = json['likes'] != null ? List<String>.from(json['likes']) : [];
     _initialize();
   }
 
@@ -130,6 +132,7 @@ class ContentModel {
     data['views'] = views;
     data['addedDate'] = addedDate;
     data['categories'] = categories;
+    data['likes'] = likes;
     return data;
   }
 
@@ -150,7 +153,9 @@ class ContentModel {
     categories = documentSnapshot['categories'] != null
         ? List<String>.from(documentSnapshot['categories'])
         : [];
-
+    likes = documentSnapshot['likes'] != null
+        ? List<String>.from(documentSnapshot['likes'])
+        : [];
     _initialize();
   }
 }

@@ -2,15 +2,19 @@ import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/likebutton.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:like_button/like_button.dart';
 
+import '../../controllers/content_controller.dart';
+
 class ContentScreen extends StatefulWidget {
   final ContentModel content;
-  const ContentScreen({Key? key, required this.content}) : super(key: key);
+  final int? index;
+  const ContentScreen({Key? key, required this.content, this.index}) : super(key: key);
 
   @override
   _ContentScreenState createState() => _ContentScreenState();
@@ -18,7 +22,7 @@ class ContentScreen extends StatefulWidget {
 
 class _ContentScreenState extends State<ContentScreen> {
   YoutubePlayerController? _youtubePlayerController;
-
+  final ContentController contentController = Get.find();
   bool isContent = false;
 
   @override
@@ -46,8 +50,11 @@ class _ContentScreenState extends State<ContentScreen> {
     super.dispose();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
@@ -129,10 +136,8 @@ class _ContentScreenState extends State<ContentScreen> {
                           const SizedBox(
                             width: 1,
                           ),
-                          //   LikeButtonWidget(),                in this like button count of like is also visible
-                          LikeButton(
-                            size: 40,
-                          ), // in this only like button with no count of likes
+
+
                           const SizedBox(
                             width: 1,
                           ),
