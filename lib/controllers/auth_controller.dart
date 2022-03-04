@@ -52,7 +52,8 @@ class AuthController extends GetxController {
 
   void signInWithGoogle() async {
     try {
-      Get.dialog(const Center(child: LoadingWidget()), barrierDismissible: false);
+      Get.dialog(const Center(child: LoadingWidget()),
+          barrierDismissible: false);
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
 
       if (googleSignInAccount != null) {
@@ -109,7 +110,8 @@ class AuthController extends GetxController {
 
   void signOut() async {
     try {
-      Get.dialog(const Center(child: LoadingWidget()), barrierDismissible: false);
+      Get.dialog(const Center(child: LoadingWidget()),
+          barrierDismissible: false);
       await auth.signOut();
       await googleSign.disconnect();
       //This disposes the controller after signing user out.
