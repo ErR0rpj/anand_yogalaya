@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/models/content_model.dart';
-import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/services/network_service.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +169,7 @@ Future showUploadForm(BuildContext context) async {
                                   isPremium: isPremium,
                                 );
 
-                                //TODO: Add code to add content to firebase.
+                                //TODO: Add code to upload content to firebase.
                               }),
                         ],
                       ),
