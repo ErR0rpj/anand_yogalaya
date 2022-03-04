@@ -1,3 +1,5 @@
+import 'package:anand_yogalaya/controllers/auth_controller.dart';
+import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -25,7 +27,6 @@ class ContentController extends GetxController {
   //Visible list on liked section in trending page.
   Rx<List<ContentModel>> likedContentList = Rx<List<ContentModel>>([]);
   List<ContentModel> get getLikedContentList => likedContentList.value;
-
 
   @override
   void onInit() {
@@ -95,26 +96,40 @@ class ContentController extends GetxController {
     return getNewContentList;
   }
 
-  // list sorted on popularity.
+  // list showing content liked by user
   Future<List<ContentModel>> fetchLikedContent() async {
     print('Fetching Liked Content');
     getLikedContentList.clear();
 
-    getLikedContentList.addAll(getContentList);
+    UserController userController = Get.find();
+
+    for (int i = 0; i < getContentList.length; i++) {
+      if (userController.user.contentLikedByUser!
+          .contains(getContentList[i].id)) {
+        getLikedContentList.add(getContentList[i]);
+      }
+    }
 
     return getLikedContentList;
   }
 
   // like particular content with id
-  likeContent(ContentModel contentModel) async {
+  Future<void> likeContent(ContentModel contentModel) async {
+    UserController userController = Get.find();
+    userController.user.contentLikedByUser ??= [];
     var uid = authController.user?.uid;
-    DocumentSnapshot likedDoc = await firebaseFirestore.collection('contents').doc(contentModel.id).get();
+
+    DocumentSnapshot likedDoc = await firebaseFirestore
+        .collection('contents')
+        .doc(contentModel.id)
+        .get();
     //DocumentSnapshot userLikedDoc = await firebaseFirestore.collection('users').doc(uid).get();
 
-
     if ((likedDoc.data()! as dynamic)['likes'].contains(uid)) {
-
-      await firebaseFirestore.collection('contents').doc(contentModel.id).update({
+      await firebaseFirestore
+          .collection('contents')
+          .doc(contentModel.id)
+          .update({
         'likes': FieldValue.arrayRemove([uid]),
       });
       await firebaseFirestore.collection('users').doc(uid).update({
@@ -122,16 +137,20 @@ class ContentController extends GetxController {
       });
       contentModel.likes?.remove(uid);
 
+      userController.user.contentLikedByUser?.remove(contentModel.id);
     } else {
-      await firebaseFirestore.collection('contents').doc(contentModel.id).update({
+      await firebaseFirestore
+          .collection('contents')
+          .doc(contentModel.id)
+          .update({
         'likes': FieldValue.arrayUnion([uid]),
       });
       await firebaseFirestore.collection('users').doc(uid).update({
         'contentLikedByUser': FieldValue.arrayUnion([contentModel.id]),
       });
       contentModel.likes?.add(uid);
+      userController.user.contentLikedByUser?.add(contentModel.id);
     }
     update();
   }
-
 }

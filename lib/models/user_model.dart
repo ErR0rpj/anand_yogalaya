@@ -73,5 +73,8 @@ class UserModel {
     email = snapshot['email'];
     name = snapshot['name'];
     id = snapshot['uid'];
+    contentLikedByUser = snapshot['contentLikedByUser'] != null
+        ? List<String>.from(snapshot['contentLikedByUser'])
+        : [];
   }
 }

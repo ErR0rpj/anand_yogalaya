@@ -27,6 +27,35 @@ class AppConstants {
   }
 }
 
+Widget buttonWithText({String text = 'Done', void Function()? onPressed}) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: Donebutton,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+      ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Text(
+              'Done',
+              style: GoogleFonts.montserrat(
+                color: Colors.white,
+                fontSize: DONE_BUTTON_SIZE,
+              ),
+            ),
+          )
+        ],
+      ),
+    ),
+    onPressed: onPressed,
+  );
+}
+
 //////////////////////// COLORS //////////////////////////////
 
 const SEE_ALL_COLOR = Color(0xFF4FC3F7); //

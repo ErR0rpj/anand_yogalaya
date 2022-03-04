@@ -108,7 +108,7 @@ Future showUploadForm(BuildContext context) async {
                             hint: 'Enter categories',
                           ),
                           const SizedBox(height: M_MEDIUM_PAD),
-                          doneButton(),
+                          buttonWithText(text: 'Save'),
                         ],
                       ),
                     ),
