@@ -36,13 +36,13 @@ Widget buttonWithText({String text = 'Done', void Function()? onPressed}) {
       ),
     ),
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Center(
             child: Text(
-              'Done',
+              text,
               style: GoogleFonts.montserrat(
                 color: Colors.white,
                 fontSize: DONE_BUTTON_SIZE,

@@ -1,4 +1,6 @@
+import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
+import 'package:anand_yogalaya/services/network_service.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 Future showUploadForm(BuildContext context) async {
   bool isPremium = false;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController videoURLController = TextEditingController();
+  TextEditingController photoURLController = TextEditingController();
+  TextEditingController durationController = TextEditingController();
+  TextEditingController categoriesController = TextEditingController();
+
+  durationController.text = '0';
 
   return showModalBottomSheet(
     context: context,
@@ -78,11 +88,13 @@ Future showUploadForm(BuildContext context) async {
                           buildUploadFormTitle('Title *'),
                           buildUploadFormTextField(
                             hint: 'Enter a name of Video/Post',
+                            textController: titleController,
                           ),
-                          buildUploadFormTitle('Description'),
+                          buildUploadFormTitle('Description *'),
                           buildUploadFormTextField(
                             hint: 'Details about the content',
                             isMultiline: true,
+                            textController: descriptionController,
                           ),
                           buildUploadFormTitle('Video URL'),
                           buildUploadFormTextField(
@@ -90,6 +102,7 @@ Future showUploadForm(BuildContext context) async {
                               //TODO: Adding a link validation.
                             },
                             hint: 'Enter a YouTube URL',
+                            textController: videoURLController,
                           ),
                           buildUploadFormTitle('Image URL'),
                           buildUploadFormTextField(
@@ -97,18 +110,68 @@ Future showUploadForm(BuildContext context) async {
                               //TODO: Adding a link validation.
                             },
                             hint: 'Enter a Image URL',
+                            textController: photoURLController,
                           ),
                           buildUploadFormTitle('Duration (seconds)'),
                           buildUploadFormTextField(
                             hint: 'Reading/Video time',
                             isInt: true,
+                            textController: durationController,
                           ),
                           buildUploadFormTitle('Categories'),
                           buildUploadFormTextField(
                             hint: 'Enter categories',
+                            textController: categoriesController,
                           ),
                           const SizedBox(height: M_MEDIUM_PAD),
-                          buttonWithText(text: 'Save'),
+                          buttonWithText(
+                              text: 'Save',
+                              onPressed: () async {
+                                if (titleController.text.trim().isEmpty ||
+                                    descriptionController.text.trim().isEmpty) {
+                                  Get.snackbar(
+                                    'Form Incomplete!',
+                                    'Title and Description is compulsory.',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                } else if (videoURLController.text.isEmpty &&
+                                    photoURLController.text.isEmpty) {
+                                  Get.snackbar(
+                                    'Form Incomplete!',
+                                    'Fill Video URL or Image URL',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
+
+                                if (durationController.text.isEmpty) {
+                                  durationController.text = '0';
+                                }
+
+                                bool isNetworkConnectionAvailable =
+                                    await NetworkService
+                                        .checkInternetConnection();
+                                if (!isNetworkConnectionAvailable) {
+                                  Get.snackbar(
+                                    'Network Error!',
+                                    'Please check your Internet Connection!',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
+
+                                ContentModel contentModel = ContentModel(
+                                  name: titleController.text,
+                                  description: descriptionController.text,
+                                  photoUrl: photoURLController.text,
+                                  videoUrl: videoURLController.text,
+                                  duration: int.parse(durationController.text),
+                                  isPremium: isPremium,
+                                );
+
+                                //TODO: Add code to add content to firebase.
+                              }),
                         ],
                       ),
                     ),

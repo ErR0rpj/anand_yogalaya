@@ -18,14 +18,14 @@ class ContentModel {
   int views = 0;
   DateTime? addedDate;
   List<String>? categories;
-  List? likes;
+  List<String>? likes;
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo[400]!;
   late CachedNetworkImage imageWidget;
 
   ContentModel({
-    required this.id,
+    this.id = '',
     required this.name,
     this.description,
     this.photoUrl = '',
@@ -42,6 +42,14 @@ class ContentModel {
   }
 
   void _initialize() {
+    addedDate ??= DateTime.now();
+
+    if (id.isEmpty) {
+      id = name + '_';
+      if (addedDate != null) {
+        id += addedDate!.millisecondsSinceEpoch.toString();
+      }
+    }
     if (searchKeywords.trimLeft().trimRight().isEmpty) {
       createSearchKeywords();
     }
@@ -55,6 +63,9 @@ class ContentModel {
         photoUrl = url;
       }
     }
+
+    categories ??= [];
+    likes ??= [];
 
     color = colorList[Random().nextInt(colorList.length)];
 
