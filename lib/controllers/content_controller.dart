@@ -148,7 +148,7 @@ class ContentController extends GetxController {
       await firebaseFirestore.collection('users').doc(uid).update({
         'contentLikedByUser': FieldValue.arrayUnion([contentModel.id]),
       });
-      contentModel.likes?.add(uid);
+      contentModel.likes?.add(uid!);
       userController.user.contentLikedByUser?.add(contentModel.id);
     }
     update();

@@ -50,6 +50,22 @@ class Database {
     });
   }
 
+  // Getting all Category DocumentSnapshots irrespective of 'isPlayList'
+  Stream<List<CategoryModel>> allCategoryStream() {
+    print('Fetching categories from database');
+    return _firebaseFirestore
+        .collection("categories")
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<CategoryModel> retVal = [];
+      for (var element in query.docs) {
+        retVal.add(CategoryModel.fromDocumentSnapshot(element));
+      }
+      print('Retval: ${retVal.length}');
+      return retVal;
+    });
+  }
+
   // Getting all Playlist(Category which have isPlaylist = true) DocumentSnapshots in List of CategoryModel
   Stream<List<CategoryModel>> playlistStream() {
     print('Fetching categories from database');
