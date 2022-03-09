@@ -63,6 +63,7 @@ const DASHBOARD_TEXT_COLOR = Colors.black; //
 const Color primary = Color(0xFF4FC3F7); //
 const Color kwhite = Colors.white; //
 const Color kblack = Colors.black; //
+Color? kindigo = Colors.indigo[400];
 const Color NOTIFICATION_COUNT_NUMBERS_COLOR = Colors.white; //
 const loginbackground = Color(0xFF80DEE8);
 const loginbutton = Color(0xFF303F9F);

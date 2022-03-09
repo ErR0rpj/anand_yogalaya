@@ -1,3 +1,6 @@
+import 'package:anand_yogalaya/controllers/category_controller.dart';
+import 'package:anand_yogalaya/controllers/upload_form_controller.dart';
+import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/services/network_service.dart';
 import 'package:anand_yogalaya/utils/const.dart';
@@ -5,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
 
 Future showUploadForm(BuildContext context) async {
   bool isPremium = false;
@@ -13,9 +18,16 @@ Future showUploadForm(BuildContext context) async {
   TextEditingController videoURLController = TextEditingController();
   TextEditingController photoURLController = TextEditingController();
   TextEditingController durationController = TextEditingController();
-  TextEditingController categoriesController = TextEditingController();
+  //TextEditingController categoriesController = TextEditingController();
 
   durationController.text = '0';
+
+  UploadFormController uploadFormController = Get.put(UploadFormController());
+
+  // for Dropdown category
+  CategoryController categoryController = Get.find();
+  List<CategoryModel>? _selectedCategoryList;
+  List<String>? _selectedCategoryIdList = [];
 
   return showModalBottomSheet(
     context: context,
@@ -117,11 +129,38 @@ Future showUploadForm(BuildContext context) async {
                             isInt: true,
                             textController: durationController,
                           ),
+
                           buildUploadFormTitle('Categories'),
-                          buildUploadFormTextField(
-                            hint: 'Enter categories',
-                            textController: categoriesController,
+                          MultiSelectDialogField(
+                            searchHint: 'Search category',
+                            searchable: true,
+                            items: categoryController.getAllCategoryList.map<MultiSelectItem<CategoryModel?>>((e) => MultiSelectItem(e, e.name)).toList(),
+                            title: const Text("Categories"),
+                            selectedColor: kindigo,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              border: Border.all(
+                                color: kGreyShade1,
+                              ),
+                              color: Colors.white,
+                            ),
+                            buttonIcon: Icon(
+                              Icons.category,
+                              color: kindigo,
+                            ),
+                            buttonText: const Text(
+                              "Choose category",
+                            ),
+                            onConfirm: (results) {
+                              //_selectedCategoryList = results.cast<CategoryModel>();
+                              for(var result in results.cast<CategoryModel>()){
+                                _selectedCategoryIdList.add(result.id);
+                              }
+                            },
                           ),
+
                           const SizedBox(height: M_MEDIUM_PAD),
                           buttonWithText(
                               text: 'Save',
@@ -160,6 +199,7 @@ Future showUploadForm(BuildContext context) async {
                                   return;
                                 }
 
+
                                 ContentModel contentModel = ContentModel(
                                   name: titleController.text,
                                   description: descriptionController.text,
@@ -167,9 +207,11 @@ Future showUploadForm(BuildContext context) async {
                                   videoUrl: videoURLController.text,
                                   duration: int.parse(durationController.text),
                                   isPremium: isPremium,
+                                  categories: _selectedCategoryIdList
                                 );
-
-                                //TODO: Add code to upload content to firebase.
+                                uploadFormController.uploadForm(contentModel);
+                                Get.snackbar("Uploaded", "Congrats", snackPosition: SnackPosition.BOTTOM, colorText: Donebutton, isDismissible: true);
+                                Navigator.pop(context);
                               }),
                         ],
                       ),
