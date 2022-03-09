@@ -2,7 +2,6 @@ import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/controllers/upload_form_controller.dart';
 import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
-import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/services/network_service.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -210,7 +209,6 @@ Future showUploadForm(BuildContext context) async {
                                   isPremium: isPremium,
                                   categories: _selectedCategoryIdList
                                 );
-
                                 uploadFormController.uploadForm(contentModel);
                                 Get.snackbar("Uploaded", "Congrats", snackPosition: SnackPosition.BOTTOM, colorText: Donebutton, isDismissible: true);
                                 Navigator.pop(context);
