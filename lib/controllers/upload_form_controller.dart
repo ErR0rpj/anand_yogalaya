@@ -1,29 +1,33 @@
 import 'package:anand_yogalaya/models/content_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
 
 import '../utils/firebase_const.dart';
 
 class UploadFormController extends GetxController {
-  uploadForm(ContentModel contentModel) async {
-    String contentId = const Uuid().v4();
+  Future<bool> uploadForm(ContentModel contentModel) async {
     try {
-      await firebaseFirestore.collection("contents").doc(contentId).set({
-      'id' : contentId,
-      'name' : contentModel.name,
-      'description' : contentModel.description,
-      'photoUrl' : contentModel.photoUrl,
-      'videoUrl' : contentModel.videoUrl,
-      'duration' : contentModel.duration,
-      'isPremium' : contentModel.isPremium,
-      'searchKeywords' : "",
-      'views' : 0,
-      'addedDate' : DateTime.now(),
-      'categories' : contentModel.categories,
-      'likes' : []
-      });
+      WriteBatch batch = firebaseFirestore.batch();
+
+      batch.set(firebaseFirestore.collection('contents').doc(contentModel.id),
+          contentModel.toMap());
+
+      for (int i = 0; i < contentModel.categories!.length; i++) {
+        batch.update(
+            firebaseFirestore
+                .collection('categories')
+                .doc(contentModel.categories![i]),
+            {
+              'contents': FieldValue.arrayUnion([contentModel.id])
+            });
+      }
+
+      batch.commit();
+
+      return true;
     } catch (e) {
-      print(e);
+      print('Error uploading form: $e');
+      return false;
     }
   }
 }

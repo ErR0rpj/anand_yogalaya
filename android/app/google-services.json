@@ -22,56 +22,27 @@
           }
         },
         {
+          "client_id": "175004096229-12dum8ic81p0khpfmdi4p4a4ca469je2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StavanCo.anand_yogalaya",
+            "certificate_hash": "0b252a739b9f0a9dbef2981a8b09afa28b8c7a7b"
+          }
+        },
+        {
+          "client_id": "175004096229-cumqbbs1iq39nir5vgj5ksnj82gudm68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StavanCo.anand_yogalaya",
+            "certificate_hash": "9881f8798c2ab5fb19754cd064684690a21942ec"
+          }
+        },
+        {
           "client_id": "175004096229-kepi8mjopn6me72o4tdefs8tqmloblp8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.StavanCo.anand_yogalaya",
             "certificate_hash": "494ba81caa37060f2239cebb9febf49339cfc9e3"
-          }
-        },
-        {
-          "client_id": "175004096229-oifou066q9h1t7mnofs693m0ni5du10c.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDClV1HJqxxa0Vq2BOH3LxeODmwnBC8lEs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "175004096229-oifou066q9h1t7mnofs693m0ni5du10c.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:175004096229:android:835beef23125a29ce8a60c",
-        "android_client_info": {
-          "package_name": "com.pixamentory.AnandYogalaya"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "175004096229-4hfkm3qhs9m6uqnvqdb4hsn9tprgqh1t.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pixamentory.AnandYogalaya",
-            "certificate_hash": "494ba81caa37060f2239cebb9febf49339cfc9e3"
-          }
-        },
-        {
-          "client_id": "175004096229-qg06reorcoqr8788m8hrc0n2hp2lan3u.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pixamentory.AnandYogalaya",
-            "certificate_hash": "9227bfb6d2dbec77522d5cfb1456b8b180f62db4"
           }
         },
         {

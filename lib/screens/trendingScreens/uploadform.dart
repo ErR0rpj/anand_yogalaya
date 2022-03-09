@@ -18,7 +18,6 @@ Future showUploadForm(BuildContext context) async {
   TextEditingController videoURLController = TextEditingController();
   TextEditingController photoURLController = TextEditingController();
   TextEditingController durationController = TextEditingController();
-  //TextEditingController categoriesController = TextEditingController();
 
   durationController.text = '0';
 
@@ -27,7 +26,7 @@ Future showUploadForm(BuildContext context) async {
   // for Dropdown category
   CategoryController categoryController = Get.find();
   List<CategoryModel>? _selectedCategoryList;
-  List<String>? _selectedCategoryIdList = [];
+  List<String> _selectedCategoryIdList = [];
 
   return showModalBottomSheet(
     context: context,
@@ -109,17 +108,11 @@ Future showUploadForm(BuildContext context) async {
                           ),
                           buildUploadFormTitle('Video URL'),
                           buildUploadFormTextField(
-                            onChanged: (value) {
-                              //TODO: Adding a link validation.
-                            },
                             hint: 'Enter a YouTube URL',
                             textController: videoURLController,
                           ),
                           buildUploadFormTitle('Image URL'),
                           buildUploadFormTextField(
-                            onChanged: (value) {
-                              //TODO: Adding a link validation.
-                            },
                             hint: 'Enter a Image URL',
                             textController: photoURLController,
                           ),
@@ -129,12 +122,14 @@ Future showUploadForm(BuildContext context) async {
                             isInt: true,
                             textController: durationController,
                           ),
-
                           buildUploadFormTitle('Categories'),
                           MultiSelectDialogField(
                             searchHint: 'Search category',
                             searchable: true,
-                            items: categoryController.getAllCategoryList.map<MultiSelectItem<CategoryModel?>>((e) => MultiSelectItem(e, e.name)).toList(),
+                            items: categoryController.getAllCategoryList
+                                .map<MultiSelectItem<CategoryModel?>>(
+                                    (e) => MultiSelectItem(e, e.name))
+                                .toList(),
                             title: const Text("Categories"),
                             selectedColor: kindigo,
                             decoration: BoxDecoration(
@@ -155,12 +150,12 @@ Future showUploadForm(BuildContext context) async {
                             ),
                             onConfirm: (results) {
                               //_selectedCategoryList = results.cast<CategoryModel>();
-                              for(var result in results.cast<CategoryModel>()){
+                              for (var result
+                                  in results.cast<CategoryModel>()) {
                                 _selectedCategoryIdList.add(result.id);
                               }
                             },
                           ),
-
                           const SizedBox(height: M_MEDIUM_PAD),
                           buttonWithText(
                               text: 'Save',
@@ -199,19 +194,32 @@ Future showUploadForm(BuildContext context) async {
                                   return;
                                 }
 
-
                                 ContentModel contentModel = ContentModel(
-                                  name: titleController.text,
-                                  description: descriptionController.text,
-                                  photoUrl: photoURLController.text,
-                                  videoUrl: videoURLController.text,
-                                  duration: int.parse(durationController.text),
-                                  isPremium: isPremium,
-                                  categories: _selectedCategoryIdList
-                                );
-                                uploadFormController.uploadForm(contentModel);
-                                Get.snackbar("Uploaded", "Congrats", snackPosition: SnackPosition.BOTTOM, colorText: Donebutton, isDismissible: true);
-                                Navigator.pop(context);
+                                    name: titleController.text,
+                                    description: descriptionController.text,
+                                    photoUrl: photoURLController.text,
+                                    videoUrl: videoURLController.text,
+                                    duration:
+                                        int.parse(durationController.text),
+                                    isPremium: isPremium,
+                                    categories: _selectedCategoryIdList);
+
+                                bool isSuccess = await uploadFormController
+                                    .uploadForm(contentModel);
+                                if (isSuccess) {
+                                  Get.snackbar("Uploaded",
+                                      "Congratulations! Content uploaded successfully",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                  Navigator.pop(context);
+                                } else {
+                                  Get.snackbar("Failed",
+                                      "Uploading content Failed, Try Again!",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                }
                               }),
                         ],
                       ),

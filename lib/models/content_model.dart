@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:anand_yogalaya/screens/trendingScreens/likedtrendingSection.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,6 +51,10 @@ class ContentModel {
         id += addedDate!.millisecondsSinceEpoch.toString();
       }
     }
+
+    categories ??= [];
+    likes ??= [];
+
     if (searchKeywords.trimLeft().trimRight().isEmpty) {
       createSearchKeywords();
     }
@@ -132,6 +137,13 @@ class ContentModel {
 
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    duration ??= 0;
+    description ??= '';
+    videoUrl ??= '';
+    addedDate ??= DateTime.now();
+    categories ??= [];
+    likes ??= [];
+
     data['id'] = id;
     data['name'] = name;
     data['description'] = description;
