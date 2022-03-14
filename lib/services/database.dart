@@ -7,12 +7,15 @@ class Database {
   FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   // Creating User in DB
-  Future<bool?> createNewUser(UserModel user) async {
+  Future<bool> createNewUser(UserModel user) async {
     try {
-      await _firebaseFirestore
-          .collection("users")
-          .doc(user.id)
-          .set({"name": user.name, "email": user.email});
+      print('Creating new user in firestore');
+      await _firebaseFirestore.collection("users").doc(user.id).set({
+        "name": user.name,
+        "email": user.email,
+        'id': user.id,
+        'contentLikedByUser': [],
+      });
       return true;
     } catch (e) {
       print(e);
@@ -26,7 +29,7 @@ class Database {
       DocumentSnapshot _doc =
           await _firebaseFirestore.collection("users").doc(uid).get();
 
-      return UserModel.fromSnapshot(_doc);
+      return UserModel.fromDocumentSnapshot(_doc);
     } catch (e) {
       print(e);
       rethrow;

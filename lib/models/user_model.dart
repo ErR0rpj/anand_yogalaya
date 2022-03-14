@@ -69,10 +69,10 @@ class UserModel {
     return data;
   }
 
-  UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+  UserModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    id = snapshot.id;
     email = snapshot['email'];
     name = snapshot['name'];
-    id = snapshot['uid'];
     contentLikedByUser = snapshot['contentLikedByUser'] != null
         ? List<String>.from(snapshot['contentLikedByUser'])
         : [];
