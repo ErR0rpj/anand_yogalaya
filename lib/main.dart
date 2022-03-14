@@ -5,6 +5,7 @@ import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/screens/splash_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -15,6 +16,9 @@ void main() async {
     Get.put(CategoryController());
     Get.put(ContentController());
   });
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(const MyApp());
 }
 
