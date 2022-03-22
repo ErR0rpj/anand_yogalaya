@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/models/content_model.dart';
+import 'package:anand_yogalaya/screens/trendingScreens/uploadform.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +73,7 @@ class _ContentScreenState extends State<ContentScreen> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
                           onTap: () {
@@ -82,7 +84,17 @@ class _ContentScreenState extends State<ContentScreen> {
                             size: BACK_BUTTON_ICON_SIZE,
                             color: Colors.white,
                           ),
-                        )
+                        ),
+                        InkWell(
+                          onTap: () {
+                            showUploadForm(context, widget.content);
+                          },
+                          child: const Icon(
+                            Icons.edit_rounded,
+                            size: BACK_BUTTON_ICON_SIZE,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ],

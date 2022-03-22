@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Future showUploadForm(BuildContext context) async {
+Future showUploadForm(BuildContext context, ContentModel? contentModel) async {
   bool isPremium = false;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();

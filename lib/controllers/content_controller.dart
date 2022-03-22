@@ -1,4 +1,3 @@
-import 'package:anand_yogalaya/controllers/auth_controller.dart';
 import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
