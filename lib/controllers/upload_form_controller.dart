@@ -30,4 +30,31 @@ class UploadFormController extends GetxController {
       return false;
     }
   }
+
+  Future<bool> updateForm(ContentModel contentModel) async {
+    try {
+      WriteBatch batch = firebaseFirestore.batch();
+
+      batch.update(
+          firebaseFirestore.collection('contents').doc(contentModel.id),
+          contentModel.toMap());
+
+      for (int i = 0; i < contentModel.categories!.length; i++) {
+        batch.update(
+            firebaseFirestore
+                .collection('categories')
+                .doc(contentModel.categories![i]),
+            {
+              'contents': FieldValue.arrayUnion([contentModel.id])
+            });
+      }
+
+      batch.commit();
+
+      return true;
+    } catch (e) {
+      print('Error uploading form: $e');
+      return false;
+    }
+  }
 }

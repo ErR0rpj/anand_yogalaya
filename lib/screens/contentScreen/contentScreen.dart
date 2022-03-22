@@ -87,7 +87,7 @@ class _ContentScreenState extends State<ContentScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            showUploadForm(context, widget.content);
+                            showUpdateForm(context, widget.content);
                           },
                           child: const Icon(
                             Icons.edit_rounded,
