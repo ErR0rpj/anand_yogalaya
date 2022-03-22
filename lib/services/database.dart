@@ -23,6 +23,20 @@ class Database {
     }
   }
 
+  Future<bool> checkIfUserExists(UserModel userModel) async {
+    var querySnapshot = await _firebaseFirestore
+        .collection('users')
+        .where('id', isEqualTo: userModel.id)
+        .limit(1)
+        .get();
+
+    if (querySnapshot.size == 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   // Getting User from DB
   Future<UserModel> getUser(String uid) async {
     try {

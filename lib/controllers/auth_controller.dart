@@ -85,10 +85,11 @@ class AuthController extends GetxController {
           email: auth.currentUser?.email,
         );
 
-        bool? newUser = await Database().createNewUser(_user);
+        bool newUser = await Database().checkIfUserExists(_user);
 
-        if (newUser == true) {
+        if (newUser == false) {
           // user created successfully
+          await Database().createNewUser(_user);
           Get.find<UserController>().user = _user;
           //Get.back();
         }
@@ -126,6 +127,7 @@ class AuthController extends GetxController {
           barrierDismissible: false);
       await auth.signOut();
       await googleSign.disconnect();
+      authController.onClose();
       //This disposes the controller after signing user out.
       Get.find<UserController>().clear();
     } catch (e) {

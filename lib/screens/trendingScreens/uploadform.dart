@@ -168,85 +168,72 @@ Future showUpdateForm(BuildContext context, ContentModel contentModel) async {
                             },
                           ),
                           const SizedBox(height: M_MEDIUM_PAD),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              buttonWithText(
-                                  text: 'Save',
-                                  onPressed: () async {
-                                    if (titleController.text.trim().isEmpty ||
-                                        descriptionController.text
-                                            .trim()
-                                            .isEmpty) {
-                                      Get.snackbar(
-                                        'Form Incomplete!',
-                                        'Title and Description is compulsory.',
-                                        snackPosition: SnackPosition.BOTTOM,
-                                      );
-                                      return;
-                                    } else if (videoURLController
-                                            .text.isEmpty &&
-                                        photoURLController.text.isEmpty) {
-                                      Get.snackbar(
-                                        'Form Incomplete!',
-                                        'Fill Video URL or Image URL',
-                                        snackPosition: SnackPosition.BOTTOM,
-                                      );
-                                      return;
-                                    }
+                          buttonWithText(
+                              text: 'Save',
+                              onPressed: () async {
+                                if (titleController.text.trim().isEmpty ||
+                                    descriptionController.text.trim().isEmpty) {
+                                  Get.snackbar(
+                                    'Form Incomplete!',
+                                    'Title and Description is compulsory.',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                } else if (videoURLController.text.isEmpty &&
+                                    photoURLController.text.isEmpty) {
+                                  Get.snackbar(
+                                    'Form Incomplete!',
+                                    'Fill Video URL or Image URL',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
 
-                                    if (durationController.text.isEmpty) {
-                                      durationController.text = '0';
-                                    }
+                                if (durationController.text.isEmpty) {
+                                  durationController.text = '0';
+                                }
 
-                                    bool isNetworkConnectionAvailable =
-                                        await NetworkService
-                                            .checkInternetConnection();
-                                    if (!isNetworkConnectionAvailable) {
-                                      Get.snackbar(
-                                        'Network Error!',
-                                        'Please check your Internet Connection!',
-                                        snackPosition: SnackPosition.BOTTOM,
-                                      );
-                                      return;
-                                    }
+                                bool isNetworkConnectionAvailable =
+                                    await NetworkService
+                                        .checkInternetConnection();
+                                if (!isNetworkConnectionAvailable) {
+                                  Get.snackbar(
+                                    'Network Error!',
+                                    'Please check your Internet Connection!',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
 
-                                    contentModel.categories =
-                                        _selectedCategoryIdList;
-                                    contentModel.description =
-                                        descriptionController.text;
-                                    contentModel.duration =
-                                        int.parse(durationController.text);
-                                    contentModel.isPremium = isPremium;
-                                    contentModel.name = titleController.text;
-                                    contentModel.photoUrl =
-                                        photoURLController.text;
-                                    contentModel.videoUrl =
-                                        videoURLController.text;
-                                    contentModel.createSearchKeywords();
+                                contentModel.categories =
+                                    _selectedCategoryIdList;
+                                contentModel.description =
+                                    descriptionController.text;
+                                contentModel.duration =
+                                    int.parse(durationController.text);
+                                contentModel.isPremium = isPremium;
+                                contentModel.name = titleController.text;
+                                contentModel.photoUrl = photoURLController.text;
+                                contentModel.videoUrl = videoURLController.text;
+                                contentModel.createSearchKeywords();
 
-                                    bool isSuccess = await uploadFormController
-                                        .updateForm(contentModel);
-                                    if (isSuccess) {
-                                      Get.snackbar("Updated",
-                                          "Congratulations! Content updated successfully",
-                                          snackPosition: SnackPosition.BOTTOM,
-                                          colorText: Donebutton,
-                                          isDismissible: true);
-                                      Navigator.pop(context);
-                                    } else {
-                                      Get.snackbar("Failed",
-                                          "Updating content Failed, Try Again!",
-                                          snackPosition: SnackPosition.BOTTOM,
-                                          colorText: Donebutton,
-                                          isDismissible: true);
-                                    }
-                                  }),
-                              buttonWithText(
-                                text: 'Delete',
-                              ),
-                            ],
-                          ),
+                                bool isSuccess = await uploadFormController
+                                    .updateForm(contentModel);
+                                if (isSuccess) {
+                                  Get.snackbar("Updated",
+                                      "Congratulations! Content updated successfully",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                  Navigator.pop(context);
+                                } else {
+                                  Get.snackbar("Failed",
+                                      "Updating content Failed, Try Again!",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                }
+                              }),
                         ],
                       ),
                     ),
