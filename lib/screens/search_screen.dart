@@ -29,15 +29,6 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
           color: DASHBOARD_TEXT_COLOR,
         ),
       ),
-      IconButton(
-        onPressed: () {
-          //Add filter
-        },
-        icon: const Icon(
-          Icons.tune,
-          color: loginbutton,
-        ),
-      ),
       const SizedBox(width: VS_SIZEDBOX_SIZE),
     ];
   }
