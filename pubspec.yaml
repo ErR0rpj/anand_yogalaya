@@ -29,6 +29,8 @@ dependencies:
   like_button: ^2.0.4
   shimmer: ^2.0.0
   flutter_network_connectivity: ^0.0.6
+  uuid: ^3.0.6
+  multi_select_flutter: ^4.0.0
 
 
 dev_dependencies:

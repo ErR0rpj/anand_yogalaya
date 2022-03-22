@@ -139,7 +139,7 @@ class ContentModel {
     data['videoUrl'] = videoUrl;
     data['duration'] = duration;
     data['isPremium'] = isPremium;
-    data['searchKeyWords'] = searchKeywords;
+    data['searchKeywords'] = searchKeywords;
     data['views'] = views;
     data['addedDate'] = addedDate;
     data['categories'] = categories;
