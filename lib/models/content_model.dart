@@ -3,6 +3,7 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../services/youtube_player_configured/youtube_player_flutter.dart';
 
@@ -85,7 +86,21 @@ class ContentModel {
         );
       },
       placeholder: (context, url) =>
-          const Center(child: CircularProgressIndicator()),
+          Shimmer.fromColors(
+            baseColor: kPrimaryPurple,
+            highlightColor:
+            kPrimaryPurple.withOpacity(0.5),
+            period: Duration(seconds: 2),
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: kPrimaryPurple
+              ),
+              /*decoration: ShapeDecoration(
+                  color: kPrimaryPurple.withOpacity(0.5), shape: CircleBorder()),*/
+            ),
+          ),
       errorWidget: (context, url, error) => ClipRRect(
         borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
         child: const Icon(
