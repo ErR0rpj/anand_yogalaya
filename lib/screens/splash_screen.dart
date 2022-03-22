@@ -12,18 +12,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
- /* @override
-  void initState() {
-    // set time to load the new page
-    Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
-    });
-    super.initState();
-  }*/
+
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -31,10 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: LOGO_SIZE,
-              width: LOGO_SIZE,
-              child: Lottie.asset("assets/animations/girl_yoga.json"),
+            Container(
+                height: size.height * 0.5,
+                width: LOGO_SIZE,
+                child: Image.asset("assets/images/logo.png")
             ),
             const SizedBox(
               height: M_SIZEDBOX_SIZE,

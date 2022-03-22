@@ -92,13 +92,6 @@ class Subcategory extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Expanded(
-                            child: Icon(
-                              Icons.tune,
-                              size: FLITER_ICON_SIZE,
-                              color: Colors.grey,
-                            ),
-                          ),
                         ],
                       ),
                       Row(
@@ -142,6 +135,9 @@ class Subcategory extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: M_SIZEDBOX_SIZE,
                       ),
                       Expanded(
                         child: FutureBuilder<List<ContentModel>>(
@@ -241,30 +237,34 @@ class Subcategory extends StatelessWidget {
                                                 ],
                                               ),
                                             ),
-                                            trailing: ClipOval(
-                                              child: Material(
-                                                color: Donebutton,
-                                                child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.all(SMALL_PAD),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      contentController
-                                                          .likeContent(snapshot
-                                                          .data![index]);
-                                                    },
-                                                    child: Icon(Icons.favorite,
-                                                        size: 20,
-                                                        color: snapshot
-                                                            .data![index]
-                                                            .likes!
-                                                            .contains(
-                                                            authController
-                                                                .user
-                                                                ?.uid)
-                                                            ? Colors.red
-                                                            : Colors.white),
-                                                  ),
+                                            trailing: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0,0,8,0),
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets.all(SMALL_PAD),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    contentController
+                                                        .likeContent(snapshot
+                                                        .data![index]);
+                                                  },
+                                                  child: Icon( snapshot
+                                                      .data![index]
+                                                      .likes!
+                                                      .contains(
+                                                      authController
+                                                          .user
+                                                          ?.uid) ? Icons.favorite : Icons.favorite_border_outlined ,
+                                                      size: 24,
+                                                      color: snapshot
+                                                          .data![index]
+                                                          .likes!
+                                                          .contains(
+                                                          authController
+                                                              .user
+                                                              ?.uid)
+                                                          ? Colors.red
+                                                          : Colors.grey),
                                                 ),
                                               ),
                                             ),

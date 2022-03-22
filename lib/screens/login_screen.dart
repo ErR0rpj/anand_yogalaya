@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: loginbackground,
         resizeToAvoidBottomInset: false,
@@ -51,10 +52,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 const SizedBox(height: S_SIZEDBOX_SIZE),
                                 Container(
-                                  height: LOGO_SIZE,
+                                  height: size.height * 0.5,
                                   width: LOGO_SIZE,
-                                  child: Lottie.asset(
-                                      "assets/animations/girl_yoga.json"),
+                                  child: Image.asset("assets/images/logo.png")
                                 ),
                                 Container(
                                   padding: const EdgeInsets.only(top: 70.0, left: 20.0, right: 20.0),
