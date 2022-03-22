@@ -32,26 +32,35 @@ class AuthController extends GetxController {
     //ever(googleSignInAccount, _setInitialScreenGoogle);
   }
 
-  _setInitialScreen(User? user) {
+  _setInitialScreen(User? user) async {
     if (user == null) {
+      print('User is null in set initial screnn');
       //Get off removes all other screens and just opens the screen which is passed.
       Get.offAll(() => const LoginScreen());
     } else {
-      Get.off(() => const HomepageScreen());
-    }
-  }
+      print('User is  not null in set initial screnn');
+      print('Fetching user data from firestore');
 
-  _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-    print(googleSignInAccount);
-    if (googleSignInAccount == null) {
-      Get.offAll(() => const LoginScreen());
-    } else {
+      UserModel userModel = await Database().getUser(auth.currentUser!.uid);
+
+      // user created successfully
+      Get.find<UserController>().user = userModel;
       Get.offAll(() => const HomepageScreen());
     }
   }
 
+  // _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
+  //   print(googleSignInAccount);
+  //   if (googleSignInAccount == null) {
+  //     Get.offAll(() => const LoginScreen());
+  //   } else {
+  //     Get.offAll(() => const HomepageScreen());
+  //   }
+  // }
+
   void signInWithGoogle() async {
     try {
+      print('Entering sign in with google');
       Get.dialog(const Center(child: LoadingWidget()),
           barrierDismissible: false);
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
@@ -71,9 +80,10 @@ class AuthController extends GetxController {
 
         // Created User in DB
         UserModel _user = UserModel(
-            id: auth.currentUser?.uid,
-            name: auth.currentUser?.displayName,
-            email: auth.currentUser?.email);
+          id: auth.currentUser?.uid,
+          name: auth.currentUser?.displayName,
+          email: auth.currentUser?.email,
+        );
 
         bool? newUser = await Database().createNewUser(_user);
 
@@ -92,6 +102,7 @@ class AuthController extends GetxController {
 
   void register(String email, password) async {
     try {
+      print('Entering register new user');
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } catch (firebaseAuthException) {
@@ -102,6 +113,7 @@ class AuthController extends GetxController {
 
   void login(String email, password) async {
     try {
+      print('Entering sign in with email and password');
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (firebaseAuthException) {
       print("Error logging with email and password: $firebaseAuthException");

@@ -45,9 +45,9 @@ class CategoryModel {
     }
 
     imageWidget = CachedNetworkImage(
-      fit: BoxFit.cover,
+      fit: BoxFit.contain,
       imageUrl: imageUrl,
-      placeholder: (context, url) => const CircularProgressIndicator(),
+      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
