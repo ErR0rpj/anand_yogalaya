@@ -2,7 +2,6 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 class CategoryModel {
   String id = '';
@@ -48,18 +47,7 @@ class CategoryModel {
     imageWidget = CachedNetworkImage(
       fit: BoxFit.contain,
       imageUrl: imageUrl,
-      placeholder: (context, url) => Shimmer.fromColors(
-        baseColor: kPrimaryPurple,
-        highlightColor:
-        kPrimaryPurple.withOpacity(0.5),
-        period: Duration(seconds: 2),
-        child: Container(
-          width: 100,
-          height: 100,
-          /*decoration: ShapeDecoration(
-              color: kPrimaryPurple.withOpacity(0.5), shape: CircleBorder())*/
-        ),
-      ),
+      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }

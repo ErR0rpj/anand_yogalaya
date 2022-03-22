@@ -123,73 +123,75 @@ class _ContentScreenState extends State<ContentScreen> {
                       topLeft: Radius.circular(40),
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: L_SIZEDBOX_SIZE,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            widget.content.name,
-                            style: const TextStyle(
-                              fontSize: EXERCISE_NAME_SIZE,
-                              color: Donebutton,
-                              fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: L_SIZEDBOX_SIZE,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              widget.content.name,
+                              style: const TextStyle(
+                                fontSize: EXERCISE_NAME_SIZE,
+                                color: Donebutton,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.timer,
-                            size: TIME_ICON_SIZE,
-                            color: Colors.grey,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "${Duration(seconds: (widget.content.duration)!).inMinutes} min",
-                            style: TextStyle(
-                              fontSize: TOTALNO_EXERCISE_SIZE,
-                              color: Donebutton.withOpacity(0.6),
-                              fontWeight: FontWeight.bold,
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.timer,
+                              size: TIME_ICON_SIZE,
+                              color: Colors.grey,
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: S_MEDIUM_PAD,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            (widget.content.description).toString(),
-                            style: const TextStyle(
-                                fontSize: DETAIL_TEXT_SIZE,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                letterSpacing: 0.5,
-                                wordSpacing: 1.5),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: M_SIZEDBOX_SIZE,
-                      ),
-                      buttonWithText(
-                        onPressed: () {
-                          Get.back();
-                        },
-                      ),
-                      const SizedBox(
-                        height: M_SIZEDBOX_SIZE,
-                      ),
-                    ],
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "${Duration(seconds: (widget.content.duration)!).inMinutes} min",
+                              style: TextStyle(
+                                fontSize: TOTALNO_EXERCISE_SIZE,
+                                color: Donebutton.withOpacity(0.6),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: S_MEDIUM_PAD,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              (widget.content.description).toString(),
+                              style: const TextStyle(
+                                  fontSize: DETAIL_TEXT_SIZE,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  letterSpacing: 0.5,
+                                  wordSpacing: 1.5),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: M_SIZEDBOX_SIZE,
+                        ),
+                        buttonWithText(
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        const SizedBox(
+                          height: M_SIZEDBOX_SIZE,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
