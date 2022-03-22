@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../controllers/category_controller.dart';
-import '../Notifications/notificationlist.dart';
 import '../categoryScreens/category_card.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -43,25 +42,6 @@ class DashBoardScreen extends StatelessWidget {
             fontSize: 22,
           ),
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.notification_add_outlined,
-              size: NOTIFICATIONS_ICON_SIZE,
-              color: kblack,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationList(),
-                ),
-              );
-            },
-          ),
-          const SizedBox(width: 8),
-        ],
-        //  title: Text('Dashboard'),
       ),
       backgroundColor: Colors.white,
       body: SizedBox(
