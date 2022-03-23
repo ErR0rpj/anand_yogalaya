@@ -1,3 +1,4 @@
+import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/screens/trendingScreens/uploadform.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
@@ -20,6 +21,7 @@ class ContentScreen extends StatefulWidget {
 class _ContentScreenState extends State<ContentScreen> {
   YoutubePlayerController? _youtubePlayerController;
   final ContentController contentController = Get.find();
+  final UserController userController = Get.find();
   bool isContent = false;
 
   @override
@@ -85,15 +87,18 @@ class _ContentScreenState extends State<ContentScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        InkWell(
-                          onTap: () async {
-                            await showUpdateForm(context, widget.content);
-                            setState(() {});
-                          },
-                          child: const Icon(
-                            Icons.edit_rounded,
-                            size: BACK_BUTTON_ICON_SIZE,
-                            color: Colors.white,
+                        Visibility(
+                          visible: userController.user.isAdmin == true,
+                          child: InkWell(
+                            onTap: () async {
+                              await showUpdateForm(context, widget.content);
+                              setState(() {});
+                            },
+                            child: const Icon(
+                              Icons.edit_rounded,
+                              size: BACK_BUTTON_ICON_SIZE,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

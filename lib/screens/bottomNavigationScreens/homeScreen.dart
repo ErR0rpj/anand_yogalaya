@@ -1,10 +1,10 @@
+import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/trendingScreen.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/dashboard_screen.dart';
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../utils/const.dart';
 import '../trendingScreens/uploadform.dart';
 
@@ -16,6 +16,8 @@ class HomepageScreen extends StatefulWidget {
 }
 
 class HomepageScreenState extends State<HomepageScreen> {
+  final UserController userController = Get.find();
+
   List pages = [
     const DashBoardScreen(),
     const TrendingPageScreen(),
@@ -56,13 +58,15 @@ class HomepageScreenState extends State<HomepageScreen> {
       backgroundColor: Colors.white,
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.upload_outlined),
-        elevation: 5,
-        onPressed: () {
-          showUploadForm(context);
-        },
-      ),
+      floatingActionButton: userController.user.isAdmin == true
+          ? FloatingActionButton(
+              child: const Icon(Icons.upload_outlined),
+              elevation: 5,
+              onPressed: () {
+                showUploadForm(context);
+              },
+            )
+          : null,
     );
   }
 }
