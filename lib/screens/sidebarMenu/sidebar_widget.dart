@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/controllers/auth_controller.dart';
+import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,21 +73,10 @@ class NavsideBar extends GetWidget<AuthController> {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.favorite),
-            title: const Text('Favorites'),
-            onTap: () => {},
-          ),
-          ListTile(
             leading: const Icon(Icons.share),
             title: const Text('Share'),
             onTap: () => {Get.to(() => NotificationPage())},
           ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notification'),
-            onTap: () => {Get.to(() => NotificationList())},
-          ),
-          const Divider(),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),

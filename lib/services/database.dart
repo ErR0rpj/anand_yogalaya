@@ -104,6 +104,7 @@ class Database {
   Stream<List<ContentModel>> contentStream() {
     return _firebaseFirestore
         .collection("contents")
+        .where('isDeleted', isEqualTo: false)
         .snapshots()
         .map((QuerySnapshot query) {
       List<ContentModel> retVal = [];
@@ -119,6 +120,7 @@ class Database {
     var querySnapshot = await _firebaseFirestore
         .collection('contents')
         .where('categories', arrayContains: categoryId)
+        .where('isDeleted', isEqualTo: false)
         .get();
     List<ContentModel> listCards = [];
     for (var doc in querySnapshot.docs) {
