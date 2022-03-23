@@ -10,12 +10,10 @@ class Database {
   Future<bool> createNewUser(UserModel user) async {
     try {
       print('Creating new user in firestore');
-      await _firebaseFirestore.collection("users").doc(user.id).set({
-        "name": user.name,
-        "email": user.email,
-        'id': user.id,
-        'contentLikedByUser': [],
-      });
+      await _firebaseFirestore
+          .collection("users")
+          .doc(user.id)
+          .set(user.toMap());
       return true;
     } catch (e) {
       print(e);

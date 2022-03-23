@@ -4,6 +4,7 @@ class UserModel {
   String? id; //ID can be mobile number or email to find users easily
   String? name;
   String? email;
+  bool isAdmin = false;
   String? phoneNo;
   DateTime? dob;
   String? gender;
@@ -32,6 +33,7 @@ class UserModel {
     name = json['name'];
     id = json['id'];
     email = json['email'];
+    isAdmin = json['isAdmin'];
     photoUrl = json['photoUrl'];
     isPremium = json['isPremium'];
     premiumStartDate = json['premiumStartDate'] != null
@@ -54,9 +56,18 @@ class UserModel {
   }
 
   Map<String, dynamic> toMap() {
+    id ??= '';
+    name ??= '';
+    email ??= '';
+    photoUrl ??= '';
+    phoneNo ??= '';
+    gender ??= '';
+    contentLikedByUser ??= [];
+
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['id'] = id;
+    data['isAdmin'] = isAdmin;
     data['email'] = email;
     data['photoUrl'] = photoUrl;
     data['isPremium'] = isPremium;
@@ -70,11 +81,48 @@ class UserModel {
   }
 
   UserModel.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    id = snapshot.id;
-    email = snapshot['email'];
-    name = snapshot['name'];
-    contentLikedByUser = snapshot['contentLikedByUser'] != null
-        ? List<String>.from(snapshot['contentLikedByUser'])
-        : [];
+    try {
+      id = snapshot.id;
+      email = snapshot['email'];
+      name = snapshot['name'];
+      isAdmin = snapshot['isAdmin'];
+      contentLikedByUser = snapshot['contentLikedByUser'] != null
+          ? List<String>.from(snapshot['contentLikedByUser'])
+          : [];
+      photoUrl = snapshot['photoUrl'];
+      isPremium = snapshot['isPremium'];
+      premiumStartDate = snapshot['premiumStartDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              snapshot['premiumStartDate'].millisecondsSinceEpoch)
+          : null;
+      premiumEndDate = snapshot['premiumEndDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              snapshot['premiumEndDate'].millisecondsSinceEpoch)
+          : null;
+      phoneNo = snapshot['phoneNo'];
+      dob = snapshot['dob'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              snapshot['dob'].millisecondsSinceEpoch)
+          : null;
+      gender = snapshot['gender'];
+    } catch (e) {
+      try {
+        id = snapshot.id;
+        email = snapshot['email'];
+        name = snapshot['name'];
+        isAdmin = isAdmin;
+        contentLikedByUser = snapshot['contentLikedByUser'] != null
+            ? List<String>.from(snapshot['contentLikedByUser'])
+            : [];
+      } catch (e) {
+        id = snapshot.id;
+        email = snapshot['email'];
+        name = snapshot['name'];
+        isAdmin = false;
+        contentLikedByUser = snapshot['contentLikedByUser'] != null
+            ? List<String>.from(snapshot['contentLikedByUser'])
+            : [];
+      }
+    }
   }
 }
