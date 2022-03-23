@@ -19,6 +19,7 @@ class ContentModel {
   DateTime? addedDate;
   List<String>? categories;
   List<String>? likes;
+  bool isDeleted = false;
 
   //Color varible is not stored in firebase, it is defined for in app UI purpose.
   Color color = Colors.indigo[400]!;
@@ -37,6 +38,7 @@ class ContentModel {
     this.addedDate,
     this.categories,
     this.likes,
+    this.isDeleted = false,
   }) {
     _initialize();
   }
@@ -155,6 +157,7 @@ class ContentModel {
     data['addedDate'] = addedDate;
     data['categories'] = categories;
     data['likes'] = likes;
+    data['isDeleted'] = isDeleted;
     return data;
   }
 
@@ -178,6 +181,7 @@ class ContentModel {
     likes = documentSnapshot['likes'] != null
         ? List<String>.from(documentSnapshot['likes'])
         : [];
+    isDeleted = documentSnapshot['isDeleted'];
     _initialize();
   }
 }

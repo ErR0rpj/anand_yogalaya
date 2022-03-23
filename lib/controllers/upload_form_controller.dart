@@ -31,6 +31,21 @@ class UploadFormController extends GetxController {
     }
   }
 
+  Future<bool> markContentDeleted(ContentModel contentModel) async {
+    try {
+      await firebaseFirestore
+          .collection('contents')
+          .doc(contentModel.id)
+          .update({
+        'isDeleted': true,
+      });
+      return false;
+    } catch (e) {
+      print('Error marking content delted: $e');
+      return false;
+    }
+  }
+
   Future<bool> updateForm(ContentModel contentModel) async {
     try {
       WriteBatch batch = firebaseFirestore.batch();

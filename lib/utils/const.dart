@@ -27,10 +27,13 @@ class AppConstants {
   }
 }
 
-Widget buttonWithText({String text = 'Done', void Function()? onPressed}) {
+Widget buttonWithText(
+    {String text = 'Done',
+    Color color = Donebutton,
+    void Function()? onPressed}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: Donebutton,
+      primary: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
       ),
