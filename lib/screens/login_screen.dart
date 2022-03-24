@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  'Workout',
+                                  'ANAND YOGALAYA',
                                   style: GoogleFonts.merriweather(
                                     fontWeight: LOGIN_WORKOUT_TEXT_COLOR,
                                     color: Colors.black,
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 const SizedBox(height: S_SIZEDBOX_SIZE),
                                 Text(
-                                  'Dont miss the fitness!!',
+                                  'Yoga & Meditation',
                                   style: GoogleFonts.merriweather(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

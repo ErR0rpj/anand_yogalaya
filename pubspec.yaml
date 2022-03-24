@@ -31,6 +31,7 @@ dependencies:
   flutter_network_connectivity: ^0.0.6
   uuid: ^3.0.6
   multi_select_flutter: ^4.0.0
+  rename: ^2.0.1
 
 
 dev_dependencies:

@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: M_SIZEDBOX_SIZE,
             ),
             const Text(
-              "ANAND YOGALYA",
+              "ANAND YOGALAYA",
               style: TextStyle(fontSize: ANAND_YOGALAYA_SIZE, fontWeight: ANAND_YOGALAYA_TEXT_COLOR),
             ),
           ],

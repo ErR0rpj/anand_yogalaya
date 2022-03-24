@@ -78,8 +78,8 @@ class NavsideBar extends GetWidget<AuthController> {
             onTap: () => {Get.to(() => NotificationPage())},
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
+            leading: const Icon(Icons.info),
+            title: const Text('About us'),
             onTap: () => null,
           ),
           ListTile(

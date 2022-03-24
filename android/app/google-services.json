@@ -38,6 +38,14 @@
           }
         },
         {
+          "client_id": "175004096229-iidifstfatt9ja8hbt6c5r0o82trdrk1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StavanCo.anand_yogalaya",
+            "certificate_hash": "b145de5d9d4ba942e4607f1c5ab23f65c45dcf5a"
+          }
+        },
+        {
           "client_id": "175004096229-kepi8mjopn6me72o4tdefs8tqmloblp8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
