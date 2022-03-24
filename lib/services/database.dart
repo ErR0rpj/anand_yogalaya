@@ -4,7 +4,7 @@ import '../models/category_model.dart';
 import '../models/user_model.dart';
 
 class Database {
-  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   // Creating User in DB
   Future<bool> createNewUser(UserModel user) async {
