@@ -1,5 +1,6 @@
 import 'package:anand_yogalaya/controllers/auth_controller.dart';
 import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
+import 'package:anand_yogalaya/screens/webview_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -73,14 +74,43 @@ class NavsideBar extends GetWidget<AuthController> {
             ),
           ),
           ListTile(
+            leading: const Icon(Icons.edit_note_rounded),
+            title: const Text('Register for Classes'),
+            onTap: () => {
+              Get.to(() => const WebViewScreen(
+                  url: 'http://www.anandyogalaya.co.in/register.php')),
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.image_rounded),
+            title: const Text('Gallery'),
+            onTap: () => {
+              Get.to(() => const WebViewScreen(
+                  url: 'http://www.anandyogalaya.co.in/gallery.html')),
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.share),
             title: const Text('Share'),
-            onTap: () => {Get.to(() => NotificationPage())},
+            onTap: () => {
+              //TODO: Add link to share
+            },
           ),
           ListTile(
             leading: const Icon(Icons.info),
             title: const Text('About us'),
-            onTap: () => null,
+            onTap: () => {
+              Get.to(() => const WebViewScreen(
+                  url: 'http://www.anandyogalaya.co.in/about.html')),
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.contact_mail_rounded),
+            title: const Text('Contact us'),
+            onTap: () => {
+              Get.to(() => const WebViewScreen(
+                  url: 'http://www.anandyogalaya.co.in/contact.php')),
+            },
           ),
           ListTile(
             leading: const Icon(Icons.description),
