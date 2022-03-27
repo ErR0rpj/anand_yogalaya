@@ -165,7 +165,7 @@ class Subcategory extends StatelessWidget {
                               }
                               return ListView.separated(
                                 separatorBuilder: (c, i) {
-                                  return SizedBox(
+                                  return const SizedBox(
                                     height: S_MEDIUM_PAD,
                                   );
                                 },
@@ -175,7 +175,8 @@ class Subcategory extends StatelessWidget {
 
                                   //print("------${snapshot.data?[index].likes?.contains(authController.user?.uid)}");
                                   return Padding(
-                                    padding: const EdgeInsets.fromLTRB(SMALL_PAD,0,SMALL_PAD,0),
+                                    padding: const EdgeInsets.fromLTRB(
+                                        SMALL_PAD, 0, SMALL_PAD, 0),
                                     child: InkWell(
                                       onTap: () {
                                         Get.to(
@@ -189,8 +190,8 @@ class Subcategory extends StatelessWidget {
                                         //height: size.height * 0.12,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(
-                                              TOP_WORKOUT_RAIDUS),
+                                          borderRadius:
+                                              BorderRadius.circular(S_RADIUS),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: kblack.withOpacity(0.1),
@@ -199,37 +200,36 @@ class Subcategory extends StatelessWidget {
                                           ],
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(SMALL_PAD,0,SMALL_PAD,0),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              SMALL_PAD, 0, SMALL_PAD, 0),
                                           child: ListTile(
-                                            contentPadding: EdgeInsets.all(0),
+                                            contentPadding:
+                                                const EdgeInsets.all(0),
                                             leading: Container(
                                               width: size.width * 0.17,
                                               height: size.height * 0.085,
                                               decoration: BoxDecoration(
                                                 color: PlayButtonColor,
                                                 borderRadius:
-                                                BorderRadius.circular(
-                                                  TOP_WORKOUT_RAIDUS,
+                                                    BorderRadius.circular(
+                                                  S_RADIUS,
                                                 ),
                                               ),
                                               child: Stack(
                                                 fit: StackFit.expand,
                                                 alignment:
-                                                AlignmentDirectional
-                                                    .center,
+                                                    AlignmentDirectional.center,
                                                 children: [
                                                   ClipRRect(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        TOP_WORKOUT_RAIDUS),
-                                                    child: snapshot
-                                                        .data![index]
+                                                        BorderRadius.circular(
+                                                            TOP_WORKOUT_RAIDUS),
+                                                    child: snapshot.data![index]
                                                         .imageWidget,
                                                   ),
                                                   const Center(
                                                     child: Icon(
-                                                      Icons
-                                                          .play_arrow_outlined,
+                                                      Icons.play_arrow_outlined,
                                                       size: VIDEO_ICON_SIZE,
                                                       color: Colors.white,
                                                     ),
@@ -238,31 +238,36 @@ class Subcategory extends StatelessWidget {
                                               ),
                                             ),
                                             trailing: Padding(
-                                              padding: const EdgeInsets.fromLTRB(0,0,8,0),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 8, 0),
                                               child: Padding(
-                                                padding:
-                                                const EdgeInsets.all(SMALL_PAD),
+                                                padding: const EdgeInsets.all(
+                                                    SMALL_PAD),
                                                 child: InkWell(
                                                   onTap: () {
                                                     contentController
                                                         .likeContent(snapshot
-                                                        .data![index]);
+                                                            .data![index]);
                                                   },
-                                                  child: Icon( snapshot
-                                                      .data![index]
-                                                      .likes!
-                                                      .contains(
-                                                      authController
-                                                          .user
-                                                          ?.uid) ? Icons.favorite : Icons.favorite_border_outlined ,
+                                                  child: Icon(
+                                                      snapshot.data![index]
+                                                              .likes!
+                                                              .contains(
+                                                                  authController
+                                                                      .user
+                                                                      ?.uid)
+                                                          ? Icons.favorite
+                                                          : Icons
+                                                              .favorite_border_outlined,
                                                       size: 24,
                                                       color: snapshot
-                                                          .data![index]
-                                                          .likes!
-                                                          .contains(
-                                                          authController
-                                                              .user
-                                                              ?.uid)
+                                                              .data![index]
+                                                              .likes!
+                                                              .contains(
+                                                                  authController
+                                                                      .user
+                                                                      ?.uid)
                                                           ? Colors.red
                                                           : Colors.grey),
                                                 ),
@@ -271,51 +276,44 @@ class Subcategory extends StatelessWidget {
                                             title: Text(
                                               snapshot.data![index].name,
                                               style: const TextStyle(
-                                                fontWeight:
-                                                WORKOUTS_WEIGHT,
+                                                fontWeight: WORKOUTS_WEIGHT,
                                                 color: Colors.black,
                                                 fontSize:
-                                                SUBCATEGORY_EXERCISE_NAME,
+                                                    SUBCATEGORY_EXERCISE_NAME,
                                               ),
                                             ),
                                             subtitle: Row(
                                               children: [
                                                 Text(
-                                                  snapshot.data![index]
-                                                      .views
-                                                      .toString() +
+                                                  snapshot.data![index].views
+                                                          .toString() +
                                                       ' views',
                                                   style: TextStyle(
                                                       color: Donebutton
-                                                          .withOpacity(
-                                                          0.7),
+                                                          .withOpacity(0.7),
                                                       fontSize: 10),
                                                 ),
                                                 SizedBox(
-                                                  width:
-                                                  size.width * 0.03,
+                                                  width: size.width * 0.03,
                                                 ),
                                                 Icon(
-                                                  Icons
-                                                      .access_time_outlined,
+                                                  Icons.access_time_outlined,
                                                   size: 10,
-                                                  color: Donebutton
-                                                      .withOpacity(0.7),
+                                                  color: Donebutton.withOpacity(
+                                                      0.7),
                                                 ),
                                                 SizedBox(
-                                                  width:
-                                                  size.width * 0.01,
+                                                  width: size.width * 0.01,
                                                 ),
                                                 Text(
                                                   (snapshot.data![index]
-                                                      .duration! ~/
-                                                      60)
-                                                      .toString() +
+                                                                  .duration! ~/
+                                                              60)
+                                                          .toString() +
                                                       ' min',
                                                   style: TextStyle(
                                                       color: Donebutton
-                                                          .withOpacity(
-                                                          0.7),
+                                                          .withOpacity(0.7),
                                                       fontSize: 10),
                                                 ),
                                               ],
