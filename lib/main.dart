@@ -10,12 +10,12 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await firebaseInitialization.then((value) {
+  /*await firebaseInitialization.then((value) {
     Get.put(AuthController());
     Get.put(UserController());
     Get.put(CategoryController());
     Get.put(ContentController());
-  });
+  });*/
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   //SystemChrome.setEnabledSystemUIOverlays([]);
