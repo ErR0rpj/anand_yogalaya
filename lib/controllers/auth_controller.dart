@@ -3,7 +3,9 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,75 +16,65 @@ import '../utils/loading_widget.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
 
-  late Rx<User?> firebaseUser;
-  late Rx<GoogleSignInAccount?> googleSignInAccount;
-  User? get user => firebaseUser.value;
+  FirebaseApp? firebaseApp;
+  User? firebaseUser;
+  FirebaseAuth? firebaseAuth;
 
-  @override
-  void onReady() {
-    super.onReady();
+  User? get user => firebaseUser;
 
-    firebaseUser = Rx<User?>(auth.currentUser);
-    googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
-
-    firebaseUser.bindStream(auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
-
-    //googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
-    //ever(googleSignInAccount, _setInitialScreenGoogle);
+  Future<void> initializeFirebaseApp() async {
+    firebaseApp = await Firebase.initializeApp();
   }
 
-  _setInitialScreen(User? user) async {
-    if (user == null) {
-      print('User is null in set initial screnn');
-      //Get off removes all other screens and just opens the screen which is passed.
-      Get.offAll(() => const LoginScreen());
+  Future<Widget> checkUserLoggedIn() async {
+    if (firebaseApp == null) {
+      await initializeFirebaseApp();
+    }
+    if (firebaseAuth == null) {
+      firebaseAuth = FirebaseAuth.instance;
+      update();
+    }
+    if (firebaseAuth?.currentUser == null) {
+      return LoginScreen();
     } else {
-      print('User is  not null in set initial screnn');
-      print('Fetching user data from firestore');
+      firebaseUser = firebaseAuth?.currentUser!;
 
-      UserModel userModel = await Database().getUser(auth.currentUser!.uid);
-
-      // user created successfully
+      String? uid = firebaseAuth?.currentUser?.uid;
+      print("UID IS __________ ${uid}");
+      UserModel userModel = await Database().getUser(uid!);
       Get.find<UserController>().user = userModel;
-      Get.offAll(() => const HomepageScreen());
+      update();
+      return HomepageScreen();
     }
   }
 
-  // _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
-  //   print(googleSignInAccount);
-  //   if (googleSignInAccount == null) {
-  //     Get.offAll(() => const LoginScreen());
-  //   } else {
-  //     Get.offAll(() => const HomepageScreen());
-  //   }
-  // }
 
   void signInWithGoogle() async {
     try {
-      print('Entering sign in with google');
-      Get.dialog(const Center(child: LoadingWidget()),
-          barrierDismissible: false);
-      GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
+      Get.dialog(Center(child: LoadingWidget()), barrierDismissible: false);
 
-      if (googleSignInAccount != null) {
-        GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
+      await initializeFirebaseApp();
 
-        AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
+      firebaseAuth = FirebaseAuth.instance;
 
-        await auth.signInWithCredential(credential).catchError((onError) {
-          print('Error sign in with credential: $onError');
-        });
+      final googleUser = await GoogleSignIn().signIn();
+
+      final googleAuth = await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      final userCredentialData =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      firebaseUser = userCredentialData.user!;
 
         // Created User in DB
         UserModel _user = UserModel(
-          id: auth.currentUser?.uid,
-          name: auth.currentUser?.displayName,
-          email: auth.currentUser?.email,
+          id: firebaseUser?.uid,
+          name: firebaseUser?.displayName,
+          email: firebaseUser?.email,
         );
 
         bool newUser = await Database().checkIfUserExists(_user);
@@ -92,12 +84,28 @@ class AuthController extends GetxController {
           await Database().createNewUser(_user);
           Get.find<UserController>().user = _user;
           //Get.back();
+        }else{
+          String? uid = firebaseAuth?.currentUser?.uid;
+          print("UID IS __________ ${uid}");
+          UserModel userModel = await Database().getUser(uid!);
+          Get.find<UserController>().user = userModel;
         }
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'Error Logging In: $e',
-          snackPosition: SnackPosition.BOTTOM);
-      print('Error loggin user in: $e');
+
+        update();
+        Get.back();
+        Get.off(() => HomepageScreen());
+
+      }catch (e) {
+      Get.back();
+      Get.snackbar('Sign In Error', 'Error Signing in',
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.black,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+          icon: Icon(
+            Icons.error,
+            color: Colors.red,
+          ));
     }
   }
 
@@ -125,11 +133,17 @@ class AuthController extends GetxController {
     try {
       Get.dialog(const Center(child: LoadingWidget()),
           barrierDismissible: false);
-      await auth.signOut();
+      await firebaseAuth?.signOut();
       await googleSign.disconnect();
       authController.onClose();
       //This disposes the controller after signing user out.
       Get.find<UserController>().clear();
+
+      Get.back();
+
+      // Navigate to Login again
+      Get.offAll(()=>LoginScreen());
+
     } catch (e) {
       print('Error signing out user: $e');
     }

@@ -5,6 +5,8 @@ import 'package:anand_yogalaya/screens/bottomNavigationScreens/dashboard_screen.
 import 'package:anand_yogalaya/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/category_controller.dart';
+import '../../controllers/content_controller.dart';
 import '../../utils/const.dart';
 import '../trendingScreens/uploadform.dart';
 
@@ -16,7 +18,9 @@ class HomepageScreen extends StatefulWidget {
 }
 
 class HomepageScreenState extends State<HomepageScreen> {
-  final UserController userController = Get.find();
+  UserController userController = Get.find();
+  final CategoryController categoryController = Get.put(CategoryController());
+  final ContentController contentController = Get.put(ContentController());
 
   List pages = [
     const DashBoardScreen(),
