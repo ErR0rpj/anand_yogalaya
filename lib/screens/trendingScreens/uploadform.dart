@@ -412,38 +412,57 @@ Future showUploadForm(BuildContext context) async {
                             textController: durationController,
                           ),
                           buildUploadFormTitle('Categories'),
-                          MultiSelectDialogField(
-                            searchHint: 'Search category',
-                            searchable: true,
-                            items: categoryController.getAllCategoryList
-                                .map<MultiSelectItem<CategoryModel?>>(
-                                    (e) => MultiSelectItem(e, e.name))
-                                .toList(),
-                            title: const Text("Categories"),
-                            selectedColor: kindigo,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: MultiSelectDialogField(
+                                  searchHint: 'Search category',
+                                  searchable: true,
+                                  items: categoryController.getAllCategoryList
+                                      .map<MultiSelectItem<CategoryModel?>>(
+                                          (e) => MultiSelectItem(e, e.name))
+                                      .toList(),
+                                  title: const Text("Categories"),
+                                  selectedColor: kindigo,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                    border: Border.all(
+                                      color: kGreyShade1,
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  buttonIcon: Icon(
+                                    Icons.category,
+                                    color: kindigo,
+                                  ),
+                                  buttonText: const Text(
+                                    "Choose category",
+                                  ),
+                                  onConfirm: (results) {
+                                    //_selectedCategoryList = results.cast<CategoryModel>();
+                                    for (var result
+                                        in results.cast<CategoryModel>()) {
+                                      _selectedCategoryIdList.add(result.id);
+                                    }
+                                  },
+                                ),
                               ),
-                              border: Border.all(
-                                color: kGreyShade1,
+                              Expanded(
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.add_box_rounded,
+                                    color: Donebutton,
+                                  ),
+                                  onPressed: () async {
+                                    await showCategoryUploadForm(context);
+                                    setStateInsideSheet(() {});
+                                  },
+                                ),
                               ),
-                              color: Colors.white,
-                            ),
-                            buttonIcon: Icon(
-                              Icons.category,
-                              color: kindigo,
-                            ),
-                            buttonText: const Text(
-                              "Choose category",
-                            ),
-                            onConfirm: (results) {
-                              //_selectedCategoryList = results.cast<CategoryModel>();
-                              for (var result
-                                  in results.cast<CategoryModel>()) {
-                                _selectedCategoryIdList.add(result.id);
-                              }
-                            },
+                            ],
                           ),
                           const SizedBox(height: M_MEDIUM_PAD),
                           buttonWithText(
@@ -505,6 +524,189 @@ Future showUploadForm(BuildContext context) async {
                                 } else {
                                   Get.snackbar("Failed",
                                       "Uploading content Failed, Try Again!",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                }
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      );
+    },
+  );
+}
+
+Future showCategoryUploadForm(BuildContext context) async {
+  bool isPremium = false;
+  bool isPlaylist = true;
+  TextEditingController titleController = TextEditingController();
+  TextEditingController photoURLController = TextEditingController();
+  TextEditingController durationController = TextEditingController();
+
+  durationController.text = '0';
+
+  UploadFormController uploadFormController = Get.put(UploadFormController());
+
+  return showModalBottomSheet(
+    context: context,
+    backgroundColor: Colors.transparent,
+    isDismissible: true,
+    isScrollControlled: true,
+    builder: (context) {
+      return DraggableScrollableSheet(
+        initialChildSize: 0.75,
+        maxChildSize: 0.75,
+        minChildSize: 0.2,
+        builder: (context, scrollController) {
+          return Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: StatefulBuilder(
+              builder: (sheetContext, setStateInsideSheet) {
+                return Container(
+                  color: Colors.transparent,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                      color: SubcategoryColor,
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 15, left: 15, right: 15, bottom: 20),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: const Icon(
+                                  Icons.close,
+                                  size: 24,
+                                ),
+                              ),
+                              Text(
+                                'Add Category',
+                                style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Donebutton,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  isPremium = !isPremium;
+                                  setStateInsideSheet(() {});
+                                },
+                                child: Icon(
+                                  isPremium
+                                      ? Icons.star_rate_rounded
+                                      : Icons.star_border_outlined,
+                                  color: kPrimaryYellow,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          buildUploadFormTitle('Title *'),
+                          buildUploadFormTextField(
+                            hint: 'Enter a name of Playlist/Category',
+                            textController: titleController,
+                          ),
+                          buildUploadFormTitle('Image URL'),
+                          buildUploadFormTextField(
+                            hint: 'Enter a Image URL',
+                            textController: photoURLController,
+                          ),
+                          buildUploadFormTitle('Duration (seconds)'),
+                          buildUploadFormTextField(
+                            hint: '',
+                            isInt: true,
+                            textController: durationController,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              buildUploadFormTitle('Categories'),
+                              Switch(
+                                  value: isPlaylist,
+                                  onChanged: (value) {
+                                    setStateInsideSheet(() {
+                                      isPlaylist = value;
+                                    });
+                                  }),
+                            ],
+                          ),
+                          const SizedBox(height: M_MEDIUM_PAD),
+                          buttonWithText(
+                              text: 'Save',
+                              onPressed: () async {
+                                if (titleController.text.trim().isEmpty) {
+                                  Get.snackbar(
+                                    'Form Incomplete!',
+                                    'Title is compulsory.',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
+
+                                if (durationController.text.isEmpty) {
+                                  durationController.text = '0';
+                                }
+
+                                bool isNetworkConnectionAvailable =
+                                    await NetworkService
+                                        .checkInternetConnection();
+                                if (!isNetworkConnectionAvailable) {
+                                  Get.snackbar(
+                                    'Network Error!',
+                                    'Please check your Internet Connection!',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                  return;
+                                }
+
+                                CategoryModel categoryModel = CategoryModel(
+                                  name: titleController.text,
+                                  id: titleController.text.toUpperCase(),
+                                  imageUrl: photoURLController.text,
+                                  totalDuration:
+                                      int.parse(durationController.text),
+                                  isPremium: isPremium,
+                                  isPlayList: isPlaylist,
+                                );
+
+                                bool isSuccess = await uploadFormController
+                                    .addCategoryForm(categoryModel);
+                                if (isSuccess) {
+                                  Get.snackbar(
+                                      "Added",
+                                      isPlaylist
+                                          ? 'Playlist added successfully!'
+                                          : 'Category added successfully',
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Donebutton,
+                                      isDismissible: true);
+                                  Navigator.pop(context);
+                                } else {
+                                  Get.snackbar(
+                                      "Failed",
+                                      isPlaylist
+                                          ? 'Failed adding Playlist'
+                                          : 'Failed adding Category',
                                       snackPosition: SnackPosition.BOTTOM,
                                       colorText: Donebutton,
                                       isDismissible: true);

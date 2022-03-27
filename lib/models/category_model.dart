@@ -25,6 +25,7 @@ class CategoryModel {
     required this.imageUrl,
     this.totalDuration,
     required this.isPlayList,
+    this.isPremium = false,
     this.searchKeywords = '',
     this.contents,
     this.color = Colors.indigo,
@@ -47,7 +48,8 @@ class CategoryModel {
     imageWidget = CachedNetworkImage(
       fit: BoxFit.contain,
       imageUrl: imageUrl,
-      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+      placeholder: (context, url) =>
+          const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
@@ -98,9 +100,12 @@ class CategoryModel {
   }
 
   Map<String, dynamic> toMap() {
+    contents ??= [];
+
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['imageUrl'] = imageUrl;
     data['totalDuration'] = totalDuration;
     data['isPlayList'] = isPlayList;
     data['isPremium'] = isPremium;

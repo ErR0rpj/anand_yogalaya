@@ -52,7 +52,20 @@ class ContentController extends GetxController {
         }
       }
     }
+    getCategoryContentList.sort(alphabeticalComparison);
     return getCategoryContentList;
+  }
+
+  static int alphabeticalComparison(ContentModel? a, ContentModel? b) {
+    final propertyA = a!.name;
+    final propertyB = b!.name;
+    if (propertyA.compareTo(propertyB) < 0) {
+      return 1;
+    } else if (propertyA.compareTo(propertyB) > 0) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 
   static int popularComparison(ContentModel? a, ContentModel? b) {
