@@ -3,6 +3,7 @@ import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/screens/trendingScreens/uploadform.dart';
 import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:anand_yogalaya/utils/const.dart';
+import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -79,6 +80,7 @@ class _ContentScreenState extends State<ContentScreen> {
                       children: [
                         InkWell(
                           onTap: () {
+                            AutoOrientation.portraitUpMode();
                             Get.back();
                           },
                           child: const Icon(

@@ -1,15 +1,10 @@
 import 'package:anand_yogalaya/controllers/auth_controller.dart';
-import 'package:anand_yogalaya/screens/bottomNavigationScreens/homeScreen.dart';
 import 'package:anand_yogalaya/screens/webview_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../utils/const.dart';
-import '../Notifications/notificationlist.dart';
-import '../Notifications/notificationsdetailpage.dart';
-import '../login_screen.dart';
-import 'aboutUser.dart';
 
 class NavsideBar extends GetWidget<AuthController> {
   const NavsideBar({Key? key}) : super(key: key);

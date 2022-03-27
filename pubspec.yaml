@@ -33,6 +33,7 @@ dependencies:
   multi_select_flutter: ^4.0.0
   rename: ^2.0.1
   webview_flutter: ^3.0.1
+  auto_orientation: ^2.2.1
 
 
 dev_dependencies:
