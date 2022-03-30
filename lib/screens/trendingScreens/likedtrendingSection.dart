@@ -122,8 +122,8 @@ class LikedListScreen extends StatelessWidget {
                                             (contentController
                                                             .getLikedContentList[
                                                                 index]
-                                                            .duration! ~/
-                                                        60)
+                                                            .duration!
+                                                        )
                                                     .toString() +
                                                 ' min',
                                             style: TextStyle(

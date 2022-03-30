@@ -1,7 +1,9 @@
+import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryModel {
   String id = '';
@@ -23,7 +25,7 @@ class CategoryModel {
     required this.id,
     required this.name,
     required this.imageUrl,
-    this.totalDuration,
+    this.totalDuration = 0,
     required this.isPlayList,
     this.isPremium = false,
     this.searchKeywords = '',
@@ -35,6 +37,11 @@ class CategoryModel {
 
   void _initialize() {
     contents ??= [];
+
+    if(totalDuration == null || totalDuration! <= 0){
+      totalDuration = 0;
+      _calculateTotalDuration();
+    }
 
     if (imageUrl.isEmpty) {
       imageUrl =
@@ -52,6 +59,16 @@ class CategoryModel {
           const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
+  }
+
+  Future<void> _calculateTotalDuration()async{
+    ContentController contentController = Get.find();
+
+    for(int i=0;i<contentController.getContentList.length;i++){
+      if(contents!.contains(contentController.getContentList[i].id)){
+        totalDuration= totalDuration! + contentController.getContentList[i].duration!;
+      }
+    }
   }
 
   //Creates the srachkeywords to help in searching
