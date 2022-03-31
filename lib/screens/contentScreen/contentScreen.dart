@@ -28,6 +28,9 @@ class _ContentScreenState extends State<ContentScreen> {
   @override
   void initState() {
     super.initState();
+
+    contentController.increaseViewsOfContent(widget.content);
+
     if (widget.content.videoUrl == null || widget.content.videoUrl!.isEmpty) {
       isContent = true;
     } else {
@@ -80,7 +83,7 @@ class _ContentScreenState extends State<ContentScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            AutoOrientation.portraitUpMode();
+                            AutoOrientation.fullAutoMode();
                             Get.back();
                           },
                           child: const Icon(

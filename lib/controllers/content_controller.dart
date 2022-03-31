@@ -165,4 +165,19 @@ class ContentController extends GetxController {
     }
     update();
   }
+
+  // increase views particular content with id
+  Future<void> increaseViewsOfContent(ContentModel contentModel) async {
+    print('Incresing views');
+    try {
+      await firebaseFirestore
+          .collection('contents')
+          .doc(contentModel.id)
+          .update({'views': FieldValue.increment(1)});
+      contentModel.views++;
+    } catch (e) {
+      print('Error increasing views');
+    }
+    update();
+  }
 }

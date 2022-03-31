@@ -4,11 +4,9 @@ import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:like_button/like_button.dart';
 import '../../models/content_model.dart';
 
 class Subcategory extends StatelessWidget {
@@ -307,8 +305,7 @@ class Subcategory extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   (snapshot.data![index]
-                                                                  .duration!
-                                                              )
+                                                              .duration!)
                                                           .toString() +
                                                       ' min',
                                                   style: TextStyle(

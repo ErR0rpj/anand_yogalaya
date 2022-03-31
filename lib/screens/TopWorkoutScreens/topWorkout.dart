@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/utils/const.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/category_controller.dart';
@@ -24,7 +23,7 @@ class Workouts extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
             horizontal: appPadding / 2, vertical: appPadding / 2),
         child: Container(
-          height: size.height * 0.25,
+          height: 200,
           decoration: BoxDecoration(
               color: kPrimaryPurple,
               borderRadius: BorderRadius.circular(TOP_WORKOUT_RAIDUS),
@@ -38,9 +37,8 @@ class Workouts extends StatelessWidget {
             padding: const EdgeInsets.all(appPadding),
             child: Row(
               children: [
-                Container(
-                  width: size.width * 0.45,
-                  child: Padding(
+                Expanded(
+                  child: Container(
                     padding: const EdgeInsets.only(
                         left: appPadding / 2,
                         top: appPadding / 1.5,
@@ -106,9 +104,8 @@ class Workouts extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    width: size.width * 0.35,
-                    height: size.height * 0.2,
-                    child: categoryController.getPlaylistList[index].imageWidget,
+                    child:
+                        categoryController.getPlaylistList[index].imageWidget,
                   ),
                 ),
               ],

@@ -4,11 +4,9 @@ import 'package:anand_yogalaya/screens/login_screen.dart';
 import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../models/user_model.dart';
 import '../services/database.dart';
 import '../utils/loading_widget.dart';
@@ -35,7 +33,7 @@ class AuthController extends GetxController {
       update();
     }
     if (firebaseAuth?.currentUser == null) {
-      return LoginScreen();
+      return const LoginScreen();
     } else {
       firebaseUser = firebaseAuth?.currentUser!;
 
@@ -44,14 +42,14 @@ class AuthController extends GetxController {
       UserModel userModel = await Database().getUser(uid!);
       Get.find<UserController>().user = userModel;
       update();
-      return HomepageScreen();
+      return const HomepageScreen();
     }
   }
 
-
   void signInWithGoogle() async {
     try {
-      Get.dialog(Center(child: LoadingWidget()), barrierDismissible: false);
+      Get.dialog(const Center(child: LoadingWidget()),
+          barrierDismissible: false);
 
       await initializeFirebaseApp();
 
@@ -67,42 +65,41 @@ class AuthController extends GetxController {
       );
 
       final userCredentialData =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+          await FirebaseAuth.instance.signInWithCredential(credential);
       firebaseUser = userCredentialData.user!;
 
-        // Created User in DB
-        UserModel _user = UserModel(
-          id: firebaseUser?.uid,
-          name: firebaseUser?.displayName,
-          email: firebaseUser?.email,
-        );
+      // Created User in DB
+      UserModel _user = UserModel(
+        id: firebaseUser?.uid,
+        name: firebaseUser?.displayName,
+        email: firebaseUser?.email,
+      );
 
-        bool newUser = await Database().checkIfUserExists(_user);
+      bool newUser = await Database().checkIfUserExists(_user);
 
-        if (newUser == false) {
-          // user created successfully
-          await Database().createNewUser(_user);
-          Get.find<UserController>().user = _user;
-          //Get.back();
-        }else{
-          String? uid = firebaseAuth?.currentUser?.uid;
-          print("UID IS __________ ${uid}");
-          UserModel userModel = await Database().getUser(uid!);
-          Get.find<UserController>().user = userModel;
-        }
+      if (newUser == false) {
+        // user created successfully
+        await Database().createNewUser(_user);
+        Get.find<UserController>().user = _user;
+        //Get.back();
+      } else {
+        String? uid = firebaseAuth?.currentUser?.uid;
+        print("UID IS __________ ${uid}");
+        UserModel userModel = await Database().getUser(uid!);
+        Get.find<UserController>().user = userModel;
+      }
 
-        update();
-        Get.back();
-        Get.off(() => HomepageScreen());
-
-      }catch (e) {
+      update();
+      Get.back();
+      Get.off(() => const HomepageScreen());
+    } catch (e) {
       Get.back();
       Get.snackbar('Sign In Error', 'Error Signing in',
-          duration: Duration(seconds: 5),
+          duration: const Duration(seconds: 5),
           backgroundColor: Colors.black,
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
-          icon: Icon(
+          icon: const Icon(
             Icons.error,
             color: Colors.red,
           ));
@@ -142,8 +139,7 @@ class AuthController extends GetxController {
       Get.back();
 
       // Navigate to Login again
-      Get.offAll(()=>LoginScreen());
-
+      Get.offAll(() => const LoginScreen());
     } catch (e) {
       print('Error signing out user: $e');
     }

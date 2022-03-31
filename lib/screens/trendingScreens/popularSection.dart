@@ -1,7 +1,6 @@
 import 'package:anand_yogalaya/controllers/content_controller.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
 import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
-import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,8 +55,8 @@ class PopularListScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                width: size.width * 0.15,
-                                height: size.height * 0.070,
+                                width: 65,
+                                height: 55,
                                 decoration: BoxDecoration(
                                   color: Donebutton,
                                   borderRadius: BorderRadius.circular(20),
@@ -121,10 +120,9 @@ class PopularListScreen extends StatelessWidget {
                                           SizedBox(width: size.width * 0.01),
                                           Text(
                                             (contentController
-                                                            .getPopularContentList[
-                                                                index]
-                                                            .duration!
-                                                        )
+                                                        .getPopularContentList[
+                                                            index]
+                                                        .duration!)
                                                     .toString() +
                                                 ' min',
                                             style: TextStyle(

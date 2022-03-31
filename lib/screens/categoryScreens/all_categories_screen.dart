@@ -14,6 +14,7 @@ class AllCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kwhite,
       appBar: const DefaultAppBar(
@@ -40,8 +41,8 @@ class AllCategoriesScreen extends StatelessWidget {
             const SizedBox(height: M_SIZEDBOX_SIZE),
             Expanded(
               child: GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: CATEGORY_GRID_NUMBER,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: size.width ~/ 100,
                 ),
                 children: List.generate(
                   categoryController.getCategoryList.length,
@@ -63,8 +64,8 @@ class AllCategoriesScreen extends StatelessWidget {
             const SizedBox(height: M_SIZEDBOX_SIZE),
             Expanded(
               child: GridView(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: CATEGORY_GRID_NUMBER,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: size.width ~/ 100,
                 ),
                 children: List.generate(
                   categoryController.getPlaylistList.length,

@@ -1,9 +1,4 @@
-import 'package:anand_yogalaya/controllers/auth_controller.dart';
-import 'package:anand_yogalaya/controllers/category_controller.dart';
-import 'package:anand_yogalaya/controllers/content_controller.dart';
-import 'package:anand_yogalaya/controllers/user_controller.dart';
 import 'package:anand_yogalaya/screens/splash_screen.dart';
-import 'package:anand_yogalaya/utils/firebase_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

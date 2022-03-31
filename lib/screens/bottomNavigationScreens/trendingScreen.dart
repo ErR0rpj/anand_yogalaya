@@ -60,7 +60,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
           children: [
             Container(
               padding: const EdgeInsets.only(top: 10),
-              height: size.height * 0.28,
+              height: 210,
               color: kWhiteColor,
               child: CarouselSlider.builder(
                 itemCount: contentController.getContentList.length > 5
@@ -68,7 +68,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                     : contentController.getContentList.length,
                 itemBuilder: (content, index, heroIndex) {
                   return SizedBox(
-                    width: 300,
+                    width: size.width,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
@@ -141,8 +141,8 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
               ),
             ),
             SizedBox(
-              height: size.height * 0.38,
-              width: size.width * 0.9,
+              height: size.height * 0.9,
+              width: size.width - 35,
               child: TabBarView(
                 controller: _tabController,
                 children: [
