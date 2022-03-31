@@ -116,7 +116,7 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     ),
                   ),
                   subtitle: Text(
-                    '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration! ~/ 60} mins',
+                    '🧘 ${suggestionsForCategories.elementAt(index).contents?.length} excercises | ⏳ ${suggestionsForCategories.elementAt(index).totalDuration!} mins',
                     style: GoogleFonts.lato(
                       fontSize: 12,
                     ),
@@ -175,7 +175,7 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     ),
                   ),
                   subtitle: Text(
-                    '👁️ ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration! ~/ 60} mins',
+                    '👁️ ${suggestionsForContents.elementAt(index).views} views | ⏳ ${suggestionsForContents.elementAt(index).duration!} mins',
                     style: GoogleFonts.lato(
                       fontSize: 12,
                     ),

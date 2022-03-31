@@ -123,8 +123,8 @@ class PopularListScreen extends StatelessWidget {
                                             (contentController
                                                             .getPopularContentList[
                                                                 index]
-                                                            .duration! ~/
-                                                        60)
+                                                            .duration!
+                                                        )
                                                     .toString() +
                                                 ' min',
                                             style: TextStyle(

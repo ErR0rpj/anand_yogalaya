@@ -128,45 +128,64 @@ Future showUpdateForm(BuildContext context, ContentModel contentModel) async {
                             hint: 'Enter a Image URL',
                             textController: photoURLController,
                           ),
-                          buildUploadFormTitle('Duration (seconds)'),
+                          buildUploadFormTitle('Duration (mins)'),
                           buildUploadFormTextField(
                             hint: 'Reading/Video time',
                             isInt: true,
                             textController: durationController,
                           ),
                           buildUploadFormTitle('Categories'),
-                          MultiSelectDialogField(
-                            searchHint: 'Search category',
-                            searchable: true,
-                            items: categoryController.getAllCategoryList
-                                .map<MultiSelectItem<CategoryModel?>>(
-                                    (e) => MultiSelectItem(e, e.name))
-                                .toList(),
-                            title: const Text("Categories"),
-                            selectedColor: kindigo,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: MultiSelectDialogField(
+                                  searchHint: 'Search category',
+                                  searchable: true,
+                                  items: categoryController.getAllCategoryList
+                                      .map<MultiSelectItem<CategoryModel?>>(
+                                          (e) => MultiSelectItem(e, e.name))
+                                      .toList(),
+                                  title: const Text("Categories"),
+                                  selectedColor: kindigo,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                    border: Border.all(
+                                      color: kGreyShade1,
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  buttonIcon: Icon(
+                                    Icons.category,
+                                    color: kindigo,
+                                  ),
+                                  buttonText: const Text(
+                                    "Choose category",
+                                  ),
+                                  onConfirm: (results) {
+                                    //_selectedCategoryList = results.cast<CategoryModel>();
+                                    for (var result
+                                    in results.cast<CategoryModel>()) {
+                                      _selectedCategoryIdList.add(result.id);
+                                    }
+                                  },
+                                ),
                               ),
-                              border: Border.all(
-                                color: kGreyShade1,
+                              Expanded(
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.add_box_rounded,
+                                    color: Donebutton,
+                                  ),
+                                  onPressed: () async {
+                                    await showCategoryUploadForm(context);
+                                    setStateInsideSheet(() {});
+                                  },
+                                ),
                               ),
-                              color: Colors.white,
-                            ),
-                            buttonIcon: Icon(
-                              Icons.category,
-                              color: kindigo,
-                            ),
-                            buttonText: const Text(
-                              "Choose category",
-                            ),
-                            onConfirm: (results) {
-                              //_selectedCategoryList = results.cast<CategoryModel>();
-                              for (var result
-                                  in results.cast<CategoryModel>()) {
-                                _selectedCategoryIdList.add(result.id);
-                              }
-                            },
+                            ],
                           ),
                           const SizedBox(height: M_MEDIUM_PAD),
                           Row(
@@ -405,7 +424,7 @@ Future showUploadForm(BuildContext context) async {
                             hint: 'Enter a Image URL',
                             textController: photoURLController,
                           ),
-                          buildUploadFormTitle('Duration (seconds)'),
+                          buildUploadFormTitle('Duration (mins)'),
                           buildUploadFormTextField(
                             hint: 'Reading/Video time',
                             isInt: true,
@@ -416,6 +435,7 @@ Future showUploadForm(BuildContext context) async {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
+                                flex: 5,
                                 child: MultiSelectDialogField(
                                   searchHint: 'Search category',
                                   searchable: true,
@@ -631,7 +651,7 @@ Future showCategoryUploadForm(BuildContext context) async {
                             hint: 'Enter a Image URL',
                             textController: photoURLController,
                           ),
-                          buildUploadFormTitle('Duration (seconds)'),
+                          buildUploadFormTitle('Duration (mins)'),
                           buildUploadFormTextField(
                             hint: '',
                             isInt: true,
@@ -640,7 +660,7 @@ Future showCategoryUploadForm(BuildContext context) async {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              buildUploadFormTitle('Categories'),
+                              buildUploadFormTitle('Is Playlist'),
                               Switch(
                                   value: isPlaylist,
                                   onChanged: (value) {
@@ -681,7 +701,7 @@ Future showCategoryUploadForm(BuildContext context) async {
 
                                 CategoryModel categoryModel = CategoryModel(
                                   name: titleController.text,
-                                  id: titleController.text.toUpperCase(),
+                                  id: titleController.text.toUpperCase().trimLeft().trimRight(),
                                   imageUrl: photoURLController.text,
                                   totalDuration:
                                       int.parse(durationController.text),

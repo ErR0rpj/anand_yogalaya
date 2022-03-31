@@ -127,7 +127,7 @@ class Subcategory extends StatelessWidget {
                             width: VS_SIZEDBOX_SIZE,
                           ),
                           Text(
-                            "${Duration(seconds: categoryModel.totalDuration!).inMinutes} minutes",
+                            "${categoryModel.totalDuration!} minutes",
                             style: TextStyle(
                               fontSize: TOTALNO_EXERCISE_SIZE,
                               color: Donebutton.withOpacity(0.6),
@@ -307,8 +307,8 @@ class Subcategory extends StatelessWidget {
                                                 ),
                                                 Text(
                                                   (snapshot.data![index]
-                                                                  .duration! ~/
-                                                              60)
+                                                                  .duration!
+                                                              )
                                                           .toString() +
                                                       ' min',
                                                   style: TextStyle(

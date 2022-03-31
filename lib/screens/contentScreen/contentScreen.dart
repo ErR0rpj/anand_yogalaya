@@ -161,7 +161,7 @@ class _ContentScreenState extends State<ContentScreen> {
                               width: 5,
                             ),
                             Text(
-                              "${Duration(seconds: (widget.content.duration)!).inMinutes} min",
+                              "${widget.content.duration!} min",
                               style: TextStyle(
                                 fontSize: TOTALNO_EXERCISE_SIZE,
                                 color: Donebutton.withOpacity(0.6),

@@ -121,8 +121,8 @@ class NewListScreen extends StatelessWidget {
                                             (contentController
                                                             .getNewContentList[
                                                                 index]
-                                                            .duration! ~/
-                                                        60)
+                                                            .duration!
+                                                        )
                                                     .toString() +
                                                 ' min',
                                             style: TextStyle(
