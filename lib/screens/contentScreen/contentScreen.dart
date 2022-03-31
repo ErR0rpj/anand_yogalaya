@@ -6,7 +6,6 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/content_controller.dart';
 
 class ContentScreen extends StatefulWidget {

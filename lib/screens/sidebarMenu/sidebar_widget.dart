@@ -110,7 +110,7 @@ class NavsideBar extends GetWidget<AuthController> {
           ListTile(
             leading: const Icon(Icons.description),
             title: const Text('Policies'),
-            onTap: () => null,
+            onTap: () => {},
           ),
           const Divider(),
           ListTile(

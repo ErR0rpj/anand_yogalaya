@@ -143,27 +143,22 @@ class Workouts extends StatelessWidget {
         GetX<CategoryController>(
           init: Get.put<CategoryController>(CategoryController()),
           builder: (CategoryController categoryController) {
-            if (categoryController != null &&
-                categoryController.getPlaylistList != null) {
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (_, i) {
-                    return const SizedBox(
-                      width: S_SIZEDBOX_SIZE,
-                    );
-                  },
-                  itemCount: categoryController.getPlaylistList.length,
-                  itemBuilder: (context, index) {
-                    return _buildCourses(context, index);
-                  },
-                ),
-              );
-            } else {
-              return Text("loading...");
-            }
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, i) {
+                  return const SizedBox(
+                    width: S_SIZEDBOX_SIZE,
+                  );
+                },
+                itemCount: categoryController.getPlaylistList.length,
+                itemBuilder: (context, index) {
+                  return _buildCourses(context, index);
+                },
+              ),
+            );
           },
         ),
       ],

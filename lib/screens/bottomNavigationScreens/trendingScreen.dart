@@ -1,5 +1,4 @@
 import 'package:anand_yogalaya/controllers/content_controller.dart';
-import 'package:anand_yogalaya/services/youtube_player_configured/youtube_player_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -6,7 +6,11 @@ class NotificationTiles extends StatelessWidget {
   final Function onTap;
   final bool enable;
   const NotificationTiles({
-     Key? key, required this.title, required this.subtitle, required this.onTap, required this.enable,
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+    required this.enable,
   }) : super(key: key);
 
   @override
@@ -15,12 +19,13 @@ class NotificationTiles extends StatelessWidget {
       leading: Container(
           height: 50.0,
           width: 50.0,
-          decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/images/yoga_1.png"), fit: BoxFit.cover))),
-      title: Text(title, style: TextStyle(color: kDarkColor)),
-      subtitle: Text(subtitle,
-          style: TextStyle(color: kLightColor)),
-     // onTap: onTap,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/yoga_1.png"),
+                  fit: BoxFit.cover))),
+      title: Text(title, style: const TextStyle(color: kDarkColor)),
+      subtitle: Text(subtitle, style: const TextStyle(color: kLightColor)),
+      // onTap: onTap,
       enabled: enable,
     );
   }

@@ -24,7 +24,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.url}');
     return WebView(
       initialUrl: widget.url,
       javascriptMode: JavascriptMode.unrestricted,

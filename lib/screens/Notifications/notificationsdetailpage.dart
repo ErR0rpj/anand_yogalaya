@@ -4,7 +4,7 @@ import 'notificationAppbar.dart';
 import 'notificationbackButton.dart';
 
 class NotificationPage extends StatefulWidget {
-  NotificationPage({Key? key}) : super(key: key);
+  const NotificationPage({Key? key}) : super(key: key);
 
   @override
   _NotificationPageState createState() => _NotificationPageState();
@@ -15,7 +15,7 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kwhite,
-      appBar: DefaultAppBar(
+      appBar: const DefaultAppBar(
         title: 'Notification',
         child: DefaultBackButton(),
       ),
@@ -23,17 +23,18 @@ class _NotificationPageState extends State<NotificationPage> {
         child: Container(
           // height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.all(kFixPadding),
-          padding: EdgeInsets.all(kFixPadding),
+          margin: const EdgeInsets.all(kFixPadding),
+          padding: const EdgeInsets.all(kFixPadding),
           decoration: BoxDecoration(
               color: kWhiteColor,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(8.0),
-              boxShadow: [BoxShadow(color: kLightColor, blurRadius: 2.0)]),
+              boxShadow: const [
+                BoxShadow(color: kLightColor, blurRadius: 2.0)
+              ]),
           child: Column(
-            children: [
-              Text(
-                  'Exercises to do today for six packs',
+            children: const [
+              Text('Exercises to do today for six packs',
                   style: kDarkTextStyle),
               SizedBox(height: 16.0),
               Image(image: AssetImage("assets/images/yoga_1.png")),
