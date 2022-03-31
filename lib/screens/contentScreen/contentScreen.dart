@@ -61,151 +61,157 @@ class _ContentScreenState extends State<ContentScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: size.height,
-          decoration: const BoxDecoration(
-            color: Donebutton,
-          ),
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(
-                  top: ARROW_BACK_TOP_PAD,
-                  left: ARROW_BACK_LEFT_PAD,
-                  right: ARROW_BACK_RIGHT_PAD,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            AutoOrientation.fullAutoMode();
-                            Get.back();
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            size: BACK_BUTTON_ICON_SIZE,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Visibility(
-                          visible: userController.user.isAdmin == true,
-                          child: InkWell(
-                            onTap: () async {
-                              await showUpdateForm(context, widget.content);
-                              setState(() {});
+    return WillPopScope(
+      onWillPop: () async {
+        AutoOrientation.portraitUpMode();
+        return true;
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            height: size.height,
+            decoration: const BoxDecoration(
+              color: Donebutton,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                    top: ARROW_BACK_TOP_PAD,
+                    left: ARROW_BACK_LEFT_PAD,
+                    right: ARROW_BACK_RIGHT_PAD,
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              AutoOrientation.portraitUpMode();
+                              Get.back();
                             },
                             child: const Icon(
-                              Icons.edit_rounded,
+                              Icons.arrow_back_ios,
                               size: BACK_BUTTON_ICON_SIZE,
                               color: Colors.white,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                child: isContent
-                    ? widget.content.imageWidget
-                    : YoutubePlayer(
-                        width: MediaQuery.of(context).size.width / 1,
-                        controller: _youtubePlayerController!,
-                        showVideoProgressIndicator: true,
+                          Visibility(
+                            visible: userController.user.isAdmin == true,
+                            child: InkWell(
+                              onTap: () async {
+                                await showUpdateForm(context, widget.content);
+                                setState(() {});
+                              },
+                              child: const Icon(
+                                Icons.edit_rounded,
+                                size: BACK_BUTTON_ICON_SIZE,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(25, 0, 10, 0),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40),
-                    ),
+                    ],
                   ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: L_SIZEDBOX_SIZE,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  child: isContent
+                      ? widget.content.imageWidget
+                      : YoutubePlayer(
+                          width: MediaQuery.of(context).size.width / 1,
+                          controller: _youtubePlayerController!,
+                          showVideoProgressIndicator: true,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              widget.content.name,
-                              style: const TextStyle(
-                                fontSize: EXERCISE_NAME_SIZE,
-                                color: Donebutton,
-                                fontWeight: FontWeight.bold,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(25, 0, 10, 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(40),
+                        topLeft: Radius.circular(40),
+                      ),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: L_SIZEDBOX_SIZE,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.content.name,
+                                style: const TextStyle(
+                                  fontSize: EXERCISE_NAME_SIZE,
+                                  color: Donebutton,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.timer,
-                              size: TIME_ICON_SIZE,
-                              color: Colors.grey,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "${widget.content.duration!} min",
-                              style: TextStyle(
-                                fontSize: TOTALNO_EXERCISE_SIZE,
-                                color: Donebutton.withOpacity(0.6),
-                                fontWeight: FontWeight.bold,
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.timer,
+                                size: TIME_ICON_SIZE,
+                                color: Colors.grey,
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: S_MEDIUM_PAD,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              (widget.content.description).toString(),
-                              style: const TextStyle(
-                                  fontSize: DETAIL_TEXT_SIZE,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  letterSpacing: 0.5,
-                                  wordSpacing: 1.5),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: M_SIZEDBOX_SIZE,
-                        ),
-                        buttonWithText(
-                          onPressed: () {
-                            Get.back();
-                          },
-                        ),
-                        const SizedBox(
-                          height: M_SIZEDBOX_SIZE,
-                        ),
-                      ],
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                "${widget.content.duration!} min",
+                                style: TextStyle(
+                                  fontSize: TOTALNO_EXERCISE_SIZE,
+                                  color: Donebutton.withOpacity(0.6),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: S_MEDIUM_PAD,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                (widget.content.description).toString(),
+                                style: const TextStyle(
+                                    fontSize: DETAIL_TEXT_SIZE,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                    letterSpacing: 0.5,
+                                    wordSpacing: 1.5),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: M_SIZEDBOX_SIZE,
+                          ),
+                          buttonWithText(
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                          const SizedBox(
+                            height: M_SIZEDBOX_SIZE,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

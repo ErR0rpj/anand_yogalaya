@@ -1,7 +1,6 @@
 //Pass the URL as argument and the page will open the url inside the app as webpage
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
