@@ -19,8 +19,8 @@ class HomepageScreen extends StatefulWidget {
 
 class HomepageScreenState extends State<HomepageScreen> {
   UserController userController = Get.find();
-  final CategoryController categoryController = Get.put(CategoryController());
   final ContentController contentController = Get.put(ContentController());
+  final CategoryController categoryController = Get.put(CategoryController());
 
   List pages = [
     const DashBoardScreen(),
