@@ -2,6 +2,9 @@
     package="com.StavanCo.anand_yogalaya">'
     
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 
    <application
         android:label="Anand Yogalaya"
