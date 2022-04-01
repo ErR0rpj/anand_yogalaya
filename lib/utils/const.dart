@@ -70,9 +70,16 @@ Color? kindigo = Colors.indigo[400];
 const Color NOTIFICATION_COUNT_NUMBERS_COLOR = Colors.white; //
 const loginbackground = Color(0xFF80DEE8);
 const loginbutton = Color(0xFF303F9F);
-const Donebutton = Color(0xFF303F9F);
+// const Donebutton = Color(0xFF303F9F);
+const Donebutton = Color(0xFF333333);
+const Backgroundcolor = Color(0xFFF5865B);
 const SubcategoryColor = Color(0xFFE1F5FE);
 const PlayButtonColor = Color(0xFFD1C4E9);
+const SubcategoryboxColor = Color(0xFFFFF2EC);
+const UploadBackgroundcolor = Color(0xFFFFF2EC);
+const trendingPlayButtonColor = Color(0xFFF15D1F);
+
+
 
 const kGreyShade1 = Color(0xFF8E8E93);
 const kGreyShade2 = Color(0xFFAEAEB2);

@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: loginbackground,
+        backgroundColor: Backgroundcolor,
         resizeToAvoidBottomInset: false,
         body: // C(
       //    children: [

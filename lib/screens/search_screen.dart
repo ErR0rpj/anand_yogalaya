@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 //This screen actually creates a delegate and it is not a screen. Delegate means
 // like if we click on search the screen converts the app bar to search.
 class SearchScreen extends SearchDelegate<CategoryModel> {

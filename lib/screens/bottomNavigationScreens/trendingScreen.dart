@@ -61,7 +61,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
             Container(
               padding: const EdgeInsets.only(top: 10),
               height: 210,
-              color: kWhiteColor,
+              color: kwhite,
               child: CarouselSlider.builder(
                 itemCount: contentController.getContentList.length > 5
                     ? 5
@@ -117,7 +117,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                   ),
                   indicator: const BoxDecoration(
                     border: Border(
-                      bottom: BorderSide(color: Donebutton, width: 3.0),
+                      bottom: BorderSide(color: trendingPlayButtonColor, width: 3.0),
                     ),
                   ),
                   unselectedLabelColor: Colors.grey,

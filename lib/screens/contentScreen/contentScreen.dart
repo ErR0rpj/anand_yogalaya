@@ -71,7 +71,7 @@ class _ContentScreenState extends State<ContentScreen> {
           child: Container(
             height: size.height,
             decoration: const BoxDecoration(
-              color: Donebutton,
+              color: Backgroundcolor,
             ),
             child: Column(
               children: [

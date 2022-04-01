@@ -19,7 +19,7 @@ class NavsideBar extends GetWidget<AuthController> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            color: Donebutton,
+            color: Backgroundcolor,
             child: Center(
               child: Column(
                 children: <Widget>[

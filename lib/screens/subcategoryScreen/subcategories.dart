@@ -25,7 +25,7 @@ class Subcategory extends StatelessWidget {
     return Obx(() => Scaffold(
           body: Container(
             decoration: const BoxDecoration(
-              color: Donebutton,
+              color: Backgroundcolor,
             ),
             child: Column(
               children: [
@@ -187,7 +187,7 @@ class Subcategory extends StatelessWidget {
                                       child: Container(
                                         //height: size.height * 0.12,
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: SubcategoryboxColor,
                                           borderRadius:
                                               BorderRadius.circular(S_RADIUS),
                                           boxShadow: [
@@ -207,7 +207,7 @@ class Subcategory extends StatelessWidget {
                                               width: size.width * 0.17,
                                               height: size.height * 0.085,
                                               decoration: BoxDecoration(
-                                                color: PlayButtonColor,
+                                                color: Backgroundcolor,
                                                 borderRadius:
                                                     BorderRadius.circular(
                                                   S_RADIUS,

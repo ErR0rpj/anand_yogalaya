@@ -58,7 +58,7 @@ class NewListScreen extends StatelessWidget {
                                 width: size.width * 0.15,
                                 height: size.height * 0.070,
                                 decoration: BoxDecoration(
-                                  color: kPrimaryPurple,
+                                  color: Backgroundcolor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,

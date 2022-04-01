@@ -58,7 +58,7 @@ class PopularListScreen extends StatelessWidget {
                                 width: 65,
                                 height: 55,
                                 decoration: BoxDecoration(
-                                  color: Donebutton,
+                                  color: Backgroundcolor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
