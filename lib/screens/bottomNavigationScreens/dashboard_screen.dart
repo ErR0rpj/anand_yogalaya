@@ -48,7 +48,6 @@ class DashBoardScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              //  SearchBox( onChanged: (value) {},),
               const CategoryTab(),
               SizedBox(
                 height: VL_CONTAINER_SIZE,

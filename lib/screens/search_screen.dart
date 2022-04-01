@@ -181,8 +181,8 @@ class SearchScreen extends SearchDelegate<CategoryModel> {
                     ),
                   ),
                   trailing: Container(
-                    width: size.width * 0.15,
-                    height: size.height * 0.070,
+                    width: 60,
+                    height: 50,
                     decoration: BoxDecoration(
                       color: suggestionsForContents.elementAt(index).color,
                       borderRadius: BorderRadius.circular(20),
