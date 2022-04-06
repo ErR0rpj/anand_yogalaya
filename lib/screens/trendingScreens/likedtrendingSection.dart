@@ -58,7 +58,7 @@ class LikedListScreen extends StatelessWidget {
                                 width: size.width * 0.15,
                                 height: size.height * 0.070,
                                 decoration: BoxDecoration(
-                                  color: Backgroundcolor,
+                                  color: Colors.pink[300],
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -120,10 +120,9 @@ class LikedListScreen extends StatelessWidget {
                                           SizedBox(width: size.width * 0.01),
                                           Text(
                                             (contentController
-                                                            .getLikedContentList[
-                                                                index]
-                                                            .duration!
-                                                        )
+                                                        .getLikedContentList[
+                                                            index]
+                                                        .duration!)
                                                     .toString() +
                                                 ' min',
                                             style: TextStyle(

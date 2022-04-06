@@ -3,7 +3,6 @@ import 'package:anand_yogalaya/utils/const.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../services/youtube_player_configured/youtube_player_flutter.dart';
 
 class ContentModel {
@@ -86,8 +85,10 @@ class ContentModel {
           ),
         );
       },
-      placeholder: (context, url) =>
-          const Center(child: CircularProgressIndicator()),
+      placeholder: (context, url) => const Center(
+          child: CircularProgressIndicator(
+        color: Donebutton,
+      )),
       errorWidget: (context, url, error) => ClipRRect(
         borderRadius: BorderRadius.circular(TOP_WORKOUT_IMAGE_RADIUS),
         child: const Icon(
@@ -162,26 +163,48 @@ class ContentModel {
   }
 
   ContentModel.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
-    id = documentSnapshot['id'];
-    name = documentSnapshot['name'];
-    description = documentSnapshot['description'];
-    photoUrl = documentSnapshot['photoUrl'];
-    videoUrl = documentSnapshot['videoUrl'];
-    duration = documentSnapshot['duration'];
-    searchKeywords = documentSnapshot['searchKeywords'];
-    isPremium = documentSnapshot['isPremium'];
-    views = documentSnapshot['views'];
-    addedDate = documentSnapshot['addedDate'] != null
-        ? DateTime.fromMillisecondsSinceEpoch(
-            documentSnapshot['addedDate'].millisecondsSinceEpoch)
-        : null;
-    categories = documentSnapshot['categories'] != null
-        ? List<String>.from(documentSnapshot['categories'])
-        : [];
-    likes = documentSnapshot['likes'] != null
-        ? List<String>.from(documentSnapshot['likes'])
-        : [];
-    isDeleted = documentSnapshot['isDeleted'];
-    _initialize();
+    try {
+      id = documentSnapshot['id'];
+      name = documentSnapshot['name'];
+      description = documentSnapshot['description'];
+      photoUrl = documentSnapshot['photoUrl'];
+      videoUrl = documentSnapshot['videoUrl'];
+      duration = documentSnapshot['duration'];
+      searchKeywords = documentSnapshot['searchKeywords'];
+      isPremium = documentSnapshot['isPremium'];
+      views = documentSnapshot['views'];
+      addedDate = documentSnapshot['addedDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              documentSnapshot['addedDate'].millisecondsSinceEpoch)
+          : null;
+      categories = documentSnapshot['categories'] != null
+          ? List<String>.from(documentSnapshot['categories'])
+          : [];
+      likes = documentSnapshot['likes'] != null
+          ? List<String>.from(documentSnapshot['likes'])
+          : [];
+      isDeleted = documentSnapshot['isDeleted'];
+      _initialize();
+    } catch (e) {
+      id = documentSnapshot['id'];
+      name = documentSnapshot['name'];
+      description = documentSnapshot['description'];
+      photoUrl = documentSnapshot['photoUrl'];
+      videoUrl = documentSnapshot['videoUrl'];
+      duration = documentSnapshot['duration'];
+      searchKeywords = documentSnapshot['searchKeywords'];
+      isPremium = documentSnapshot['isPremium'];
+      views = documentSnapshot['views'];
+      addedDate = documentSnapshot['addedDate'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(
+              documentSnapshot['addedDate'].millisecondsSinceEpoch)
+          : null;
+      categories = documentSnapshot['categories'] != null
+          ? List<String>.from(documentSnapshot['categories'])
+          : [];
+      likes = [];
+      isDeleted = documentSnapshot['isDeleted'];
+      _initialize();
+    }
   }
 }

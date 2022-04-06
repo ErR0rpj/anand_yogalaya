@@ -350,7 +350,7 @@ Future showUploadForm(BuildContext context) async {
             child: StatefulBuilder(
               builder: (sheetContext, setStateInsideSheet) {
                 return Container(
-                  color: UploadBackgroundcolor,
+                  color: Colors.transparent,
                   child: Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(

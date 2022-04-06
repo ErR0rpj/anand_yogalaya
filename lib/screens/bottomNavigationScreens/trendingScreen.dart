@@ -1,4 +1,5 @@
 import 'package:anand_yogalaya/controllers/content_controller.dart';
+import 'package:anand_yogalaya/screens/contentScreen/contentScreen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,23 +61,32 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
             Container(
               padding: const EdgeInsets.only(top: 10),
               height: 210,
-              color: kwhite,
+              color: kWhiteColor,
               child: CarouselSlider.builder(
                 itemCount: contentController.getContentList.length > 5
                     ? 5
                     : contentController.getContentList.length,
                 itemBuilder: (content, index, heroIndex) {
-                  return SizedBox(
-                    width: size.width,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color:
-                                contentController.getContentList[index].color,
-                          ),
-                          child: contentController
-                              .getContentList[index].imageWidget),
+                  return InkWell(
+                    onTap: () {
+                      Get.to(
+                        () => ContentScreen(
+                          content: contentController.getContentList[index],
+                        ),
+                      );
+                    },
+                    child: SizedBox(
+                      width: size.width,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color:
+                                  contentController.getContentList[index].color,
+                            ),
+                            child: contentController
+                                .getContentList[index].imageWidget),
+                      ),
                     ),
                   );
                 },
@@ -116,7 +126,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                   ),
                   indicator: const BoxDecoration(
                     border: Border(
-                      bottom: BorderSide(color: trendingPlayButtonColor, width: 3.0),
+                      bottom: BorderSide(color: Donebutton, width: 3.0),
                     ),
                   ),
                   unselectedLabelColor: Colors.grey,

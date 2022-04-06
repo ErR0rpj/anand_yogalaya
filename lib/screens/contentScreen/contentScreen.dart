@@ -70,7 +70,7 @@ class _ContentScreenState extends State<ContentScreen> {
         body: SingleChildScrollView(
           child: Container(
             decoration: const BoxDecoration(
-              color: Backgroundcolor,
+              color: Donebutton,
             ),
             child: Column(
               children: [
