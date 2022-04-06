@@ -9,7 +9,7 @@ class DefaultBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back_ios,
         size: BACK_BUTTON_ICON_SIZE,
         color: Donebutton,

@@ -5,7 +5,6 @@ import '../models/category_model.dart';
 import '../services/database.dart';
 
 class CategoryController extends GetxController {
-
   // All CategoryList Controller
   Rx<List<CategoryModel>> allCategoryList = Rx<List<CategoryModel>>([]);
   // Getter for all category list
@@ -23,6 +22,7 @@ class CategoryController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     try {
       allCategoryList.bindStream(Database().allCategoryStream());
       categoryList.bindStream(Database().categoryStream());

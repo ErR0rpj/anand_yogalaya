@@ -2,7 +2,6 @@ import 'package:anand_yogalaya/controllers/category_controller.dart';
 import 'package:anand_yogalaya/controllers/upload_form_controller.dart';
 import 'package:anand_yogalaya/models/category_model.dart';
 import 'package:anand_yogalaya/models/content_model.dart';
-import 'package:anand_yogalaya/services/database.dart';
 import 'package:anand_yogalaya/services/network_service.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -167,7 +166,7 @@ Future showUpdateForm(BuildContext context, ContentModel contentModel) async {
                                   onConfirm: (results) {
                                     //_selectedCategoryList = results.cast<CategoryModel>();
                                     for (var result
-                                    in results.cast<CategoryModel>()) {
+                                        in results.cast<CategoryModel>()) {
                                       _selectedCategoryIdList.add(result.id);
                                     }
                                   },
@@ -333,7 +332,6 @@ Future showUploadForm(BuildContext context) async {
 
   // for Dropdown category
   CategoryController categoryController = Get.find();
-  List<CategoryModel>? _selectedCategoryList;
   List<String> _selectedCategoryIdList = [];
 
   return showModalBottomSheet(
@@ -701,7 +699,10 @@ Future showCategoryUploadForm(BuildContext context) async {
 
                                 CategoryModel categoryModel = CategoryModel(
                                   name: titleController.text,
-                                  id: titleController.text.toUpperCase().trimLeft().trimRight(),
+                                  id: titleController.text
+                                      .toUpperCase()
+                                      .trimLeft()
+                                      .trimRight(),
                                   imageUrl: photoURLController.text,
                                   totalDuration:
                                       int.parse(durationController.text),

@@ -1,6 +1,5 @@
 import 'package:anand_yogalaya/screens/TopWorkoutScreens/topWorkout.dart';
 import 'package:anand_yogalaya/screens/categoryScreens/all_categories_screen.dart';
-import 'package:anand_yogalaya/screens/searchbox.dart';
 import 'package:anand_yogalaya/screens/sidebarMenu/sidebar_widget.dart';
 import 'package:anand_yogalaya/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -49,33 +48,28 @@ class DashBoardScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              //  SearchBox( onChanged: (value) {},),
               const CategoryTab(),
               SizedBox(
                 height: VL_CONTAINER_SIZE,
                 child: GetX<CategoryController>(
                   init: Get.put<CategoryController>(CategoryController()),
                   builder: (CategoryController categoryController) {
-                    if (categoryController != null) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: ListView.separated(
-                          separatorBuilder: (_, i) {
-                            return const SizedBox(
-                              width: S_SIZEDBOX_SIZE,
-                            );
-                          },
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categoryController.getCategoryList.length,
-                          itemBuilder: (_, index) {
-                            return CategoryCard(
-                                categoryController.getCategoryList[index]);
-                          },
-                        ),
-                      );
-                    } else {
-                      return const Text("loading...");
-                    }
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: ListView.separated(
+                        separatorBuilder: (_, i) {
+                          return const SizedBox(
+                            width: S_SIZEDBOX_SIZE,
+                          );
+                        },
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categoryController.getCategoryList.length,
+                        itemBuilder: (_, index) {
+                          return CategoryCard(
+                              categoryController.getCategoryList[index]);
+                        },
+                      ),
+                    );
                   },
                 ),
               ),

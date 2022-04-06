@@ -126,44 +126,50 @@ class ContentController extends GetxController {
   }
 
   // like particular content with id
-  Future<void> likeContent(ContentModel contentModel) async {
-    UserController userController = Get.find();
-    userController.user.contentLikedByUser ??= [];
-    var uid = authController.user?.uid;
+  Future<bool> likeContent(ContentModel contentModel) async {
+    try {
+      UserController userController = Get.find();
+      userController.user.contentLikedByUser ??= [];
+      var uid = authController.user?.uid;
 
-    DocumentSnapshot likedDoc = await firebaseFirestore
-        .collection('contents')
-        .doc(contentModel.id)
-        .get();
-    //DocumentSnapshot userLikedDoc = await firebaseFirestore.collection('users').doc(uid).get();
-
-    if ((likedDoc.data()! as dynamic)['likes'].contains(uid)) {
-      await firebaseFirestore
+      DocumentSnapshot likedDoc = await firebaseFirestore
           .collection('contents')
           .doc(contentModel.id)
-          .update({
-        'likes': FieldValue.arrayRemove([uid]),
-      });
-      await firebaseFirestore.collection('users').doc(uid).update({
-        'contentLikedByUser': FieldValue.arrayRemove([contentModel.id]),
-      });
-      contentModel.likes?.remove(uid);
+          .get();
+      //DocumentSnapshot userLikedDoc = await firebaseFirestore.collection('users').doc(uid).get();
 
-      userController.user.contentLikedByUser?.remove(contentModel.id);
-    } else {
-      await firebaseFirestore
-          .collection('contents')
-          .doc(contentModel.id)
-          .update({
-        'likes': FieldValue.arrayUnion([uid]),
-      });
-      await firebaseFirestore.collection('users').doc(uid).update({
-        'contentLikedByUser': FieldValue.arrayUnion([contentModel.id]),
-      });
-      contentModel.likes?.add(uid!);
-      userController.user.contentLikedByUser?.add(contentModel.id);
+      if ((likedDoc.data()! as dynamic)['likes'].contains(uid)) {
+        await firebaseFirestore
+            .collection('contents')
+            .doc(contentModel.id)
+            .update({
+          'likes': FieldValue.arrayRemove([uid]),
+        });
+        await firebaseFirestore.collection('users').doc(uid).update({
+          'contentLikedByUser': FieldValue.arrayRemove([contentModel.id]),
+        });
+        contentModel.likes?.remove(uid);
+
+        userController.user.contentLikedByUser?.remove(contentModel.id);
+      } else {
+        await firebaseFirestore
+            .collection('contents')
+            .doc(contentModel.id)
+            .update({
+          'likes': FieldValue.arrayUnion([uid]),
+        });
+        await firebaseFirestore.collection('users').doc(uid).update({
+          'contentLikedByUser': FieldValue.arrayUnion([contentModel.id]),
+        });
+        contentModel.likes?.add(uid!);
+        userController.user.contentLikedByUser?.add(contentModel.id);
+      }
+      update();
+      return true;
+    } catch (e) {
+      print('Error liking content: $e');
+      return false;
     }
-    update();
   }
 
   // increase views particular content with id
