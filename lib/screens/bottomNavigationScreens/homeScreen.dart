@@ -46,7 +46,7 @@ class HomepageScreenState extends State<HomepageScreen> {
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTap,
-        selectedItemColor: kPrimaryPurple,
+        selectedItemColor: Donebutton,
         currentIndex: currentIndex,
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showUnselectedLabels: false,
@@ -64,6 +64,7 @@ class HomepageScreenState extends State<HomepageScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: userController.user.isAdmin == true
           ? FloatingActionButton(
+              backgroundColor: Donebutton,
               child: const Icon(Icons.upload_outlined),
               elevation: 5,
               onPressed: () {

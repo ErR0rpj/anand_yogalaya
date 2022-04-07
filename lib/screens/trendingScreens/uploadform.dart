@@ -138,6 +138,7 @@ Future showUpdateForm(BuildContext context, ContentModel contentModel) async {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
+                                flex: 5,
                                 child: MultiSelectDialogField(
                                   searchHint: 'Search category',
                                   searchable: true,

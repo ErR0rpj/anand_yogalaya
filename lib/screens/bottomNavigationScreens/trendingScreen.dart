@@ -161,6 +161,7 @@ class TrendingPageScreenState extends State<TrendingPageScreen>
                 ],
               ),
             ),
+
           ],
         ),
       ),

@@ -57,7 +57,7 @@ class UploadFormController extends GetxController {
           .update({
         'isDeleted': true,
       });
-      return false;
+      return true;
     } catch (e) {
       print('Error marking content delted: $e');
       return false;
