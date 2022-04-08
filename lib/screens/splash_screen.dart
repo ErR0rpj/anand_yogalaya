@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  AuthController authController = Get.put(AuthController());
+  AuthController authController = Get.find();
   UserController userController = Get.put(UserController());
 
   @override
