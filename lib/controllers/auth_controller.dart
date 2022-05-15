@@ -51,7 +51,10 @@ class AuthController extends GetxController {
       Get.dialog(const Center(child: LoadingWidget()),
           barrierDismissible: false);
 
-      await initializeFirebaseApp();
+      if (firebaseApp == null) {
+        await initializeFirebaseApp();
+      }
+     // await initializeFirebaseApp();
 
       firebaseAuth = FirebaseAuth.instance;
 
