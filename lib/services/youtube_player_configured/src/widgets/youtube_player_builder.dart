@@ -37,18 +37,18 @@ class _YoutubePlayerBuilderState extends State<YoutubePlayerBuilder>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeMetrics() {
-    final physicalSize = SchedulerBinding.instance.window.physicalSize;
+    final physicalSize = SchedulerBinding.instance?.window.physicalSize;
     final controller = widget.player.controller;
     if (physicalSize != null && physicalSize.width > physicalSize.height) {
       controller.updateValue(controller.value.copyWith(isFullScreen: true));

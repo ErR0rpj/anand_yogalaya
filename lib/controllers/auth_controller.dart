@@ -20,14 +20,14 @@ class AuthController extends GetxController {
 
   User? get user => firebaseUser;
 
-  Future<void> initializeFirebaseApp() async {
+ /* Future<void> initializeFirebaseApp() async {
     firebaseApp = await Firebase.initializeApp();
-  }
+  }*/
 
   Future<Widget> checkUserLoggedIn() async {
-    if (firebaseApp == null) {
+    /*if (firebaseApp == null) {
       await initializeFirebaseApp();
-    }
+    }*/
     if (firebaseAuth == null) {
       firebaseAuth = FirebaseAuth.instance;
       update();
@@ -51,9 +51,9 @@ class AuthController extends GetxController {
       Get.dialog(const Center(child: LoadingWidget()),
           barrierDismissible: false);
 
-      if (firebaseApp == null) {
+     /* if (firebaseApp == null) {
         await initializeFirebaseApp();
-      }
+      }*/
      // await initializeFirebaseApp();
 
       firebaseAuth = FirebaseAuth.instance;
@@ -97,6 +97,7 @@ class AuthController extends GetxController {
       Get.off(() => const HomepageScreen());
     } catch (e) {
       Get.back();
+      print(e);
       Get.snackbar('Sign In Error', 'Error Signing in',
           duration: const Duration(seconds: 5),
           backgroundColor: Colors.black,
