@@ -46,11 +46,27 @@
           }
         },
         {
+          "client_id": "175004096229-iads3tmmankup6scnci64s6blqhtetv2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StavanCo.anand_yogalaya",
+            "certificate_hash": "9bf78eef640df218badac098d372701c07b9ad08"
+          }
+        },
+        {
           "client_id": "175004096229-iidifstfatt9ja8hbt6c5r0o82trdrk1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.StavanCo.anand_yogalaya",
             "certificate_hash": "b145de5d9d4ba942e4607f1c5ab23f65c45dcf5a"
+          }
+        },
+        {
+          "client_id": "175004096229-vo81oi984ikrm2rk9urerv91h8pl9tlv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StavanCo.anand_yogalaya",
+            "certificate_hash": "1cc362eda0ef0c8a7efa8c60bcd7c2fbb062a806"
           }
         },
         {
