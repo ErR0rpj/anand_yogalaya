@@ -7,66 +7,66 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:175004096229:android:3ac3a24edbb71a1be8a60c",
+        "mobilesdk_app_id": "1:175004096229:android:e6561758305fa46ce8a60c",
         "android_client_info": {
-          "package_name": "com.StavanCo.anand_yogalaya"
+          "package_name": "com.AnandYogalaya.anand_yogalaya"
         }
       },
       "oauth_client": [
         {
-          "client_id": "175004096229-0e27ham67g92pbjcjql42p35aar4lovo.apps.googleusercontent.com",
+          "client_id": "175004096229-3g0k94q96r470qfgupleipf9ifbq8a05.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "9227bfb6d2dbec77522d5cfb1456b8b180f62db4"
-          }
-        },
-        {
-          "client_id": "175004096229-12dum8ic81p0khpfmdi4p4a4ca469je2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "0b252a739b9f0a9dbef2981a8b09afa28b8c7a7b"
-          }
-        },
-        {
-          "client_id": "175004096229-c041cn18rl4m1t8lhq6vrj1bnd2dpj4l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "494ba81caa37060f2239cebb9febf49339cfc9e3"
-          }
-        },
-        {
-          "client_id": "175004096229-cumqbbs1iq39nir5vgj5ksnj82gudm68.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "9881f8798c2ab5fb19754cd064684690a21942ec"
-          }
-        },
-        {
-          "client_id": "175004096229-iads3tmmankup6scnci64s6blqhtetv2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
             "certificate_hash": "9bf78eef640df218badac098d372701c07b9ad08"
           }
         },
         {
-          "client_id": "175004096229-iidifstfatt9ja8hbt6c5r0o82trdrk1.apps.googleusercontent.com",
+          "client_id": "175004096229-4kc9q8throitiqsfjrmmcp434ggjnptm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "b145de5d9d4ba942e4607f1c5ab23f65c45dcf5a"
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "5dc9a9b678becb146fe93183d6466d04a11a3367"
           }
         },
         {
-          "client_id": "175004096229-vo81oi984ikrm2rk9urerv91h8pl9tlv.apps.googleusercontent.com",
+          "client_id": "175004096229-ae0edso419umhuhj9t8o67lbu3vd562m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.StavanCo.anand_yogalaya",
-            "certificate_hash": "1cc362eda0ef0c8a7efa8c60bcd7c2fbb062a806"
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "0b252a739b9f0a9dbef2981a8b09afa28b8c7a7b"
+          }
+        },
+        {
+          "client_id": "175004096229-b7q5tlae327goeok81eib4r2ctd1d7te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "9881f8798c2ab5fb19754cd064684690a21942ec"
+          }
+        },
+        {
+          "client_id": "175004096229-epmegbgqr45s1gpo3mv8tiaflcigvt1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "9227bfb6d2dbec77522d5cfb1456b8b180f62db4"
+          }
+        },
+        {
+          "client_id": "175004096229-eunghnb726p0e1u5prqi1hp0hvjj4m36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "6c5378551408ec7cfefccbbdff2e7281b10de244"
+          }
+        },
+        {
+          "client_id": "175004096229-lbo8sgbr15r1cu67fdqq3s0sq33e4gfu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AnandYogalaya.anand_yogalaya",
+            "certificate_hash": "494ba81caa37060f2239cebb9febf49339cfc9e3"
           }
         },
         {
